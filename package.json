@@ -4,7 +4,7 @@
   "description": "Curso completo Do Travesseiro ao Groove",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server-simple.js",
     "dev": "nodemon server.js"
   },
   "dependencies": {
