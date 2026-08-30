@@ -776,42 +776,77 @@ app.get('/api/chapters/:id', authenticateToken, (req, res) => {
 });
 
 // ============ SERVE PAGES ============
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile('public/index.html', { root: __dirname });
 });
 
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+  res.sendFile('public/dashboard.html', { root: __dirname });
 });
 
 app.get('/intro', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'intro.html'));
+  res.sendFile('public/intro.html', { root: __dirname });
 });
 
 app.get('/curso', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'curso.html'));
+  res.sendFile('public/curso.html', { root: __dirname });
 });
 
 app.get('/teste', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'teste.html'));
+  res.sendFile('public/teste.html', { root: __dirname });
 });
 
 app.get('/faq', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'faq.html'));
+  res.sendFile('public/faq.html', { root: __dirname });
 });
 
 app.get('/conquistas', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'achievements.html'));
+  res.sendFile('public/achievements.html', { root: __dirname });
 });
 
 app.get('/evolucao', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'evolucao.html'));
+  res.sendFile('public/evolucao.html', { root: __dirname });
 });
 
 app.get('/criar-exercicio', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'criar-exercicio.html'));
+  res.sendFile('public/criar-exercicio.html', { root: __dirname });
 });
+
+//app.get('/', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+//});
+
+//app.get('/dashboard', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+//});
+
+//app.get('/intro', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'intro.html'));
+//});
+
+//app.get('/curso', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'curso.html'));
+//});
+
+//app.get('/teste', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'teste.html'));
+//});
+
+//app.get('/faq', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'faq.html'));/
+//});
+
+//app.get('/conquistas', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'achievements.html'));
+//});
+
+//app.get('/evolucao', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'evolucao.html'));
+//});
+
+//app.get('/criar-exercicio', (req, res) => {
+//  res.sendFile(path.join(__dirname, 'public', 'criar-exercicio.html'));
+//});
 
 // ============ START ============
 
