@@ -17,7 +17,8 @@ process.on('unhandledRejection', (reason) => {
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'stick-control-secret-2024';
-const DB_PATH = process.env.DB_PATH ? path.join(process.env.DB_PATH, 'travesseiro-groove.db') : path.join(__dirname, 'database', 'travesseiro-groove.db');
+const DB_PATH = path.join('/tmp', 'travesseiro-groove.db');
+//const DB_PATH = process.env.DB_PATH ? path.join(process.env.DB_PATH, 'travesseiro-groove.db') : path.join(__dirname, 'database', 'travesseiro-groove.db');
 
 // Middleware
 app.use(cors());
