@@ -1,0 +1,21 @@
+{
+  "id": 30,
+  "title": "Fifteen Stroke Roll",
+  "description": "Rolo de 15 batidas",
+  "objectives": [
+    "Aprender o fifteen stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Fifteen Stroke Roll?</h3><p>É um rulo de <span class='highlight'>quinze batidas</span>: sete duplos + um acento. <strong>RR LL RR LL RR LL RR L</strong> — e emendando com a outra mão: <strong>RR LL RR LL RR LL RR L | LL RR LL RR LL RR LL R</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL RR LL RR L | LL RR LL RR LL RR LL R<br>(duplo, duplo, duplo, duplo, duplo, duplo, duplo, acento)</div><p>As <span class='highlight'>14 primeiras notas são duplos rápidos</span> (7 na direita + 7 na esquerda) e a <span class='highlight'>15ª é um acento</span>, tocada com a mão oposta. Por isso 'fifteen': 14 rápidas + 1 forte = 15 notas.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>L:</strong> o <strong>acento</strong> — a 15ª nota soa mais forte e começa o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 5 6 7 8 9 10 11 12 13 14 RÁ'</span>, repetindo — o acento cai sempre na 15ª nota.</p><h3>Por que é Importante?</h3><p>É o rulo <strong>mais longo da série</strong>: sete duplos antes do acento exigem resistência, controle de volume e dedos firmes. É a prova final do seu double stroke. Aprenda a emendá-lo sem parar (RRLLRRLLRRLLRRL LLRRLLRRLLRRLLR RRLLRRLLRRLLRRL...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R"],
+  "diagram": "<div class='diagram-title'>Fifteen Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L L R R L L R R L | L L R R L L R R L L R R L L R\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nd d d d d d d d d d d d d d A   d d d d d d d d d d d d d d A\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>15 notas: 14 duplos rápidos + 1 acento. O acento alterna de mão a cada grupo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 5 6 7 8 9 10 11 12 13 14 RÁ'. Divida em blocos de 4 + 3 para não se perder.</div><div class='tip-box'><strong>💡 Duplos:</strong> São 7 pares de duplos — economize energia nos primeiros para manter os últimos limpos.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> O acento sair fraco depois de tantos duplos. Reserve energia e destaque a 15ª nota.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

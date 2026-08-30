@@ -1,0 +1,41 @@
+{
+  "id": 23,
+  "title": "Double Stroke Roll",
+  "description": "Rolo de batidas duplas",
+  "objectives": [
+    "Entender o double stroke roll",
+    "Tocar 2 golpes iguais por mão",
+    "Aumentar velocidade"
+  ],
+  "concept": "<h3>O que é um Double Stroke Roll?</h3><p>É um rulo onde <span class='highlight'>cada mão toca duas batidas seguidas</span>: RR LL RR LL RR LL... É a base de quase todos os rulos (five, seven, nine stroke) e dos fills.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL RR LL RR LL<br>(duas batidas em cada mão)</div><p>Você toca 2 notas com a direita, 2 com a esquerda, e repete. As <span class='highlight'>duas notas de cada mão devem soar com o mesmo volume e na mesma velocidade</span> — esse é o objetivo do exercício.</p><h3>Como Tocar</h3><ul><li><strong>1º golpe:</strong> toque com o pulso.</li><li><strong>2º golpe:</strong> aproveite o rebote da baqueta, ou dê um segundo golpe de pulso — mas sempre com o <strong>mesmo volume</strong> do 1º.</li><li><strong>Alternância:</strong> RR LL RR LL, sem pausa entre as mãos.</li></ul><h3>Diferença do Open Roll</h3><p>É o <strong>mesmo padrão</strong> (RR LL). A diferença é a intenção: no open roll cada nota fica bem separada e audível; no double stroke roll você busca <span class='highlight'>igualdade</span> entre os golpes e pode acelerar até o rulo fechar.</p>",
+  "exercise": [
+    "R",
+    "R",
+    "L",
+    "L",
+    "r",
+    "r",
+    "l",
+    "l",
+    "R",
+    "R",
+    "L",
+    "L",
+    "r",
+    "r",
+    "l",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Double Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L L R R L L R R L L\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\n D D E E D D E E D D E E D D E E\n\nD = direita   E = esquerda</pre><div class='diagram-note'>As 2 notas de cada mão têm o mesmo volume e velocidade.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Igualdade:</strong> A 2ª nota costuma sair mais fraca. Grave os dois golpes e compare o som.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Aumente 5 BPM por vez. Se a 2ª nota 'embaçar', volte 5 BPM.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Apressar o 2º golpe (vira buzz) ou deixá-lo muito fraco (vira nota fantasma).</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    160
+  ],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

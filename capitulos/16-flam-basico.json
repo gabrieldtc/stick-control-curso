@@ -1,0 +1,21 @@
+{
+  "id": 16,
+  "title": "Flam Básico",
+  "description": "Batida ornamental com duas mãos",
+  "objectives": [
+    "Aprender a tocar um flam",
+    "Controlar a velocidade entre notas",
+    "Integrar flams nos padrões"
+  ],
+  "concept": "<h3>O que é um Flam?</h3><p>Um flam são <span class='highlight'>duas batidas muito próximas</span>. A mão menor toca primeiro, seguida pela mão maior. Cria um som mais 'gordo' e expressivo.</p><h3>Como Funciona</h3><div class='pattern-example'>r R | l L | r R | l L<br>peq GRD  peq GRD</div><p>Note que:<ul><li><strong>r</strong> (minúsculo) = mão menor, toca primeiro</li><li><strong>R</strong> (maiúsculo) = mão maior, toca um instante depois</li></ul><h3>Por que é Importante?</h3><p>Flams são usados para:<ul><li>Enfatizar batidas</li><li>Criar expressividade</li><li>Adicionar 'peso' às notas</li></ul><h3>Como Tocar</h3><p>A mão menor deve estar <span class='highlight'>mais perto</span> da membrana. A diferença de altura cria o efeito de flam.</p></p></p>",
+  "exercise": ["rR", "lL", "rR", "lL", "rR", "lL", "rR", "lL"],
+  "diagram": "<div class='diagram-title'>Flam</div><pre class='diagram-ascii'>r R   l L   r R   l L\n|---|   |---|   |---|   |---|\n flam   flam   flam   flam\n\nMão menor (r) → Mão maior (R)</pre><div class='diagram-note'>O flam são duas batidas quase juntas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Distância:</strong> A mão menor deve estar mais perto da membrana que a maior. Isso cria o efeito correto.</div><div class='tip-box'><strong>💡 Timing:</strong> O intervalo entre as notas deve ser mínimo. É quase uma batida só.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não toque as duas mãos ao mesmo tempo. Deve haver uma pequena diferença.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

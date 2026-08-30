@@ -1,0 +1,21 @@
+{
+  "id": 36,
+  "title": "Acentos em Tercinas",
+  "description": "Exercício de acentuação em grupos de três notas (tercinas).",
+  "objectives": [
+    "Executar acentos precisos dentro de grupos de três",
+    "Desenvolver fluidez na transição entre tercinas",
+    "Controlar a intensidade em padrões de três notas"
+  ],
+  "concept": "<h3>O que são Acentos em Tercinas?</h3><p>Tercinas são grupos de <span class='highlight'>três notas</span> no espaço de duas. Quando acentuamos a primeira nota de cada tercina (R l l), criamos um padrão <strong>circular e fluido</strong> que é a base do swing.</p><h3>Como Funciona</h3><div class='pattern-example'>R l l R l l R l l R l l<br>↑           ↑           <br>acento     acento       </div><p>Cada grupo de três tem um acento na <span class='highlight'>primeira nota</span> e duas suaves. Isso cria aquele 'balanço' característico das tercinas — diferente do '-anda-parado' dos grupos de dois.</p><h3>Por que é Importante?</h3><p>Tercinas são a porta de entrada para o <span class='highlight'>swing</span>. Sem elas, você só toca ' reto' (notas igualmente espaçadas). Com elas, a música ganha fluidez e movimento.</p><h3>Onde é Usado?</h3><p>Tercinas acentuadas são essenciais em:<ul><li><strong>Jazz:</strong> Swing é 100% baseado em tercinas</li><li><strong>Blues:</strong> O shuffle é uma tercina acentuada</li><li><strong>Bossa Nova:</strong> Ritmo brasileiro com tercinas</li><li><strong>Rock:</strong> Muitos grooves usam tercinas</li></ul><h3>Segredo</h3><p>Sinta o '<span class='highlight'>balanço</span>' das tercinas. Não é '1-2-3, 1-2-3' robótico — é 'DUM-da-da, DUM-da-da' com movimento.</p></p>",
+  "exercise": ["R", "l", "l", "R", "l", "l", "R", "l", "l", "R", "l", "l"],
+  "diagram": "<div class='diagram-title'>Acentos em Tercinas</div><pre class='diagram-ascii'>R   l   l   R   l   l   R   l   l   R   l   l\n↑               ↑               ↑           \nacento         acento         acento       \n\n1   trip-let   2   trip-let   3   trip-let  4</pre><div class='diagram-note'>Tercinas: 3 notas no espaço de 2, acento na primeira</div>",
+  "tips": "<div class='tip-box'><strong>💡 Swing:</strong> Sinta as tercinas como 'DUM-da-da'. É o coração do jazz e do blues.</div><div class='tip-box'><strong>💡 Comparação:</strong> Toque 8 notas 'reto' e depois 8 em tercinas. Sinta a diferença!</div><div class='tip-box'><strong>💡 Aplicação:</strong> Use tercinas em fills de rock para criar movimento e suavidade.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

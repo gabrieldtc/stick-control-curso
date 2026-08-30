@@ -1,0 +1,22 @@
+{
+  "id": 107,
+  "title": "Pulso no Tempo 3",
+  "description": "Trove a mao alternada no terceiro tempo do compasso",
+  "module": "preparatorio",
+  "objectives": [
+    "Sentir o terceiro tempo do compasso",
+    "Manter o pulso interno por mais tempo antes de tocar",
+    "Desenvolver paciencia e controle"
+  ],
+  "concept": "<h3>O terceiro tempo</h3><p>Agora ficou ainda mais desafiador. Voce vai tocar apenas no <strong>terceiro tempo</strong> do compasso:</p><div class='pattern-example'>- - R - | - - L - | - - R - | - - L -<br>1 2 3 4   1 2 3 4   1 2 3 4   1 2 3 4</div><h3>Por que e mais dificil?</h3><p>Agora voce precisa <strong>esperar dois tempos</strong> antes de tocar. Isso exige mais <span class='highlight'>controle interno</span> e mais concentracao. Voce precisa manter o pulso mentalmente por mais tempo.</p><h3>A sensacao</h3><p>Quando voce consegue tocar no tempo 3 com seguranca, comeca a sentir algo especial: o compasso se torna <span class='highlight'>transparente</span>. Voce nao esta mais contando os tempos - esta sentindo cada um deles.</p><h3>Na musica real</h3><p>O terceiro tempo e onde muitos musicos colocam a <strong>contracente</strong> - aquela batida que da 'swing' a musica. E um dos tempos mais importantes do groove.</p>",
+  "exercise": ["-", "-", "R", "-", "-", "-", "L", "-", "-", "-", "R", "-", "-", "-", "L", "-"],
+  "diagram": "<div class='diagram-title'>Pulso no Tempo 3</div><pre class='diagram-ascii'>-   -   R   -   -   -   L   -   -   -   R   -   -   -   L   -\n|-------|-------|-------|-------|\n  1   2   3   4   1   2   3   4</pre><div class='diagram-note'>Agora R e L caem no terceiro tempo - mais espaco antes de tocar</div>",
+  "tips": "<div class='tip-box'><strong>Dica:</strong> Conte 'UM - dois - TRÊS - quatro'. Toque so no 'tres'. A palma no tempo 3 e o seu alvo.</div><div class='tip-box'><strong>Paciencia:</strong> Este exercicio treina sua capacidade de esperar. Na musica, saber esperar e tao importante quanto saber tocar.</div><div class='tip-box'><strong>Proximo Passo:</strong> Quando dominar, restam apenas os exercicios de pulso. O proximo e o ultimo: tempo 4!</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 70],
+  "weeklyGoal": {
+    "targetBpm": 55,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

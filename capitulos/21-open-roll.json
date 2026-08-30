@@ -1,0 +1,41 @@
+{
+  "id": 21,
+  "title": "Open Roll",
+  "description": "Rolo aberto com bounces controlados",
+  "objectives": [
+    "Entender o open roll",
+    "Controlar cada bounce",
+    "Manter velocidade constante"
+  ],
+  "concept": "<h3>O que é um Open Roll?</h3><p>O open roll é um rulo tocado <span class='highlight'>aberto</span>: cada batida soa individual, limpa e claramente audível. É o contrário do <strong>buzz roll</strong>, onde a baqueta quica várias vezes e cria um som contínuo ('zzzz').</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL RR LL RR LL<br>(dois golpes por mão, cada um nítido)</div><p>Cada mão toca <span class='highlight'>dois golpes seguidos</span>. O segredo está no segundo golpe: ele vem do <strong>rebote</strong> da baqueta, que você controla para quicar <em>uma</em> vez só e parar.</p><h3>Como Tocar</h3><ul><li><strong>1º golpe:</strong> toque com o pulso e deixe a baqueta subir naturalmente.</li><li><strong>2º golpe:</strong> aproveite o rebote — a baqueta toca mais uma vez. Freie o movimento logo depois, para não quicar uma 3ª vez.</li><li><strong>Alternância:</strong> RR LL RR LL, mantendo as duas notas da mesma mão com o mesmo volume.</li></ul><h3>Diferença do Buzz Roll</h3><ul><li><strong>Buzz roll:</strong> baqueta quica várias vezes → som contínuo.</li><li><strong>Open roll:</strong> baqueta quica uma vez controlada → RR LL nítidos.</li></ul>",
+  "exercise": [
+    "R",
+    "R",
+    "L",
+    "L",
+    "R",
+    "R",
+    "l",
+    "l",
+    "R",
+    "R",
+    "L",
+    "L",
+    "R",
+    "R",
+    "l",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Open Roll</div><pre class='diagram-ascii'>R   R   L   L   R   R   L   L\n↓   ↑   ↓   ↑   ↓   ↑   ↓   ↑\n1º  2º  1º  2º  1º  2º  1º  2º\n\n↓ = golpe de pulso   ↑ = rebote controlado</pre><div class='diagram-note'>Cada mão toca 2 golpes. O 2º vem do rebote, não de outro golpe de pulso.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Rebote:</strong> Não force o 2º golpe com o pulso. Deixe a baqueta quicar e apenas 'segure' o movimento depois.</div><div class='tip-box'><strong>💡 Igualdade:</strong> No início o 2º golpe sai mais fraco que o 1º. Pratique para os dois soarem iguais.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Deixar a baqueta quicar 3 ou 4 vezes — aí vira buzz roll. Freie após o 2º golpe.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    140
+  ],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

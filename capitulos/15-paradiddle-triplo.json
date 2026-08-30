@@ -1,0 +1,21 @@
+{
+  "id": 15,
+  "title": "Paradiddle Triplo",
+  "description": "R L R L R L R R L R L R L R L L",
+  "objectives": [
+    "Aprender o paradiddle triplo",
+    "Controlar a virada do duplo",
+    "Desenvolver fluidez"
+  ],
+  "concept": "<h3>Paradiddle Triplo</h3><p>O paradiddle triplo tem <span class='highlight'>seis notas alternadas e um duplo</span>, repetido. É a variação de 16 notas do paradiddle básico.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R L R L R R L R L R L R L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 e & a 2 e & a 3 e & a 4 e & a</div><p>Repare nos grupos: <strong>RLRLRL RR</strong> | <strong>LRLRLR LL</strong>. Quanto mais notas alternadas antes do duplo, maior o padrão.</p><h3>A Sequência dos Paradiddles</h3><ul><li><strong>Simples (8):</strong> RL RR | LR LL</li><li><strong>Duplo (12):</strong> RLRL RR | LRLR LL</li><li><strong>Triplo (16):</strong> RLRLRL RR | LRLRLR LL</li></ul><h3>Onde é Usado?</h3><p>Paradiddles triplos aparecem em:<ul><li>Fills longos</li><li>Jazz e fusion</li><li>Solos complexos</li></ul></p>",
+  "exercise": ["R", "L", "R", "L", "R", "L", "R", "R", "L", "R", "L", "R", "L", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Paradiddle Triplo</div><pre class='diagram-ascii'>R   L   R   L   R   L   R   R   L   R   L   R   L   R   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   e   &   a   2   e   &   a   3   e   &   a   4   e   &   a\n\nRLRLRL RR | LRLRLR LL</pre><div class='diagram-note'>R L R L R L R R L R L R L R L L</div>",
+  "tips": "<div class='tip-box'><strong>💡 Grupos:</strong> Pense em RLRLRL RR | LRLRLR LL, não em nota por nota.</div><div class='tip-box'><strong>💡 Paciência:</strong> É o maior dos paradiddles básicos. Domine o simples e o duplo antes.</div><div class='tip-box'><strong>💡 O duplo vira a mão:</strong> Após o RR, a próxima mão é a esquerda. Use isso como guia.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 20,
+    "daysPerWeek": 5
+  }
+}

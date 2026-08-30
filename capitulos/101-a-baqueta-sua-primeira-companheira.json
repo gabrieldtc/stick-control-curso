@@ -1,0 +1,22 @@
+{
+  "id": 101,
+  "title": "A Baqueta: Sua Primeira Companheira",
+  "description": "Conheça as partes da baqueta e como escolher a sua primeira",
+  "module": "preparatorio",
+  "objectives": [
+    "Conhecer as partes da baqueta e suas funções",
+    "Escolher a primeira baqueta adequada",
+    "Aprender a segurar com a técnica do passarinho"
+  ],
+  "concept": "<h3>Muito mais que madeira</h3><p>A baqueta não é apenas um pedaço de madeira. É a <strong>extensão das suas mãos</strong>. É ela que vai traduzir o que você imagina em som.</p><h3>As partes da baqueta</h3><ul><li><strong>Ponta (Tip):</strong> É a extremidade que toca o instrumento. Aqui nasce o som.</li><li><strong>Ombro (Shoulder):</strong> A parte curvalogo abaixo da ponta. Usada para tocar címbalos com um som mais <span class='highlight'>encorpado e grave</span>.</li><li><strong>Corpo (Body):</strong> O centro da baqueta. É onde está o <strong>equilíbrio</strong> e o peso distribuído.</li><li><strong>Base (Butt):</strong> A extremidade oposta. Mais pesada, dá <span class='highlight'>controle e potência</span>.</li></ul><h3>Duas iguais? Nunca!</h3><p>Dois sticks podem parecer idênticos, mas ter pesos diferentes. Por isso os profissionais <strong>giram as baquetas</strong> — para sentir o equilíbrio e garantir que estão confortáveis.</p><h3>A escolha certa</h3><p>Para começar, a recomendação é a baqueta <strong>5A de madeira</strong>. Ela tem o melhor equilíbrio entre peso, tamanho e conforto. Não existe resposta errada — existe a que se sente certa para você.</p><h3>Como segurar</h3><p>Você <strong>não segura</strong> a baqueta. Você <strong>impede que ela caia</strong>. Essa é a grande mudança de mentalidade.</p><h3>O pássaro</h3><p>Imagine que há um pássaro delicado entre seus dedos e a baqueta.</p><ul><li><strong>Apertar demais:</strong> Você machuca o passarinho. As mãos doem, a velocidade some, o controle acaba.</li><li><strong>Segurar de menos:</strong> O passarinho voa embora. A baqueta cai.</li><li><strong>Justo:</strong> Firme, mas nunca apertado. O passarinho está seguro e feliz.</li></ul><h3>O erro mais comum</h3><p>Segurar a baqueta como um <strong>martelo</strong> — com muita força. Isso causa fadiga, dor, e tira toda a velocidade e controle.</p>",
+  "exercise": [],
+  "diagram": "<div class='diagram-title'>Anatomia da Baqueta</div><div class='diagram-row'>        PONTA (Tip) ───→  ●  </div><div class='diagram-row'>        OMBRO (Shoulder) → ◠  </div><div class='diagram-row'>        CORPO (Body) ────→ │  </div><div class='diagram-row'>        BASE (Butt) ─────→ ■  </div><div class='diagram-note'>5A de madeira — a escolha ideal para começar</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dica do Gabriel:</strong> \"A baqueta não é um martelo. Ela é um pincel.\" Segure firme, mas com leveza.</div><div class='tip-box'><strong>🎯 Missão do Dia:</strong> Segure as baquetas por 5 minutos. Gire gentilmente. Sinta o peso e o equilíbrio. Não toque nada — apenas segure e conheça.</div><div class='warning-box'><strong>⚠️ Evite:</strong> Nunca aperte com força como se fosse um martelo. Isso causa lesões e reduz o controle.</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 60],
+  "weeklyGoal": {
+    "targetBpm": 50,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

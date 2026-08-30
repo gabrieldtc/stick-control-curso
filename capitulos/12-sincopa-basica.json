@@ -1,0 +1,21 @@
+{
+  "id": 12,
+  "title": "Sincopa Básica",
+  "description": "Acentuando batidas fracas",
+  "objectives": [
+    "Acentuar o 'e' da batida",
+    "Sentir a sincopa",
+    "Manter o groove"
+  ],
+  "concept": "<h3>O que é Sincopa?</h3><p>Sincopa é quando acentuamos a <span class='highlight'>parte fraca</span> do compasso. Em vez de acentuar o '1, 2, 3, 4', acentuamos o 'e' ou o '&'.</p><h3>Por que é Importante?</h3><p>A sincopa cria <span class='highlight'>movimento</span> e <span class='highlight'>energia</span> na música. Sem sincopa, a música soa robótica e monótona.</p><h3>Como Funciona</h3><div class='pattern-example'>r R r L r R r L<br>  ↑     ↑     <br> acento acento</div><p>Note que o acento está no 'R' que vem depois do 'r' (parte fraca).</p><h3>Onde é Usado?</h3><p>A sincopa é essencial em:<ul><li><strong>Funk:</strong> Grooves sincopados e dançantes</li><li><strong>Jazz:</strong> Swing e improvisação</li><li><strong>Bossa Nova:</strong> Ritmo suave e sincopado</li><li><strong>Rock:</strong> Muitos grooves usam sincopa</li></ul></p>",
+  "exercise": ["r", "R", "r", "L", "r", "R", "r", "L", "r", "R", "r", "L", "r", "R", "r", "L"],
+  "diagram": "<div class='diagram-title'>Sincopa</div><pre class='diagram-ascii'>r   R   r   L   r   R   r   L\n    ↑       ↑       ↑       ↑\n  acento acento acento acento\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Os acentos estão nas partes fracas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Feeling:</strong> Sincopa é mais sobre sentir do que contar. Escute músicas de funk e tente acompanhar.</div><div class='tip-box'><strong>💡 Practice:</strong> Comece tocando apenas os acentos (R R R R) e depois adicione os 'r' suaves.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não toque os 'r' muito alto. Eles devem ser quase imperceptíveis.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

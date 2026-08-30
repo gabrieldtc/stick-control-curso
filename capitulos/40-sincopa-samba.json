@@ -1,0 +1,21 @@
+{
+  "id": 40,
+  "title": "Sincopa de Samba",
+  "description": "Padrão rítmico sincopado inspirado no samba brasileiro.",
+  "objectives": [
+    "Executar o padrão sincopado com a energia do samba",
+    "Desenvolver resistência e fluidez para ritmos rápidos",
+    "Controlar acentos em subdivisions de tempo"
+  ],
+  "concept": "<h3>Samba: O Ritmo do Brasil</h3><p>O samba é um dos ritmos mais <span class='highlight'>vibrantes e sincopados</span> do mundo. Este padrão captura a essência do samba!</p><h3>Como Funciona</h3><div class='pattern-example'>R r l R r l R r l R r l<br>↓     ↓     ↓     ↓     <br>acento acento acento acento</div><p>Note o padrão de 3 notas: acento (R) seguido de duas suaves (r l). Isso cria aquele 'balanço' inconfundível do samba.</p><h3>Características do Samba</h3><ul><li><strong>Velocidade:</strong> Geralmente mais rápido que outros estilos</li><li><strong>Sincopa:</strong> Acentos deslocados criam movimento</li><li><strong>Energia:</strong> O samba é alegre e dançante!</li></ul><h3>Onde é Usado?</h3><p>Samba aparece em:<ul><li>Carnaval do Rio</li><li>Bossa Nova (samba suave)</li><li>Música Popular Brasileira</li><li>Fusion e Jazz</li></ul></p>",
+  "exercise": ["R", "r", "l", "R", "r", "l", "R", "r", "l", "R", "r", "l"],
+  "diagram": "<div class='diagram-title'>Samba</div><pre class='diagram-ascii'>R   r   l   R   r   l   R   r   l   R   r   l\n↓           ↓           ↓           ↓          \nFORTE       FORTE       FORTE       FORTE      \n\n1   e   &   a   2   e   &   a   3   e   &   a</pre><div class='diagram-note'>Padrão de 3 notas: acento + 2 suaves</div>",
+  "tips": "<div class='tip-box'><strong>💡 Energia:</strong> Samba é alegre! Tente sorrir enquanto toca. Isso ajuda no feeling.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece devagar. Samba é rápido, mas a precisão vem primeiro.</div><div class='tip-box'><strong>💡 Escute:</strong> Ouça samba brasileiro para absorver o feeling. Pixinguinha, Cartola, Tom Jobim.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 49,
+  "title": "Viradas Avançadas",
+  "description": "Viradas com ornamentos",
+  "objectives": [
+    "Usar flams e drags nas viradas",
+    "Criar variações interessantes",
+    "Controlar dinâmica nas viradas"
+  ],
+  "concept": "<h3>O que é uma Virada Avançada?</h3><p>É a virada básica com <span class='highlight'>ornamentos</span>: em vez de notas limpas, os grupos ganham <strong>flams</strong> que aparecem em pontos diferentes do fill. O resultado é um preenchimento mais <span class='highlight'>denso e expressivo</span>, ideal para marcar transições e encerramentos.</p><h3>Como Funciona</h3><div class='pattern-example'>rR L R R | lL R rR L | lL R L L | rR L R R<br>(flams espalhados pelos 4 grupos)</div><p>São <span class='highlight'>16 notas em 4 grupos</span>. Cada grupo mistura flam, duplos e alternância. No 2º grupo o flam aparece até no meio (lL R <strong>rR</strong> L), quebrando a simetria dos grupos — essa irregularidade é o que faz o fill 'responder' com musicalidade.</p><h3>Como Tocar</h3><ul><li><strong>Flams:</strong> enfeite + nota principal, quase juntos — devem soar como UMA nota grossa.</li><li><strong>Duplos e alternância:</strong> os R R internos do flam e as alternâncias R L seguem o controle que você já treinou.</li><li><strong>Densidade:</strong> com mais ornamentos, comece <strong>lento</strong> e acelere só depois que cada flam estiver limpo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4'</span> por grupo e deixe os flams <em>caberem dentro</em> da nota — eles não podem roubar tempo.</p><h3>Por que é Importante?</h3><p>Viradas ornamentadas aparecem em <strong>solos, finais de música e passagens marcantes</strong>. Elas transformam um preenchimento simples em <span class='highlight'>frase musical</span> — e fecham seu treino de rudimentos com aplicação de verdade.</p>",
+  "exercise": ["rR", "L", "R", "R", "lL", "R", "rR", "L", "lL", "R", "L", "L", "rR", "L", "R", "R"],
+  "diagram": "<div class='diagram-title'>Virada Avançada</div><pre class='diagram-ascii'>rR L R R | lL R rR L | lL R L L | rR L R R\n  1 2 3 4    1 2 3 4    1 2 3 4    1 2 3 4\n\nr = enfeite do flam   R = nota principal   | = separa os grupos</pre><div class='diagram-note'>16 notas com flams espalhados pelos grupos — fill mais denso e ornamentado que a virada básica.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Flams limpos:</strong> Cada flam precisa soar como UMA nota grossa. Pratique o 2º grupo (lL R rR L) sozinho — é o mais difícil.</div><div class='tip-box'><strong>💡 Dinâmica:</strong> Ornamentos destacam com controle: enfeites bem fraquinhos, notas principais firmes.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Perder a colocação da mão quando o flam aparece fora do início do grupo, e acelerar. Volte devagar e conte em voz alta.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

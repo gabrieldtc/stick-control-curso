@@ -1,0 +1,63 @@
+=====================================================
+   DO TRAVESSEIRO AO GROOVE - Como Usar
+=====================================================
+
+REQUISITO:
+  - Node.js instalado (versão 14 ou superior)
+  - Download: https://nodejs.org
+
+-----------------------------------------------------
+  FORMA FÁCIL (RECOMENDADO)
+-----------------------------------------------------
+
+1. Copie a pasta do projeto para o pendrive
+2. No computador de destino, clique duas vezes em "INICIAR.bat"
+3. O navegador abrirá automaticamente!
+4. Crie sua conta e comece a praticar
+
+-----------------------------------------------------
+  FORMA MANUAL (SE O .BAT NÃO FUNCIONAR)
+-----------------------------------------------------
+
+1. Abra o Prompt de Comando (cmd)
+2. Navegue até a pasta do projeto:
+      cd caminho\do\pendrive\travesseiro-groove
+3. Instale dependências (primeira vez):
+      npm install
+4. Inicie o servidor:
+      node server.js
+5. Acesse: http://localhost:3000
+
+-----------------------------------------------------
+  CRIAR CONTA E COMEÇAR
+-----------------------------------------------------
+
+1. Acesse http://localhost:3000
+2. Clique em "Criar conta"
+3. Preencha nome, email e senha
+4. Faça login
+5. Você verá o Módulo Preparatório destravado
+6. Comece pela Aula 1!
+
+-----------------------------------------------------
+  DICAS IMPORTANTES
+-----------------------------------------------------
+
+- O banco de dados fica na pasta database/travesseiro-groove.db
+- Para resetar tudo, delete o arquivo travesseiro-groove.db
+- Para parar o servidor, feche a janela preta
+
+-----------------------------------------------------
+  PROBLEMAS COMUNS
+-----------------------------------------------------
+
+ERRO: "node: command not found"
+→ Node.js não está instalado. Baixe em https://nodejs.org
+
+ERRO: "Cannot find module" 
+→ Execute: npm install
+
+ERRO: "EADDRINUSE: port 3000"
+→ Outro programa usa a porta. Feche ou reinicie.
+
+=====================================================

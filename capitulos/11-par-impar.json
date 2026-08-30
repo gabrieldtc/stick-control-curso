@@ -1,0 +1,21 @@
+{
+  "id": 11,
+  "title": "Par e Ímpar",
+  "description": "Alternando grupos pares e ímpares",
+  "objectives": [
+    "Tocar grupos de 2 e 3 alternados",
+    "Manter o pulso constante",
+    "Desenvolver coordenação avançada"
+  ],
+  "concept": "<h3>Alternando Pares e Ímpares</h3><p>Este exercício combina grupos de <span class='highlight'>2</span> e <span class='highlight'>3</span> batidas. É um grande desafio para a coordenação!</p><h3>Por que é Difícil?</h3><p>Porque o cérebro precisa alternar entre contar 'UM-dois' e 'UM-dois-três'. Isso confunde no início, mas desenvolve uma coordenação <span class='highlight'>avançada</span>.</p><h3>Como Funciona</h3><div class='pattern-example'>R R | L L L | R R | L L L<br>1 2   1 2 3   1 2   1 2 3</div><p>Note como o grupo de 2 (par) se alterna com o grupo de 3 (ímpar).</p><h3>Onde é Usado?</h3><p>Este tipo de alternância aparece em:<ul><li>Jazz</li><li>Fusion</li><li>Músicas com assinaturas de compasso mistas</li></ul></p>",
+  "exercise": ["R", "R", "L", "L", "L", "R", "R", "L", "L", "L", "R", "R", "L", "L", "L"],
+  "diagram": "<div class='diagram-title'>Par e Ímpar</div><pre class='diagram-ascii'>R   R | L   L   L | R   R | L   L   L\n|-----|   |-----|   |-----|   |-----|\n  PAR      ÍMPAR      PAR      ÍMPAR\n  1  2     1  2  3    1  2     1  2  3</pre><div class='diagram-note'>Alterna entre 2 e 3 batidas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Mude a contagem: 'UM-dois, UM-dois-três, UM-dois, UM-dois-três'.</div><div class='tip-box'><strong>💡 Paciência:</strong> Este exercício leva semanas para ser dominado. Não desista!</div><div class='tip-box'><strong>💡 Aplicação:</strong> Domine par e ímpar separadamente antes de alternar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 20,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 26,
+  "title": "Nine Stroke Roll",
+  "description": "Rolo de 9 batidas",
+  "objectives": [
+    "Aprender o nine stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Nine Stroke Roll?</h3><p>É um rulo de <span class='highlight'>nove batidas</span>: quatro duplos + um acento. <strong>RR LL RR LL R</strong> — e emendando com a outra mão: <strong>RR LL RR LL R | LL RR LL RR L</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL R | LL RR LL RR L | RR LL RR LL R<br>(duplo, duplo, duplo, duplo, acento)</div><p>As <span class='highlight'>8 primeiras notas são duplos rápidos</span> (4 na direita + 4 na esquerda) e a <span class='highlight'>9ª é um acento</span>, tocada com a mão oposta. Por isso 'nine': 8 rápidas + 1 forte = 9 notas.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>R:</strong> o <strong>acento</strong> — a 9ª nota soa mais forte e começa o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 5 6 7 8 RÁ'</span>, repetindo — o acento cai sempre na 9ª nota.</p><h3>Por que é Importante?</h3><p>É um rulo clássico de <strong>fills e viradas</strong>: começa e termina com a mesma mão (R...R), criando um fluxo contínuo de duplos. Aprenda a emendá-lo sem parar (RRLLRRLLR LLRRLLRRL RRLLRRLLR...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L"],
+  "diagram": "<div class='diagram-title'>Nine Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L L R | L L R R L L R R L\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nd d d d d d d d A   d d d d d d d d A\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>9 notas: 8 duplos rápidos + 1 acento. O acento alterna de mão a cada grupo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 5 6 7 8 RÁ'. Se perder o acento, volte e conte em voz alta.</div><div class='tip-box'><strong>💡 Duplos:</strong> São 4 pares de duplos antes do acento — mesmo volume e mesmo espaçamento entre eles.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Fazer o acento com o mesmo volume das outras notas. Ele é a nota mais importante do rulo — destaque-o.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

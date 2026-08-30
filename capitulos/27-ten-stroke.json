@@ -1,0 +1,21 @@
+{
+  "id": 27,
+  "title": "Ten Stroke Roll",
+  "description": "Rolo de 10 batidas",
+  "objectives": [
+    "Aprender o ten stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Ten Stroke Roll?</h3><p>É um rulo de <span class='highlight'>dez batidas</span>: cinco duplos, sem acento no final. <strong>RR LL RR LL RR</strong> — ele termina em duplo e emenda direto no grupo seguinte: <strong>RR LL RR LL RR | LL RR LL RR LL</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL RR | LL RR LL RR LL<br>(duplo, duplo, duplo, duplo, duplo)</div><p>São <span class='highlight'>10 notas, todas duplos</span> (5 na direita + 5 na esquerda). Diferente dos rulos ímpares, o <span class='highlight'>ten termina em duplo</span> — por isso não tem acento final. O acento cai na <span class='highlight'>1ª nota do grupo seguinte</span>, que começa com a outra mão.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> o último duplo — e o <strong>acento</strong> vem logo em seguida, com a mão esquerda, começando o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 5 6 7 8 9 10'</span> e deixe o RÁ cair na 11ª, no começo do grupo seguinte.</p><h3>Por que é Importante?</h3><p>É o primeiro rulo <span class='highlight'>par</span> da série: sem acento final, o fluxo dos duplos é contínuo e o acento <strong>muda de mão</strong>. Treina manter os duplos perfeitos mesmo sem a 'âncora' do acento. Aprenda a emendá-lo sem parar (RRLLRRLLRR LLRRLLRRLL RRLLRRLLRR...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Ten Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L L R R | L L R R L L R R L L\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nd d d d d d d d d d   A d d d d d d d d d d\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>10 notas: todas duplos. O ten termina em duplo e o acento cai na 1ª nota do grupo seguinte (mão oposta).</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 5 6 7 8 9 10' e deixe o acento cair no '1' do grupo seguinte. Perdeu a contagem? Volte e conte em voz alta.</div><div class='tip-box'><strong>💡 Duplos:</strong> São 5 pares sem acento final — mantenha todos com o mesmo volume e espaçamento.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Perder a contagem, já que o ten não tem acento final. O 'RÁ' cai na 11ª nota, no começo do próximo grupo.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

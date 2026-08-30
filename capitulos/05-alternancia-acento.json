@@ -1,0 +1,21 @@
+{
+  "id": 5,
+  "title": "Alternância com Acento",
+  "description": "Acentuando a primeira batida de cada grupo",
+  "objectives": [
+    "Acentuar a primeira nota de cada compasso",
+    "Controlar a diferença de intensidade entre mãos",
+    "Manter o ritmo mesmo com acentos"
+  ],
+  "concept": "<h3>O que é Acento?</h3><p>Acentuar significa tocar uma nota <span class='highlight'>mais forte</span> que as outras. Isso dá energia e direção ao ritmo.</p><h3>Como Indicar</h3><p>Usamos letras maiúsculas e minúsculas:<ul><li><strong><span class='right'>R</span></strong> (maiúsculo) = Acento forte</li><li><strong><span class='left'>r</span></strong> (minúsculo) = Suave</li></ul><h3>Por que Acentuar?</h3><p>Sem acentos, a música soa monótona. Os acentos criam <span class='highlight'>movimento</span> e <span class='highlight'>emoção</span>. É como falar: nós acentuamos certas sílabas para dar sentido às palavras.</p><h3>Exercício</h3><div class='pattern-example'>R l r l R l r l<br>↓       ↓      <br>FORTE   FORTE</div><p>Note que o 'R' é maiúsculo (forte) e os 'l' e 'r' são minúsculos (suaves).</p></p>",
+  "exercise": ["R", "l", "r", "l", "R", "l", "r", "l"],
+  "diagram": "<div class='diagram-title'>Acento na Primeira</div><pre class='diagram-ascii'>R   l   r   l   R   l   r   l\n↓               ↓              \nFORTE           FORTE           \n\n1   2   3   4   1   2   3   4</pre><div class='diagram-note'>Maiúscula = Acento | Minúscula = Suave</div>",
+  "tips": "<div class='tip-box'><strong>💡 Diferença:</strong> A diferença entre forte e suave deve ser clara. Pratique tocando 'R' bem alto e 'l' bem baixo.</div><div class='tip-box'><strong>💡 Controle:</strong> Manter o ritmo enquanto muda a intensidade é um desafio. Não desista!</div><div class='tip-box'><strong>💡 Aplicação:</strong> Este padrão é usado em rock, pop, funk e muitos outros estilos.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 103,
+  "title": "O Fulcro: O Ponto Onde Tudo Acontece",
+  "description": "Encontre o ponto de equilíbrio da baqueta",
+  "module": "preparatorio",
+  "objectives": [
+    "Encontrar o ponto de equilíbrio da baqueta",
+    "Entender o papel do fulcro no controle e rebote",
+    "Desenvolver pegada equilibrada com polegar e indicador"
+  ],
+  "concept": "<h3>O experimento da régua</h3><p>Segure uma régua no meio e equilibre no dedo. Ela fica parada. Agora mude o ponto — ela cai. O <strong>ponto onde equilibra</strong> é o fulcro.</p><h3>O que é fulcro?</h3><p>Fulcro é o ponto onde a baqueta <span class='highlight'>pivô e rotaciona</span>. É o centro de tudo. É ali que o movimento nasce.</p><h3>Como um balanço</h3><p>Um balanço precisa de um ponto central para funcionar. Sem ele, tudo balança sem controle. A baqueta é igual — sem fulcro, não há movimento.</p><h3>Formado por dois dedos</h3><p>O fulcro é formado principalmente pelo <strong>polegar</strong> e o <strong>indicador</strong>. São eles que seguram o ponto de equilíbrio.</p><h3>A metáfora do pincel</h3><p>Segure a baqueta como seguraria um <span class='highlight'>pincel de pintura</span>. Equilibrado, leve, preciso. Não como uma enxada.</p><h3>Onde fica?</h3><p>O ponto de equilíbrio fica aproximadamente a <strong>1/3 da ponta para trás</strong>. Mas cada baqueta é diferente — você precisa encontrar o seu.</p><h3>Experimento</h3><p>Segure bem na ponta. Depois bem no fundo. Agora no meio. <span class='highlight'>Sinta a diferença.</span> O ponto certo é onde a baqueta se sente mais leve e quer girar sozinha.</p><h3>O papel dos dedos</h3><ul><li><strong>Controlam o rebote</strong> — guiam a volta da baqueta</li><li><strong>Direcionam o stick</strong> — apontam para onde o som vai</li><li><strong>Mantêm precisão</strong> — cada golpe no lugar certo</li><li><strong>Economizam energia</strong> — menos esforço, mais resultado</li></ul><h3>Erro fatal</h3><p>Apertar o fulcro como se fosse uma <strong>fechadura</strong>. O fulcro é uma <span class='highlight'>dobradiça</span>, não uma tranca. Deixe a baqueta girar.</p><p><span class='highlight'>Controle não significa rigidez.</span></p>",
+  "exercise": ["R", "L", "R", "L", "R", "L", "R", "L"],
+  "diagram": "<div class='diagram-title'>Ponto de Equilíbrio (Fulcro)</div><div class='diagram-row'>  Ponta ●──────────────── ■ Base</div><div class='diagram-row'>        ↑ 1/3             ↑</div><div class='diagram-row'>      FULCRO            fundo</div><div class='diagram-note'>Segure aqui — onde a baqueta equilibra naturalmente</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dica do Gabriel:</strong> Marque o fulcro com fita adesiva. Assim você nunca perde o ponto de equilíbrio enquanto treina.</div><div class='tip-box'><strong>🎯 Missão do Dia:</strong> Experimente 3 posições diferentes na baqueta. Anote qual tem mais rebote, mais conforto e menos esforço.</div><div class='warning-box'><strong>⚠️ Evite:</strong> Apertar o fulcro como uma fechadura. É uma dobradiça — deve girar livremente.</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 60],
+  "weeklyGoal": {
+    "targetBpm": 50,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

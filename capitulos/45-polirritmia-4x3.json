@@ -1,0 +1,37 @@
+{
+  "id": 45,
+  "title": "Polirritmia 4x3",
+  "description": "Exercício de polirritmia tocando quatro notas contra três.",
+  "objectives": [
+    "Executar polirritmia de 4 contra 3 com controle preciso",
+    "Desenvolver a capacidade de inverter polirritmias",
+    "Integrar polirritmias de 4x3 em contextos musicais"
+  ],
+  "concept": "<h3>O que é Polirritmia 4x3?</h3><p>É a <strong>inversão</strong> do capítulo anterior. Agora a mão D faz <span class='highlight'>4 notas</span> e a mão E faz <span class='highlight'>3 notas</span> no mesmo espaço de tempo.</p><h3>Passo 1: Entenda o Encaixe</h3><p>Novamente 12 batidas no total. Mas agora a mão D (4 notas) toca nas posições <span class='highlight'>1, 4, 7, 10</span> e a mão E (3 notas) toca nas <span class='highlight'>1, 5, 9</span>.</p><div class='pattern-example'>Posição: 1  2  3  4  5  6  7  8  9  10 11 12<br>Mão D:  ●  ·  ·  ●  ·  ·  ●  ·  ·  ●  ·  ·<br>Mão E:  ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·</div><p>A diferença do 3x4: aqui a mão D é mais 'densa' (4 batidas) e a E é mais 'larga' (3 batidas).</p><h3>Passo 2: Sinta a Inversão</h3><p>No 3x4, a mão E era mais ativa. Agora é o <span class='highlight'>contrário</span> — a mão D assume o papel de 'motor' com 4 batidas, enquanto a E faz o 'contraponto' com 3.</p><h3>Passo 3: Junte</h3><p>Comece com a mão D (4 batidas) + metrônomo. Quando estiver confortável, adicione a mão E. O padrão completo tem uma 'rotação' que se repete a cada 12 batidas.</p><h3>Diferença do 3x4</h3><ul><li><strong>3x4:</strong> Mão D = 3 (lenta), Mão E = 4 (rápida)</li><li><strong>4x3:</strong> Mão D = 4 (rápida), Mão E = 3 (lenta)</li></ul><p>Dominar ambos te dá <span class='highlight'>liberdade total</span> para criar grooves com polirritmia em qualquer direção.</p>",
+  "exercise": [
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Polirritmia 4x3 — Encaixe Visual</div><pre class='diagram-ascii'>Posição:  1  2  3  4  5  6  7  8  9  10 11 12\n          ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─\nMão D:    ●  ·  ·  ●  ·  ·  ●  ·  ·  ●  ·  ·\n          ┃     ┃     ┃     ┃\n          ┃     ┃     ┃     ┃\nMão E:    ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·\n          ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─\n          1        2        3\n\nBatida D: ▲  ▲  ▲  ▲     (4 notas)\nBatida E: ▲        ▲        ▲     (3 notas)</pre><div class='diagram-note'>A mão D agora é mais ativa (4 batidas) e a E faz contraponto (3 batidas).</div>",
+  "tips": "<div class='tip-box'><strong>💡 Inversão:</strong> Se você dominou o 3x4, este é mais fácil — é só inverter os papéis das mãos.</div><div class='tip-box'><strong>💡 Metrônomo:</strong> Use o metrônomo marcando as 4 batidas da mão D. A mão E 'flutua' por cima.</div><div class='tip-box'><strong>💡 Progressão:</strong> Depois de dominar, alterne entre 3x4 e 4x3 emloops.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    140
+  ],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": 54,
+  "title": "Velocidade Gradual",
+  "description": "Workout de BPM progressivo",
+  "objectives": [
+    "Aumentar velocidade de forma controlada",
+    "Manter técnica precisa em altas velocidades",
+    "Desenvolver resistência muscular"
+  ],
+  "concept": "<h3>O que é Velocidade Gradual?</h3><p>É um treino para <span class='highlight'>ganhar velocidade sem destruir a técnica</span>. Em vez de tentar tocar rápido logo de cara, você sobe o BPM aos poucos — o mesmo exercício de <strong>alternância + duplos</strong> do capítulo 52, cada vez mais rápido.</p><h3>Como Funciona — a Regra dos 5 BPM</h3><div class='pattern-example'>R L R L R L R L | R R L L R R L L<br>(toque limpo → suba 5 BPM → repita)</div><ul><li><strong>Suba 5:</strong> aumente o metrônomo em <span class='highlight'>5 BPM por vez</span>, nunca mais.</li><li><strong>Falhou? Volte 5:</strong> se a técnica quebrar, volte <span class='highlight'>5 BPM para trás</span> e solidifique o tempo anterior.</li><li><strong>Paciência:</strong> velocidade é conquista <span class='highlight'>de semanas, não de horas</span>.</li></ul><h3>Como Tocar</h3><ul><li><strong>Solto:</strong> quanto mais rápido, mais as baquetas quicam sozinhas — deixe.</li><li><strong>Leve:</strong> golpes pequenos e baixos economizam energia e permitem o dobro da velocidade.</li><li><strong>Sem força:</strong> apertar a baqueta não acelera — apenas trava os músculos.</li></ul><h3>Por que é Importante?</h3><p>A velocidade vem como <span class='highlight'>consequência da técnica correta</span>, nunca da força. Quem treina assim toca rápido com consistência; quem força, toca rápido por 2 segundos e erra em seguida.</p>",
+  "exercise": [
+    "R",
+    "l",
+    "r",
+    "l",
+    "r",
+    "l",
+    "r",
+    "l",
+    "R",
+    "L",
+    "r",
+    "l",
+    "r",
+    "l",
+    "r",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Regra dos 5 BPM</div><pre class='diagram-ascii'>R L R L R L R L | R R L L R R L L\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nA A A A A A A A   D D D D D D D D\n\n 80 → 85 → 90 → 95 ...\n limpo  limpo  limpo  (5 em 5)\n\n falhou aos 95? → volte para 90\n e consolide antes de tentar de novo\n\nA = alternância   D = duplo   ↓ = batida</pre><div class='diagram-note'>Suba sempre 5 BPM. Se a técnica quebrar, desça 5 e refaça até sair limpo de novo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Metrônomo:</strong> Sessão-tipo: 10 min em um BPM confortável + 5 min subindo de 5 em 5 até a falha + 5 min consolidando o nível anterior.</div><div class='tip-box'><strong>💡 Controle:</strong> Só suba de nível quando passar <strong>todo</strong> o exercício limpo, sem acentuar errado nem se cansar no final.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Forçar velocidade — subir 20, 30 BPM de uma vez 'para ver se dá'. A técnica quebra, o braço trava e você aprende o erro em vez da velocidade. Suba 5, volte 5, sempre.</div>",
+  "bpm_default": 80,
+  "bpm_range": [
+    60,
+    200
+  ],
+  "weeklyGoal": {
+    "targetBpm": 120,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

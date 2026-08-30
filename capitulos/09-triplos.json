@@ -1,0 +1,21 @@
+{
+  "id": 9,
+  "title": "Triplos",
+  "description": "Batidas triplas em cada mão",
+  "objectives": [
+    "Tocar três batidas cada mão",
+    "Controlar a transição entre mãos",
+    "Desenvolver fluidez"
+  ],
+  "concept": "<h3>Triplos (Três Batidas)</h3><p>Triplos são quando cada mão toca <span class='highlight'>três vezes seguidas</span>. São mais desafiadores que duplos!</p><h3>Por que são Difíceis?</h3><p>Porque três batidas criam um <span class='highlight'>efeito ímpar</span>. É como contar 'UM-dois-três' e depois trocar a mão. Exige mais controle e resistência.</p><h3>Onde são Usados?</h3><ul><li><strong>Rock e Metal:</strong> Em fills rápidos e intensos</li><li><strong>Jazz:</strong> Em solos e variações</li><li><strong>Fills:</strong> Para criar movimento e energia</li></ul><h3>Como Practicar</h3><div class='pattern-example'>R R R L L L R R R L L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 & a 2 & a 3 & a 4 & a</div><p>Comece muito devagar. Triplos exigem mais concentração!</p>",
+  "exercise": ["R", "R", "R", "L", "L", "L", "R", "R", "R", "L", "L", "L"],
+  "diagram": "<div class='diagram-title'>Triplos</div><pre class='diagram-ascii'>R   R   R   L   L   L   R   R   R   L   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   &   a   2   &   a   3   &   a   4   &   a\n\nMão: D D D   E E E   D D D   E E E</pre><div class='diagram-note'>Três batidas em cada mão antes de trocar</div>",
+  "tips": "<div class='tip-box'><strong>💡 Resistência:</strong> Triplos exigem mais força. Se sentir cansaço, faça pausas curtas.</div><div class='tip-box'><strong>💡 Contagem:</strong> Conte 'UM-dois-três, UM-dois-três' para manter o ritmo.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece em 50 BPM. Triplos são mais difíceis que duplos!</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

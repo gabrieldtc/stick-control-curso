@@ -1,0 +1,33 @@
+{
+  "id": 65,
+  "title": "Ritmo Livre e Criação",
+  "description": "Liberte-se dos padrões e crie seus próprios ritmos.",
+  "objectives": [
+    "Desenvolver vocabulário rítmico próprio",
+    "Criar grooves originais",
+    "Improvisar com confiança"
+  ],
+  "concept": "<h3>Ritmo Livre e Criação</h3><p>Depois de dominar dezenas de padrões, chegou a hora de <span class='highlight'>criar os seus</span>. A técnica não é um fim — é uma ferramenta para a expressão musical.</p><h3>Como Criar</h3><div class='pattern-example'>Comece com um padrão base:<br>R l R l R l R l<br><br>Depois modifique:<br>R R l R l l R l<br><br>Continue experimentando:<br>R l R R R l R l</div><p>Mude uma nota de cada vez. Pegue padrões que você já conhece e <span class='highlight'>recombine</span>.</p><h3>Dicas para Criar</h3><p><ul><li><strong>Limite-se:</strong> Use apenas 2 ou 3 elementos</li><li><strong>Repita:</strong> Todo groove precisa de repetição</li><li><strong>Varie:</strong> Mude um acento de lugar</li><li><strong>Grave:</strong> Ouça sua própria criação</li></ul></p>",
+  "exercise": [
+    "R",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Criação Rítmica</div><pre class='diagram-ascii'>1. Base:  R l R l R l R l\n2. Mude:  R R l R l l R l  (troque um acento)\n3. Gire:  l R R l R l l R  (desloque o início)\n4. Inverta: R l R R l R l l  (espehe a mão)\n5. Crie:  __ __ __ __ __ __ __ (seu padrão!)\n\nO limite é sua imaginação!</pre><div class='diagram-note' style='color:var(--gold);'>Você não é mais um aluno — é um criador de ritmos.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Grave-se:</strong> Ouvir a si mesmo revela coisas que você não percebe tocando.</div><div class='tip-box'><strong>💡 Colabore:</strong> Tocar com outros músicos expande seu vocabulário.</div><div class='tip-box'><strong>💡 Divirta-se:</strong> A música é alegria. Não esqueça por que você começou.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    30,
+    150
+  ],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 10,
+    "daysPerWeek": 6
+  }
+}

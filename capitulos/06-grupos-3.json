@@ -1,0 +1,21 @@
+{
+  "id": 6,
+  "title": "Grupos de 3",
+  "description": "Padrões em tercinas",
+  "objectives": [
+    "Tocar grupos de 3 batidas",
+    "Sentir a pulsação em 3/4",
+    "Alternar qual mão começa o grupo"
+  ],
+  "concept": "<h3>Grupos de 3 (Tercinas)</h3><p>Grupos de 3 criam um efeito <span class='highlight'>circular</span> e suave. É como contar 'UM-dois-tres, UM-dois-tres'.</p><h3>Como Funciona</h3><p>Em vez de 4 batidas por compasso, temos 3:</p><div class='pattern-example'>R L R | L R L | R L R<br>1 2 3   1 2 3   1 2 3</div><h3>Qual a Diferença?</h3><p>Com grupos de 4, a música soa 'quadrada' e firme. Com grupos de 3, soa <span class='highlight'>redonda</span> e fluida. É como a diferença entre andar (1-2-3-4) e dançar valsa (1-2-3, 1-2-3).</p><h3>Onde é Usado?</h3><p>Tercinas aparecem em:<ul><li>Baladas</li><li>Jazz</li><li>Bossa Nova</li><li>Muitas músicas lentas</li></ul></p>",
+  "exercise": ["R", "L", "R", "L", "R", "L", "R", "L", "R", "L"],
+  "diagram": "<div class='diagram-title'>Grupos de 3</div><pre class='diagram-ascii'>R   L   R   L   R   L   R   L   R   L\n|-------|   |-------|   |-------|\n  GRUPO 1    GRUPO 2    GRUPO 3\n   1 2 3      1 2 3      1 2 3</pre><div class='diagram-note'>Note como as barras dividem em grupos de 3</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte 'UM-dois-tres, UM-dois-tres' em voz alta enquanto toca.</div><div class='tip-box'><strong>💡 Fluxo:</strong> Tente sentir o movimento circular. Não é apenas bater, é dançar com as mãos.</div><div class='tip-box'><strong>💡 Alternância:</strong> Observe que a mão que começa cada grupo vai alternando (R, L, R, L...).</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

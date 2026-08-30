@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO TRAVESSEIRO AO GROOVE</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    .landing {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* LEFT SIDE — CONTENT */
+    .landing-content {
+      padding: 60px 60px 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .landing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201, 168, 76, 0.08);
+      color: var(--gold);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      width: fit-content;
+      animation: fadeIn 0.8s ease;
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.08), inset 0 0 20px rgba(201, 168, 76, 0.04);
+    }
+
+    .landing-badge .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    .landing-logo {
+      margin-bottom: 20px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .landing-logo img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      max-height: 140px;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.1), 0 0 60px rgba(201, 168, 76, 0.05);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .landing-title {
+      font-size: 52px;
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 28px;
+      animation: slideUp 0.8s ease;
+    }
+
+    .landing-title .line {
+      display: block;
+    }
+
+    .landing-title .gold {
+      color: var(--gold);
+      text-shadow: 0 0 30px var(--gold-glow-strong), 0 0 60px rgba(201, 168, 76, 0.2);
+      animation: goldPulse 4s ease-in-out infinite;
+    }
+
+    .landing-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 520px;
+      animation: slideUp 0.8s ease 0.1s both;
+      font-family: 'Cinzel', serif;
+    }
+
+    .landing-subtitle strong {
+      color: var(--text-primary);
+    }
+
+    /* STATS ROW */
+    .landing-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 48px;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .landing-stat {
+      text-align: left;
+    }
+
+    .landing-stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      font-family: 'MedievalSharp', cursive;
+      color: var(--gold);
+      text-shadow: 0 0 16px var(--gold-glow-strong), 0 0 32px rgba(201, 168, 76, 0.15);
+      line-height: 1;
+    }
+
+    .landing-stat-label {
+      color: var(--text-muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* FEATURES */
+    .landing-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+      animation: slideUp 0.8s ease 0.3s both;
+    }
+
+    .landing-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: rgba(201, 168, 76, 0.03);
+      background-image: var(--parchment);
+      background-size: 200px 200px;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.04);
+    }
+
+    .landing-feature:hover {
+      background: rgba(201, 168, 76, 0.06);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.1), 0 0 50px rgba(201, 168, 76, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'MedievalSharp', cursive;
+      font-size: 14px;
+      flex-shrink: 0;
+      background: rgba(201, 168, 76, 0.08);
+      color: var(--gold);
+      font-weight: 700;
+      box-shadow: 0 0 16px rgba(201, 168, 76, 0.1);
+    }
+
+    .landing-feature h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+      font-family: 'Cinzel', serif;
+    }
+
+    .landing-feature p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* CTA BUTTONS */
+    .landing-cta {
+      display: flex;
+      gap: 16px;
+      animation: slideUp 0.8s ease 0.4s both;
+    }
+
+    .btn-landing-primary {
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold), var(--gold-dim));
+      background-size: 200% 200%;
+      color: var(--bg-deep);
+      padding: 16px 36px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-landing-primary:hover {
+      background-position: 100% 0;
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px var(--gold-glow), 0 0 80px rgba(201, 168, 76, 0.2), 0 4px 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-landing-secondary {
+      background: transparent;
+      color: var(--gold);
+      padding: 16px 36px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.06);
+    }
+
+    .btn-landing-secondary:hover {
+      background: rgba(201, 168, 76, 0.08);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.1), inset 0 0 30px rgba(201, 168, 76, 0.06);
+    }
+
+    /* DIVIDER */
+    .landing-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin-bottom: 32px;
+      box-shadow: 0 0 16px var(--gold-glow);
+      animation: goldBoxPulse 4s ease-in-out infinite;
+    }
+
+    /* TESTIMONIAL */
+    .landing-testimonial {
+      margin-top: 48px;
+      padding: 24px;
+      background: rgba(201, 168, 76, 0.03);
+      background-image: var(--parchment);
+      background-size: 200px 200px;
+      border-radius: var(--radius-md);
+      max-width: 480px;
+      animation: slideUp 0.8s ease 0.5s both;
+      box-shadow: 0 0 25px rgba(201, 168, 76, 0.06), 0 0 50px rgba(201, 168, 76, 0.03);
+    }
+
+    .landing-testimonial .quote {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .landing-testimonial .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--bg-deep);
+      font-family: 'Cinzel Decorative', serif;
+      box-shadow: 0 0 16px rgba(201, 168, 76, 0.2);
+    }
+
+    .author-info .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'Cinzel', serif;
+    }
+
+    .author-info .role {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* RIGHT SIDE — AUTH */
+    .landing-auth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+    }
+
+    .landing-auth::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(201, 168, 76, 0.04) 0%,
+        rgba(114, 47, 55, 0.03) 50%,
+        rgba(201, 168, 76, 0.04) 100%
+      );
+    }
+
+    .landing-auth::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      left: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+      opacity: 0.3;
+      animation: goldPulse 6s ease-in-out infinite;
+    }
+
+    .auth-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* FLOATING EMBERS */
+    .floating-embers {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-ember {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatEmber 15s linear infinite;
+      box-shadow: 0 0 8px var(--gold-glow-strong), 0 0 16px rgba(201, 168, 76, 0.15);
+    }
+
+    @keyframes floatEmber {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.8; }
+      50% { opacity: 0.4; }
+      90% { opacity: 0.15; }
+      100% {
+        transform: translateY(-20px) translateX(40px);
+        opacity: 0;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .landing {
+        grid-template-columns: 1fr;
+      }
+
+      .landing-content {
+        padding: 100px 32px 40px;
+      }
+
+      .landing-title {
+        font-size: 36px;
+      }
+
+      .landing-auth {
+        padding: 0 32px 40px;
+      }
+
+      .landing-auth::before {
+        border-left: none;
+      }
+
+      .landing-auth::after {
+        top: 0;
+        bottom: auto;
+        left: 10%;
+        right: 10%;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .landing-content {
+        padding: 80px 20px 32px;
+      }
+
+      .landing-title {
+        font-size: 28px;
+      }
+
+      .landing-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .landing-stat-value {
+        font-size: 28px;
+      }
+
+      .landing-cta {
+        flex-direction: column;
+      }
+
+      .landing-auth {
+        padding: 0 16px 32px;
+      }
+
+      .landing-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .landing-content {
+        padding: 60px 16px 24px;
+      }
+      .landing-title {
+        font-size: 22px;
+      }
+      .landing-subtitle {
+        font-size: 13px;
+      }
+      .landing-stat-value {
+        font-size: 22px;
+      }
+      .landing-stat-label {
+        font-size: 10px;
+      }
+      .landing-feature {
+        padding: 16px;
+      }
+      .btn-landing {
+        font-size: 13px;
+        padding: 10px 18px;
+      }
+      .landing-auth {
+        padding: 0 12px 24px;
+      }
+      .auth-card {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-embers" id="floating-embers"></div>
+
+  <div class="landing">
+
+    <div class="landing-content">
+
+      <div class="landing-divider"></div>
+
+      <h1 class="landing-title">
+        <span class="line">Do Travesseiro</span>
+        <span class="line gold">ao Groove</span>
+      </h1>
+
+      <p class="landing-subtitle">
+        Uma jornada épica no universo da bateria.
+        <strong><span id="dynamic-aulas">66</span> aulas interativas</strong> com áudio em tempo real,
+        metrônomo integrado e progressão guiada.
+        <strong>Comece onde estiver — sem precisar de bateria.</strong>
+      </p>
+
+        <div class="landing-stats">
+        <div class="landing-stat">
+          <div class="landing-stat-value" data-dynamic="aulas">--</div>
+          <div class="landing-stat-label">Aulas</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value" data-dynamic="exercicios">--</div>
+          <div class="landing-stat-label">Exercícios</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value" data-dynamic="provas">--</div>
+          <div class="landing-stat-label">Provações</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value" data-dynamic="horas">--</div>
+          <div class="landing-stat-label">Conteúdo</div>
+        </div>
+      </div>
+
+      <div class="landing-features">
+        <div class="landing-feature">
+          <div class="feature-icon">I</div>
+          <div>
+            <h4>Forja de Áudio</h4>
+            <p>Sons sintetizados em tempo real — caixa, bumbo, pratos e mais</p>
+          </div>
+        </div>
+        <div class="landing-feature">
+          <div class="feature-icon">II</div>
+          <div>
+            <h4>Metrônomo Real</h4>
+            <p>BPM ajustável com indicadores visuais e compasso</p>
+          </div>
+        </div>
+        <div class="landing-feature">
+          <div class="feature-icon">III</div>
+          <div>
+            <h4>Modo Treino</h4>
+            <p>Timer com loop automático e salvamento de progresso</p>
+          </div>
+        </div>
+        <div class="landing-feature">
+          <div class="feature-icon">IV</div>
+          <div>
+            <h4>Jornada Guiada</h4>
+            <p>Aulas sequenciais com desbloqueio e provações</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="landing-cta">
+        <a href="#auth-section" class="btn-landing-primary" onclick="document.getElementById('auth-section').scrollIntoView({behavior:'smooth'}); return false;">
+          Iniciar Jornada
+          <span style="font-size: 16px;">⚔</span>
+        </a>
+        <a href="#auth-section" class="btn-landing-secondary" onclick="document.getElementById('auth-section').scrollIntoView({behavior:'smooth'}); setTimeout(function(){document.getElementById('login-email').focus()},500); return false;">
+          Já tenho conta
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="landing-auth" id="auth-section">
+      <div class="auth-card animate-in">
+        <div class="landing-logo">
+          <img src="images/logo.png" alt="DO TRAVESSEIRO AO GROOVE" />
+        </div>
+        <h1>Entrar na Guilda</h1>
+        <p class="subtitle">Continue sua jornada musical</p>
+
+        <div id="alert-box"></div>
+
+
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="login-email" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-control" id="login-password" placeholder="Sua senha" required>
+          </div>
+
+          <button type="submit" class="btn-accent">Entrar</button>
+
+          <p style="text-align: center; margin-top: 12px;">
+            <a href="#" id="forgot-password-link" style="color: var(--gold); font-size: 13px;">Esqueci minha senha</a>
+          </p>
+        </form>
+
+
+        <form id="register-form" style="display: none;">
+          <h3 style="text-align: center; margin-bottom: 20px; color: var(--gold); font-size: 18px; font-family: 'Cinzel Decorative', serif;">Forjar Nova Conta</h3>
+
+          <div class="form-group">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="register-name" placeholder="Seu nome" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="register-email" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-control" id="register-password" placeholder="Mínimo 6 caracteres" required minlength="6">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" id="register-confirm" placeholder="Confirme sua senha" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pergunta Secreta</label>
+            <select class="form-control" id="register-secret-question" required>
+              <option value="">Selecione uma pergunta</option>
+              <option value="Qual o nome da sua mae?">Qual o nome da sua mãe?</option>
+              <option value="Qual o nome do seu primeiro pet?">Qual o nome do seu primeiro pet?</option>
+              <option value="Qual sua cidade natal?">Qual sua cidade natal?</option>
+              <option value="Qual o nome do seu melhor amigo?">Qual o nome do seu melhor amigo?</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Resposta</label>
+            <input type="text" class="form-control" id="register-secret-answer" placeholder="Sua resposta" required>
+          </div>
+
+          <button type="submit" class="btn-accent">Forjar Conta</button>
+        </form>
+
+
+        <form id="forgot-form" style="display: none;">
+          <h3 style="text-align: center; margin-bottom: 16px; color: var(--gold); font-family: 'Cinzel Decorative', serif;">Recuperar Senha</h3>
+
+          <div id="forgot-step-1">
+            <div class="form-group">
+              <label class="form-label">Digite seu email</label>
+              <input type="email" class="form-control" id="forgot-email" placeholder="seu@email.com" required>
+            </div>
+            <button type="submit" class="btn-accent">Continuar</button>
+          </div>
+
+          <div id="forgot-step-2" style="display: none;">
+            <p style="text-align: center; margin-bottom: 16px; color: var(--text-secondary); font-family: 'Cinzel', serif;" id="forgot-question-text"></p>
+            <div class="form-group">
+              <label class="form-label">Sua resposta</label>
+              <input type="text" class="form-control" id="forgot-answer" placeholder="Sua resposta" required>
+            </div>
+            <button type="submit" class="btn-accent">Verificar</button>
+          </div>
+
+          <div id="forgot-step-3" style="display: none;">
+            <p style="text-align: center; margin-bottom: 16px; color: #6abf5e; font-family: 'Cinzel', serif;">✓ Resposta correta! Forje uma nova senha.</p>
+            <div class="form-group">
+              <label class="form-label">Nova Senha</label>
+              <input type="password" class="form-control" id="forgot-new-password" placeholder="Mínimo 6 caracteres" required minlength="6">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirmar Nova Senha</label>
+              <input type="password" class="form-control" id="forgot-confirm-password" placeholder="Confirme sua nova senha" required>
+            </div>
+            <button type="submit" class="btn-accent">Redefinir</button>
+          </div>
+        </form>
+
+        <div class="auth-footer" id="auth-footer">
+          <p id="toggle-text">Não tem conta? <a href="#" id="toggle-auth">Forjar agora</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Floating embers
+    const container = document.getElementById('floating-embers');
+    for (let i = 0; i < 35; i++) {
+      const ember = document.createElement('div');
+      ember.className = 'floating-ember';
+      ember.style.left = Math.random() * 100 + '%';
+      ember.style.animationDelay = Math.random() * 15 + 's';
+      ember.style.animationDuration = (10 + Math.random() * 15) + 's';
+      ember.style.width = (3 + Math.random() * 4) + 'px';
+      ember.style.height = ember.style.width;
+      container.appendChild(ember);
+    }
+
+    // Fetch stats from API and animate counters
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        
+        const stats = {
+          aulas: data.totalAulas || 0,
+          exercicios: data.totalExercicios || 0,
+          provas: data.totalAulas || 0,
+          horas: Math.max(1, Math.round(data.totalAulas * 0.2 * 10) / 10)
+        };
+        
+        const subtitleEl = document.getElementById('dynamic-aulas');
+        if (subtitleEl) subtitleEl.textContent = stats.aulas;
+        
+        document.querySelectorAll('.landing-stat-value[data-dynamic]').forEach(el => {
+          const key = el.dataset.dynamic;
+          const target = stats[key];
+          if (target === undefined) return;
+          
+          const duration = 2000;
+          const start = performance.now();
+          
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            
+            if (key === 'horas') {
+              el.textContent = (target * eased).toFixed(1) + 'h';
+            } else {
+              el.textContent = Math.round(target * eased);
+            }
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        });
+      } catch(e) {
+        document.querySelectorAll('.landing-stat-value[data-dynamic]').forEach(el => {
+          el.textContent = '--';
+        });
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadStats();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.landing-stats');
+    if (statsSection) observer.observe(statsSection);
+  </script>
+</body>
+</html>

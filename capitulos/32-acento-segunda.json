@@ -1,0 +1,21 @@
+{
+  "id": 32,
+  "title": "Acento na Segunda Batida",
+  "description": "Exercício de acentuação na segunda batida de cada grupo de quatro notas.",
+  "objectives": [
+    "Controlar o acento na segunda posição de cada grupo",
+    "Desenvolver independência dinâmica entre as mãos",
+    "Manter a pulsação constante enquanto alterna acentos"
+  ],
+  "concept": "<h3>O que é Acento na Segunda Batida?</h3><p>O acento natural cai na <span class='highlight'>primeira batida</span> do grupo. Mas e se deslocarmos para a segunda? Isso cria um efeito de <strong>'empurrão' rítmico</strong> que surpreende o ouvinte e adiciona movimento à música.</p><h3>Como Funciona</h3><div class='pattern-example'>r R r L r R r L<br>  ↑     ↑     ↑<br>acento acento acento</div><p>Note que o acento (R ou L maiúsculo) está na <span class='highlight'>segunda posição</span> de cada grupo de 4. As notas suaves (r e l minúsculos) ficam antes e depois, criando um 'colchão' dinâmico.</p><h3>Por que é Importante?</h3><p>Este deslocamento é a base da <span class='highlight'>sincopa</span>. Quando você acentua posições inesperadas, a música ganha vida. Sem isso, tudo soa robótico e previsível.</p><h3>Onde é Usado?</h3><p>Acento na segunda batida aparece em:<ul><li><strong>Funk:</strong> O 'backbeat' sincopado é essencial</li><li><strong>Jazz:</strong> Swing depende de acentos deslocados</li><li><strong>Rock:</strong> Muitos grooves usam este princípio</li><li><strong>MPB:</strong> Sincopação brasileira</li></ul><h3>Segredo</h3><p>Mantenha os 'r' e 'l' <span class='highlight'>bem suaves</span> e os 'R' e 'L' bem fortes. A diferença deve ser clara mesmo em velocidades altas.</p></p>",
+  "exercise": ["r", "R", "r", "L", "r", "R", "r", "L"],
+  "diagram": "<div class='diagram-title'>Acento na Segunda Batida</div><pre class='diagram-ascii'>r   R   r   L   r   R   r   L\n    ↑       ↑       ↑       ↑\n  acento acento acento acento\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>O acento desloca para a segunda posição de cada grupo</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dinâmica:</strong> A diferença entre suave e forte deve ser MUITO clara. Use o rebote da baqueta para controlar.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece devagar (50 BPM). Só aumente quando o acento estiver preciso.</div><div class='tip-box'><strong>💡 Aplicação:</strong> Tente trocar as mãos: rRrL vira lLrR. Isso desenvolve independência.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

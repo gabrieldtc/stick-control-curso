@@ -1,0 +1,41 @@
+{
+  "id": 52,
+  "title": "Coordenação Mãos + Pés",
+  "description": "Juntar baquetas com bumbo e hi-hat",
+  "objectives": [
+    "Combinar padrões de mãos com o bumbo",
+    "Manter hi-hat constante enquanto as mãos tocam",
+    "Desenvolver independência entre membros"
+  ],
+  "concept": "<h3>O que é Coordenação Mãos + Pés?</h3><p>É tocar padrões de mãos sobre uma base constante de pés. O que separa um praticante de um baterista é exatamente isso: <span class='highlight'>cada membro fazendo uma coisa diferente ao mesmo tempo</span>.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R L R L R L | R R L L R R L L<br>(mãos alternadas + duplos, sobre o pulso dos pés)</div><p>Enquanto os pés mantêm o <span class='highlight'>hi-hat em colcheias constantes</span> e o bumbo marcando o 1 e o 3, as mãos tocam o padrão: primeiro <span class='highlight'>alternância pura (R L R L)</span>, depois <span class='highlight'>duplos (R R L L)</span>.</p><h3>Como Tocar</h3><ul><li><strong>Comece simples:</strong> toque só o hi-hat no pulso, sem bumbo.</li><li><strong>Adicione o bumbo:</strong> coloque o bumbo no 1 e no 3, mantendo o hi-hat correndo.</li><li><strong>Junte as mãos:</strong> toque o padrão por cima, sem desmontar os pés.</li><li><strong>Complexidade gradual:</strong> só adicione uma peça nova quando a anterior sair sem esforço.</li></ul><h3>Por que é Importante?</h3><p>É a <span class='highlight'>independência de membros</span>: o passo entre tocar rudimentos e tocar bateria de verdade. Padrão simples + pés firmes = groove que soa profissional.</p>",
+  "exercise": [
+    "R",
+    "l",
+    "R",
+    "l",
+    "L",
+    "r",
+    "L",
+    "r",
+    "R",
+    "l",
+    "R",
+    "l",
+    "L",
+    "r",
+    "L",
+    "r"
+  ],
+  "diagram": "<div class='diagram-title'>Mãos + Pés — Alternância e Duplos</div><pre class='diagram-ascii'>R L R L R L R L | R R L L R R L L\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nA A A A A A A A   D D D D D D D D\n\nH H H H H H H H | H H H H H H H H\nB · · · B · · ·   B · · · B · · ·\n\nA = alternância   D = duplo   H = hi-hat\nB = bumbo (1 e 3)   · = hi-hat sem bumbo</pre><div class='diagram-note'>Os pés mantêm a base constante (hi-hat sempre, bumbo no 1 e 3) enquanto as mãos trocam de técnica.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Camadas:</strong> Faça uma coisa de cada vez. Primeiro só hi-hat, depois + bumbo, e só então + as mãos. Adicionar tudo de uma vez trava o cérebro.</div><div class='tip-box'><strong>💡 Ouvido:</strong> Grave ou toque na frente do espelho. O pulso dos pés deve continuar igual mesmo quando as mãos mudam.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Parar os pés para acertar as mãos. Os pés são o motor — se eles travarem, o groove morre. Reduza o BPM e refaça devagar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    120
+  ],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": 44,
+  "title": "Polirritmia 3x4",
+  "description": "Tocando três notas contra quatro",
+  "objectives": [
+    "Executar polirritmia de 3 contra 4",
+    "Desenvolver independência entre as mãos",
+    "Manter a pulsação base"
+  ],
+  "concept": "<h3>O que é Polirritmia 3x4?</h3><p>Polirritmia é quando duas mãos tocam <span class='highlight'>padrões diferentes ao mesmo tempo</span>. No 3x4, uma mão divide o tempo em <strong>3 partes iguais</strong> e a outra em <strong>4 partes iguais</strong>.</p><h3>Passo 1: Entenda o Encaixe</h3><p>Imagine 12 batidas no total. A mão que faz 3 toca nas posições <span class='highlight'>1, 5, 9</span>. A mão que faz 4 toca nas posições <span class='highlight'>1, 4, 7, 10</span>. Elas só coincidem na primeira batida!</p><div class='pattern-example'>Posição: 1  2  3  4  5  6  7  8  9  10 11 12<br>Mão D:  ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·<br>Mão E:  ●  ·  ·  ●  ·  ·  ●  ·  ·  ●  ·  ·</div><p>Note que entre a 1ª e a 2ª batida da mão D, a mão E já tocou 2 vezes. É esse 'desencontroto' que cria a polirritmia.</p><h3>Passo 2: Sinta o Padrão</h3><p>Diga em voz alta: '<span class='highlight'>UM</span>-e-e-<span class='highlight'>DOIS</span>-e-e-<span class='highlight'>TRÊS</span>-e-e' (batidas da mão D). Enquanto isso, marque com a mão E: '<span class='highlight'>1</span>-2-<span class='highlight'>3</span>-4-<span class='highlight'>1</span>-2-<span class='highlight'>3</span>-4'.</p><h3>Passo 3: Junte as Mãos</h3><p>Comece devagar. O segredo é <span class='highlight'>não pensar</span> em cada mão separadamente — sinta o padrão completo como uma 'dança' entre as duas.</p><h3>Onde é Usado?</h3><ul><li><strong>Jazz:</strong> É o ritmo base do swing</li><li><strong>Música Africana:</strong> A origem de tudo</li><li><strong>Bossa Nova:</strong> Usa polirritmia sutil</li><li><strong>Rock Progressivo:</strong> Fills complexos</li></ul>",
+  "exercise": [
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Polirritmia 3x4 — Encaixe Visual</div><pre class='diagram-ascii'>Posição:  1  2  3  4  5  6  7  8  9  10 11 12\n          ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─\nMão D:    ●  ·  ·  ·  ●  ·  ·  ·  ●  ·  ·  ·\n          ┃           ┃           ┃\n          ┃           ┃           ┃\nMão E:    ●  ·  ·  ●  ·  ·  ●  ·  ·  ●  ·  ·\n          ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─  ─\n          1           2           3\n\nBatida D: ▲           ▲           ▲\nBatida E: ▲     ▲     ▲     ▲</pre><div class='diagram-note'>As mãos só coincidem na posição 1. Depois, 'dançam' em ritmos diferentes.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Passo 1:</strong> Toque só a mão D (3 batidas) com o metrônomo em 4. Sinta o 3 contra 4.</div><div class='tip-box'><strong>💡 Passo 2:</strong> Toque só a mão E (4 batidas) com o metrônomo. É mais fácil — é o ritmo natural.</div><div class='tip-box'><strong>💡 Passo 3:</strong> Junte devagar. Se travar, volte ao passo 1.</div><div class='warning-box'><strong>⚠️ Paciência:</strong> Polirritmia leva SEMANAS para dominar. É normal travar no início. Uma hora 'clica'.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    140
+  ],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 20,
+    "daysPerWeek": 5
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 46,
+  "title": "Combinação Avançada 1",
+  "description": "Misturando todos os conceitos aprendidos",
+  "objectives": [
+    "Combinar alternância com acentos",
+    "Usar duplos e paradiddles juntos",
+    "Manter controle em padrões complexos"
+  ],
+  "concept": "<h3>O que é a Combinação 1?</h3><p>É um padrão que mistura o <span class='highlight'>paradiddle (RLRR LRLL)</span> com os <strong>pares (RR LL)</strong> em um único fluxo: você toca o paradiddle, emenda um bloco de duplos e retoma o paradiddle — tudo sem parar.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R R L R L L | R R L L | R L R R L R L L<br>(paradiddle, pares, paradiddle)</div><p>São <span class='highlight'>20 notas em 5 grupos de 4</span>: um paradiddle completo, um grupo de duplos puros (RR LL) e outro paradiddle. A mudança de grupo exige trocar de 'modo' — de alternância com duplo interno para duplos seguidos — mantendo a colocação das mãos.</p><h3>Como Tocar</h3><ul><li><strong>Paradiddle:</strong> RLRR LRLL, com os R's internos soando como duplos.</li><li><strong>Pares:</strong> RR LL soando idênticos aos duplos do paradiddle.</li><li><strong>Fluxo:</strong> toque tudo em <strong>semicolcheias contínuas</strong> — não deixe espaço na troca de grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4'</span> por grupo de 4 notas. O trecho de pares é o mais simples: use-o para respirar e reencontrar o tempo antes do último paradiddle.</p><h3>Por que é Importante?</h3><p>É o passo que liga os rudimentos à <strong>música</strong>: você já sabe alternar mãos e tocar duplos — agora aprende a <span class='highlight'>emendar figuras diferentes</span> sem perder o tempo, exatamente como numa virada real.</p>",
+  "exercise": ["R", "L", "R", "R", "L", "R", "L", "L", "R", "R", "L", "L", "R", "L", "R", "R", "L", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Combinação 1</div><pre class='diagram-ascii'>R L R R L R L L | R R L L | R L R R L R L L\n1 2 3 4 1 2 3 4   1 2 3 4   1 2 3 4 1 2 3 4\n\n| = separa os grupos   (1 2 3 4 = notas de cada grupo)</pre><div class='diagram-note'>20 notas em fluxo contínuo: paradiddle + pares + paradiddle.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Fluxo:</strong> A troca de grupo é o trecho crítico. Entre no 'R R' dos pares como se fosse a continuação da mesma frase.</div><div class='tip-box'><strong>💡 Mãos iguais:</strong> Os duplos internos do paradiddle e os pares (RR LL) devem soar com o mesmo volume — mesmo desenho, mesmo som.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Perder a fluidez na troca de grupo ou acelerar. Toque os 20 golpes num fluxo contínuo, sem vacilar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 19,
+  "title": "Ruff",
+  "description": "Três notas ornamentais rápidas",
+  "objectives": [
+    "Aprender o ruff",
+    "Controlar a velocidade",
+    "Integrar ruffs nos padrões"
+  ],
+  "concept": "<h3>O que é um Ruff?</h3><p>O ruff é um ornamento com <span class='highlight'>três notas rápidas e fracas</span> (grace notes) antes da nota principal. É como o drag, mas com uma nota a mais: em vez de rr, tocam-se rrr, e a batida principal cai em L.</p><h3>Como Funciona</h3><div class='pattern-example'>rrr L | lll R | rrr L | lll R<br>gp gp gp GRD</div><p><strong>rrr</strong> = três grace notes rápidas e quase sem volume na mesma mão, seguidas da principal <strong>L</strong>. Quanto mais rápida a sucessão das três notas, mais 'fervorosa' é a entrada na batida principal.</p><h3>Como Tocar</h3><ul><li><strong>1º passo:</strong> toque as três grace notes com a mão menor — rápidas, baixas e <span class='highlight'>mais perto da pele</span>.</li><li><strong>2º passo:</strong> a nota principal chega logo depois com a outra mão, com mais altura e volume.</li><li><strong>Alternância:</strong> rrr L | lll R, alternando qual mão faz o ruff e qual faz a batida principal.</li></ul><h3>Diferença do Drag</h3><ul><li><strong>Drag:</strong> duas grace notes antes da principal (rrL).</li><li><strong>Ruff:</strong> três grace notes antes da principal (rrrL) — o mesmo princípio, com mais uma nota.</li></ul>",
+  "exercise": ["rrrL", "lllR", "rrrL", "lllR", "rrrL", "lllR", "rrrL", "lllR"],
+  "diagram": "<div class='diagram-title'>Ruff</div><pre class='diagram-ascii'>rrr  L   lll  R   rrr  L   lll  R\ngp gp gp GRD gp gp gp GRD gp gp gp GRD gp gp gp GRD\n\nrrr = três grace notes rápidas e fracas\nL   = nota principal, forte</pre><div class='diagram-note'>Ruff = drag com três grace notes: mais curto, mais rápido e com o mesmo peso na principal.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Fervor:</strong> Quanto mais rápidas as três grace notes, mais expressivo o ruff. Use uma movimentação mínima de pulso.</div><div class='tip-box'><strong>💡 Contagem:</strong> Conte as três notas mentalmente antes de cada principal, para que a batida forte nunca atrase.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não 'pese' as grace notes. Se as três soarem como notas normais, o ruff vira um padrão sem efeito ornamental.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

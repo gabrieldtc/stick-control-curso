@@ -1,0 +1,21 @@
+{
+  "id": 8,
+  "title": "Duplos",
+  "description": "Batidas duplas em cada mão",
+  "objectives": [
+    "Tocar duas batidas cada mão",
+    "Manter equalidade entre mãos",
+    "Aumentar controle de pulso"
+  ],
+  "concept": "<h3>O que são Duplos?</h3><p>Duplos são quando cada mão toca <span class='highlight'>duas vezes seguidas</span>. Parece simples, mas exige muito controle!</p><h3>Por que são Importantes?</h3><p>Duplos são a base de muitos padrões avançados. Eles aparecem em:<ul><li><strong>Fills</strong> (viradas) - para transições suaves</li><li><strong>Paradiddles</strong> - padrões que combinam duplos com alternância</li><li><strong>Rulos</strong> - para criar sons sustentados</li></ul><h3>Como Funciona</h3><div class='pattern-example'>R R L L R R L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 & 2 & 3 & 4 &</div><h3>O Desafio</h3><p>O difícil é fazer a <span class='highlight'>transição</span> entre as mãos de forma suave. A última nota de uma mão deve soar igual à primeira da outra.</p></p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Duplos</div><pre class='diagram-ascii'>R   R   L   L   R   R   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   &   2   &   3   &   4   &\n\nMão: D D   E E   D D   E E</pre><div class='diagram-note'>Cada mão toca duas vezes antes de trocar</div>",
+  "tips": "<div class='tip-box'><strong>💡 Transição:</strong> O segredo dos duplos é a transição. A última nota de uma mão deve ser igual à primeira da outra.</div><div class='tip-box'><strong>💡 Prática:</strong> Pratique cada mão separadamente antes de juntar. Faça R R R R e depois L L L L.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não deixe uma mão mais forte que a outra. Se ouvir diferença, diminua a velocidade.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

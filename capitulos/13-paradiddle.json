@@ -1,0 +1,21 @@
+{
+  "id": 13,
+  "title": "Paradiddle Básico",
+  "description": "R L R R L R L L",
+  "objectives": [
+    "Aprender o paradiddle",
+    "Alternar qual mão começa",
+    "Usar em diferentes contextos"
+  ],
+  "concept": "<h3>O Paradiddle</h3><p>O paradiddle é um dos <span class='highlight'>padrões mais importantes</span> da bateria. Ele combina alternância com duplos.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R R | L R L L<br>↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓<br>1 e & a   2 e & a</div><p>Note que:<ul><li>Começa com alternância (R L)</li><li>Termina com um duplo (R R ou L L)</li></ul><h3>Por que é Importante?</h3><p>O paradiddle é a base de <span class='highlight'>centenas de padrões</span>. Ele é usado em:<ul><li>Fills</li><li>Grooves</li><li>Solos</li><li>Transições</li></ul><h3>Variações</h3><p>Existem muitas variações:<ul><li><strong>Paradiddle simples:</strong> R L R R L R L L</li><li><strong>Paradiddle duplo:</strong> R R L L R R L L</li><li><strong>Paradiddle triplo:</strong> R R R L L L R L L L R R R L L L</li></ul></p></p></p>",
+  "exercise": ["R", "L", "R", "R", "L", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Paradiddle</div><pre class='diagram-ascii'>R   L   R   R   L   R   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   e   &   a   2   e   &   a\n\nParte 1: R L R R (alternância + duplo)\nParte 2: L R L L (alternância + duplo)</pre><div class='diagram-note'>O paradiddle é a base de tudo!</div>",
+  "tips": "<div class='tip-box'><strong>💡 Memorize:</strong> Decorre o padrão: 'R L R R, L R L L'. Diga em voz alta enquanto pratica.</div><div class='tip-box'><strong>💡 Alternância:</strong> O segredo é que cada metade começa com uma mão diferente. Isso permite tocar infinitamente.</div><div class='tip-box'><strong>💡 Uso:</strong> Tente usar o paradiddle em fills. É muito versátil!</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 20,
+    "daysPerWeek": 5
+  }
+}

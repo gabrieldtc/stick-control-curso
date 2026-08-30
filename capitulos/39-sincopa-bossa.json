@@ -1,0 +1,33 @@
+{
+  "id": 39,
+  "title": "Sincopa de Bossa Nova",
+  "description": "Padrão rítmico que simula a sincopação da bossa nova.",
+  "objectives": [
+    "Reproduzir o feel suave e sincopado da bossa nova",
+    "Desenvolver controle dinâmico para o toque suave da bossa",
+    "Integrar acentos sutis no padrão rítmico brasileiro"
+  ],
+  "concept": "<h3>O que é Sincopa de Bossa Nova?</h3><p>A bossa nova é <span class='highlight'>suave, elegante e sincopada</span>. Diferente do funk (que é pesado), a bossa usa acentos <strong>sutis</strong> — presentes, mas delicados. É como sussurrar com ritmo.</p><h3>Como Funciona</h3><div class='pattern-example'>R l r l R l r l<br>↑           ↑<br>acento suave acento suave</div><p>O acento (R maiúsculo) é <span class='highlight'>sutil</span> — não é um 'grito', é um 'sussurro marcado'. As notas suaves (l e r) preenchem o espaço com delicadeza.</p><h3>Por que é Importante?</h3><p>A bossa nova exige <span class='highlight'>controle extremo de dinâmica</span>. A diferença entre forte e suave é menor que no rock, mas ainda assim deve ser clara. É o contrário de 'forçar' — é 'sugerir'.</p><h3>Onde é Usado?</h3><p>Bossa nova é a porta de entrada para:<ul><li><strong>Bossa Nova:</strong> Tom Jobim, João Gilberto</li><li><strong>Samba:</strong> Ritmo brasileiro por excelência</li><li><strong>MPB:</strong> Caetano, Djavan, Milton</li><li><strong>Jazz Brasileiro:</strong> Fusão de sensibilidades</li></ul><h3>Segredo</h3><p><span class='highlight'>Suavidade</span>. A bossa não é 'toca pesado' — é 'toca com elegância'. Imagine que está tocando com penas, não com baquetas.</p></p>",
+  "exercise": [
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Sincopa de Bossa Nova</div><pre class='diagram-ascii'>R   l   r   l   R   l   r   l\n↑               ↑           \nsutil         sutil         \n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Acentos sutis criam a elegância da bossa</div>",
+  "tips": "<div class='tip-box'><strong>💡 Suavidade:</strong> Toque com leveza. A bossa não é 'pesada' — é 'flutuante'.</div><div class='tip-box'><strong>💡 Escuta:</strong> Ouça João Gilberto e sinta a 'leveza' do ritmo. É isso que você deve replicar.</div><div class='tip-box'><strong>💡 Dinâmica:</strong> A diferença entre R e l deve ser sutil, mas clara. Não é tudo igual!</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    140
+  ],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

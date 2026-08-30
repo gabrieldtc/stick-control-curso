@@ -1,0 +1,21 @@
+{
+  "id": 17,
+  "title": "Flam com Duplos",
+  "description": "Flams seguidos de duplos",
+  "objectives": [
+    "Combinar flams com duplos",
+    "Manter fluidez nas transições",
+    "Controlar intensidade"
+  ],
+  "concept": "<h3>O que é Flam com Duplos?</h3><p>Este capítulo combina dois elementos: o <span class='highlight'>flam</span> (duas batidas quase juntas) com o <span class='highlight'>duplo</span> (duas notas seguidas na mesma mão). O resultado é um padrão rítmico mais rico e cheio de textura.</p><h3>Como Funciona</h3><div class='pattern-example'>rR L L | lL R R | rR L L | lL R R<br>flam dbl dbl  flam dbl dbl</div><p>Cada grupo tem um flam seguido de <span class='highlight'>dois duplos</span> na outra mão. O flam marca a entrada da batida forte, e os duplos preenchem o espaço até o próximo flam.</p><h3>Mãos e Contagem</h3><ul><li><strong>rR</strong> = flam na mão direita (grace + principal)</li><li><strong>L L</strong> = duplo na mão esquerda</li><li><strong>lL</strong> = flam na mão esquerda</li><li><strong>R R</strong> = duplo na mão direita</li></ul><h3>Como Tocar</h3><p>No flam, a mão menor (minúscula) toca primeiro e fica <span class='highlight'>mais perto da pele</span>; a principal (maiúscula) toca logo depois, com mais altura e volume, bem na batida do tempo. Nos duplos, toque as duas notas com o <strong>mesmo volume</strong> e a <strong>mesma altura</strong>. O flam deve sempre cair na batida forte, e os duplos mantêm o tempo até o próximo grupo.</p>",
+  "exercise": ["rR", "L", "L", "lL", "R", "R", "rR", "L", "L", "lL", "R", "R"],
+  "diagram": "<div class='diagram-title'>Flam com Duplos</div><pre class='diagram-ascii'>rR  L  L   lL  R  R   rR  L  L   lL  R  R\nflam dbl dbl  flam dbl dbl  flam dbl dbl  flam dbl dbl\n\nFlam: mão menor (r) → mão maior (R)\nDuplo: duas notas na mesma mão</pre><div class='diagram-note'>O flam marca a batida forte; os dois duplos completam o grupo e mantêm o tempo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Flam na batida:</strong> O flam deve cair sempre na batida forte. Use os duplos para contar até o próximo flam.</div><div class='tip-box'><strong>💡 Duplos iguais:</strong> Toque as duas notas do duplo com o mesmo volume — é o segundo golpe que costuma sair mais fraco.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não toque o grace e a principal do flam ao mesmo tempo. Deve haver uma pequena diferença entre as duas mãos.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

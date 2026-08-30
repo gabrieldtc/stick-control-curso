@@ -1,0 +1,21 @@
+{
+  "id": 18,
+  "title": "Drag Básico",
+  "description": "Arrasto com duas notas rápidas antes da batida",
+  "objectives": [
+    "Aprender o drag",
+    "Controlar a velocidade do arrasto",
+    "Integrar drags nos padrões"
+  ],
+  "concept": "<h3>O que é um Drag?</h3><p>O drag é um ornamento formado por <span class='highlight'>duas notas rápidas e fracas</span> (grace notes) tocadas antes da nota principal. Elas quase não se ouvem: passam voando rumo à batida principal, que recebe todo o volume.</p><h3>Como Funciona</h3><div class='pattern-example'>rr L | ll R | rr L | ll R<br>gp gp GRD</div><p><strong>rr</strong> = duas notas fracas rápidas na mesma mão, antes do golpe principal <strong>L</strong>. Apesar de parecer um double stroke, a diferença está na <span class='highlight'>velocidade e no volume</span>: as duas grace notes são muito rápidas e muito fracas, e a principal é forte.</p><h3>Como Tocar</h3><ul><li><strong>1º passo:</strong> toque as duas grace notes com a mão menor — rápidas, baixas e <span class='highlight'>mais perto da pele</span>.</li><li><strong>2º passo:</strong> traga a outra mão e toque a nota principal logo em seguida, com mais altura e volume.</li><li><strong>Alternância:</strong> rr L | ll R, mantendo o arrasto alternando as mãos em cada grupo.</li></ul><h3>Diferença do Double Stroke</h3><ul><li><strong>Double stroke:</strong> as duas notas têm o mesmo valor e o mesmo volume (RR LL).</li><li><strong>Drag:</strong> as duas grace notes são notas de passagem, rápidas e fracas, antes da principal (rrL).</li></ul>",
+  "exercise": ["rrL", "llR", "rrL", "llR", "rrL", "llR", "rrL", "llR"],
+  "diagram": "<div class='diagram-title'>Drag Básico</div><pre class='diagram-ascii'>rr  L   ll  R   rr  L   ll  R\ngp gp GRD gp gp GRD gp gp GRD gp gp GRD\n\nrr = duas grace notes rápidas e fracas\nL  = nota principal, forte</pre><div class='diagram-note'>As duas grace notes passam voando; todo o peso está na nota principal.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Velocidade:</strong> Toque as duas grace notes o mais rápido possível, quase como um rebote duplo que leva direto à batida principal.</div><div class='tip-box'><strong>💡 Volume:</strong> Pense em 'piano-piano-forte': as grace notes quase não soam e a principal soa forte.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Não toque o drag com o mesmo volume de um double stroke — se as duas grace notes pesarem, o ornamento perde o efeito.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

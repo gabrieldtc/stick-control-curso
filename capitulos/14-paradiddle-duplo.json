@@ -1,0 +1,21 @@
+{
+  "id": 14,
+  "title": "Paradiddle Duplo",
+  "description": "R L R L R R L R L R L L",
+  "objectives": [
+    "Aprender o paradiddle duplo",
+    "Controlar a virada do duplo",
+    "Aumentar velocidade"
+  ],
+  "concept": "<h3>Paradiddle Duplo</h3><p>O paradiddle duplo tem <span class='highlight'>quatro notas alternadas e um duplo</span>, repetido. É a variação de 12 notas do paradiddle básico.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R L R R L R L R L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 e & a 2 e & a 3 e & a</div><p>Repare nos grupos: <strong>RLRL RR</strong> | <strong>LRLR LL</strong>. O duplo sempre cai onde uma nota alternada 'viraria'.</p><h3>Diferença do Paradiddle Simples</h3><ul><li><strong>Paradiddle simples:</strong> R L R R L R L L (2 alternadas + duplo, 8 notas)</li><li><strong>Paradiddle duplo:</strong> R L R L R R L R L R L L (4 alternadas + duplo, 12 notas)</li></ul><h3>Aplicação</h3><p>O paradiddle duplo é usado em:<ul><li>Fills rápidos</li><li>Grooves de rock e funk</li><li>Transições suaves</li></ul></p>",
+  "exercise": ["R", "L", "R", "L", "R", "R", "L", "R", "L", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Paradiddle Duplo</div><pre class='diagram-ascii'>R   L   R   L   R   R   L   R   L   R   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   e   &   a   2   e   &   a   3   e   &   a\n\nRLRL RR | LRLR LL - o duplo vira a mão!</pre><div class='diagram-note'>R L R L R R L R L R L L</div>",
+  "tips": "<div class='tip-box'><strong>💡 Grupos:</strong> Pense em RLRL RR | LRLR LL, não em nota por nota.</div><div class='tip-box'><strong>💡 Transições:</strong> Foque na virada do duplo: após o RR, a próxima mão deve começar solta.</div><div class='tip-box'><strong>💡 Combinação:</strong> Alterne entre paradiddle simples e duplo em um mesmo fill.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

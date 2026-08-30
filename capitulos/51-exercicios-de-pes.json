@@ -1,0 +1,38 @@
+{
+  "id": 51,
+  "title": "Exercícios de Pés",
+  "description": "Bumbo e hi-hat independentemente",
+  "objectives": [
+    "Desenvolver controle do bumbo com o pé direito",
+    "Trabalhar abertura e fechamento do hi-hat",
+    "Manter o pulso constante com os pés"
+  ],
+  "concept": "<h3>O que são os Exercícios de Pés?</h3><p>São padrões tocados com os pés — o <span class='highlight'>bumbo</span> e o <span class='highlight'>hi-hat</span> — que criam a base do groove. Aqui, cada símbolo representa um pé diferente, não uma mão.</p><h3>Como Funciona</h3><div class='pattern-example'>R - R - R - R - R - r - R - r -<br>(R = bumbo forte, r = hi-hat fraco, - = pausa)</div><p>O <span class='highlight'>R maiúsculo é o bumbo</span>, tocado forte com o pé direito. O <span class='highlight'>r minúsculo é o hi-hat</span> (chimbal), tocado leve com o pé esquerdo. O <span class='highlight'>'-' é uma pausa</span>: o tempo passa, mas nada soa.</p><h3>Como Tocar</h3><ul><li><strong>R:</strong> bumbo — pise firme, marcando o pulso.</li><li><strong>r:</strong> hi-hat — toque leve, fechando o chimbal com o pé.</li><li><strong>-:</strong> pausa — mantenha o pé pronto, mas <strong>não toque</strong>.</li></ul><p>Conte em voz alta: <span class='highlight'>'1 (e) 2 (e) 3 (e) 4 (e)'</span> — a pausa cai nas contagens onde não há nota.</p><h3>Por que é Importante?</h3><p>O bumbo e o hi-hat são o <strong>coração do groove</strong>. É o que mantém a música no ritmo enquanto as mãos tocam os rudimentos. Pés independentes = groove sólido.</p>",
+  "exercise": [
+    "R",
+    "-",
+    "R",
+    "-",
+    "R",
+    "-",
+    "R",
+    "-",
+    "R",
+    "-",
+    "r",
+    "-",
+    "R",
+    "-",
+    "r",
+    "-"
+  ],
+  "diagram": "<div class='diagram-title'>Pés — Bumbo, Hi-hat e Pausas</div><pre class='diagram-ascii'>R - R - R - R - R - r - R - r -\n↓ · ↓ · ↓ · ↓ · ↓ · · · ↓ · · ·\nB p B p B p B p B p h p B p h p\n\nB = bumbo (forte)   h = hi-hat (fraco)\np = pausa (não tocar)   ↓ = batida\n· = silêncio no tempo</pre><div class='diagram-note'>O padrão alterna bumbo forte e pausas; o hi-hat aparece fraco nas duas últimas posições.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Pausa:</strong> Conte o tempo da pausa em voz alta ('e', 'e'...). O silêncio também é música.</div><div class='tip-box'><strong>💡 Volume:</strong> O bumbo (R) deve sobrar e o hi-hat (r) deve ser sussurro. Diferencie bem os dois pés.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Tocar o '-'. A pausa não é um tempo vago — é um tempo em que você segura o pé, sem bater. Não o preencha com nota.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

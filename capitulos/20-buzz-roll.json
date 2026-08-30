@@ -1,0 +1,21 @@
+{
+  "id": 20,
+  "title": "Buzz Roll",
+  "description": "Rolo contínuo com pressão",
+  "objectives": [
+    "Aprender o buzz roll",
+    "Controlar a pressão da baqueta",
+    "Manter som contínuo"
+  ],
+  "concept": "<h3>O que é um Buzz Roll?</h3><p>O buzz roll cria um <span class='highlight'>som sustentado</span> através de múltiplos bounces rápidos da baqueta. É como um 'zumbido' contínuo.</p><h3>Como Funciona</h3><div class='pattern-example'>RRRR LLLL RRRR LLLL<br>(múltiplos bounces cada vez)</div><p>A baqueta quica várias vezes na membrana, criando um som contínuo. Ao alternar as mãos, o som nunca para.</p><h3>Aplicação</h3><p>Buzz rolls são usados em:<ul><li><strong>Baladas:</strong> Para criar tensão suave</li><li><strong>Música Orquestral:</strong> Em peças clássicas</li><li><strong>Jazz:</strong> Em solos e frases</li></ul><h3>Segredo</h3><p>O segredo é <span class='highlight'>pressão constante</span>. Não pressione demais nem de menos. Encontre o ponto justo onde a baqueta quica naturalmente.</p></p>",
+  "exercise": ["RRRR", "LLLL", "RRRR", "LLLL", "RRRR", "LLLL", "RRRR", "LLLL"],
+  "diagram": "<div class='diagram-title'>Buzz Roll</div><pre class='diagram-ascii'>R~R~R~R L~L~L~L R~R~R~R L~L~L~L\n(bounce)(bounce)(bounce)(bounce)\n\nCada vez = múltiplos bounces rápidos</pre><div class='diagram-note'>O til (~) representa os bounces</div>",
+  "tips": "<div class='tip-box'><strong>💡 Pressão:</strong> Não force a baqueta. Deixe ela quicar naturalmente. A pressão vem do peso do braço, não dos dedos.</div><div class='tip-box'><strong>💡 Suavidade:</strong> O som deve ser contínuo, sem gaps entre as mãos.</div><div class='tip-box'><strong>💡 Prática:</strong> Comece com uma mão só. Quando conseguir um buzz consistente, adicione a outra mão.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 100],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

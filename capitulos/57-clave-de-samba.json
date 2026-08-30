@@ -1,0 +1,33 @@
+{
+  "id": 57,
+  "title": "Clave de Samba",
+  "description": "A clave do samba — o coração rítmico do Brasil.",
+  "objectives": [
+    "Compreender o padrão de clave do samba",
+    "Executar a clave com mãos alternadas",
+    "Integrar o swing brasileiro no toque"
+  ],
+  "concept": "<h3>Clave de Samba</h3><p>A <span class='highlight'>clave de samba</span> é o padrão rítmico fundamental da música brasileira. Diferente da clave cubana, a clave de samba tem um swing único.</p><h3>Padrão Básico</h3><div class='pattern-example'>R l R l R l R l<br>↓   ↓   ↓   ↓  <br>1   &   2   &   </div><p>O segredo está no <span class='highlight'>balanço</span> — a leve antecipação da segunda metade do compasso.</p><h3>Onde é Usado?</h3><p>Este padrão aparece em:<ul><li><strong>Samba:</strong> Escola de samba, pagode</li><li><strong>MPB:</strong> Milton Nascimento, Caetano Veloso</li><li><strong>Fusion:</strong> Samba jazz, samba rock</li></ul></p>",
+  "exercise": [
+    "R",
+    "l",
+    "R",
+    "l",
+    "R",
+    "l",
+    "R",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Clave de Samba</div><pre class='diagram-ascii'>R   l   R   l   R   l   R   l\n↓       ↓       ↓       ↓\n1   &   2   &   1   &   2   &\n\n\"O balanço do samba vem da clave\"</pre><div class='diagram-note'>Acentue levemente o primeiro R de cada grupo</div>",
+  "tips": "<div class='tip-box'><strong>💡 Balanço:</strong> Sinta o swing brasileiro. Não toque quadrado!</div><div class='tip-box'><strong>💡 Ouvido:</strong> Escute samba e tente identificar a clave.</div><div class='tip-box'><strong>💡 Variação:</strong> Depois de dominar, tente inverter os acentos.</div>",
+  "bpm_default": 80,
+  "bpm_range": [
+    50,
+    160
+  ],
+  "weeklyGoal": {
+    "targetBpm": 120,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

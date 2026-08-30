@@ -1,0 +1,21 @@
+{
+  "id": 42,
+  "title": "Grupos de 7",
+  "description": "Exercício de septupletas com acentos em grupos de sete notas.",
+  "objectives": [
+    "Executar septupletas com controle e precisão",
+    "Desenvolver resistência para padrões rítmicos longos",
+    "Manter a estabilidade rítmica em subdivisões complexas"
+  ],
+  "concept": "<h3>O que são Grupos de 7?</h3><p>Grupos de 7 (septupletas) são <span class='highlight'>7 notas no espaço de 6</span>. É um grupo longo que cria uma textura rítmica <strong>densa e envolvente</strong> — como uma 'rajada' controlada de notas.</p><h3>Como Funciona</h3><div class='pattern-example'>R l r l r l r L r l r l r l r<br>↑                   ↑          <br>acento             acento      </div><p>Cada grupo tem <span class='highlight'>7 notas</span> com acentos na primeira e sétima. Isso gera uma 'onada' rítmica que vai e volta, criando tensão e resolução.</p><h3>Por que é Importante?</h3><p>Septupletas são um <span class='highlight'>desafio avançado</span>. Domina-las prova que você tem controle sobre subdivisions de tempo incomuns. É o que separa um baterista bom de um excepcional.</p><h3>Onde é Usado?</h3><p>Grupos de 7 aparecem em:<ul><li><strong>Jazz Moderno:</strong> Runs e improvisações</li><li><strong>Fusão:</strong> Texturas rítmicas densas</li><li><strong>Composição Contemporânea:</strong> Experimentação rítmica</li><li><strong>Rock Progressivo:</strong> Fills complexos</li></ul><h3>Segredo</h3><p><span class='highlight'>Paciência</span>. Não tente ser rápido. Construa o grupo nota a nota, mantendo cada uma igualmente espaçada.</p></p>",
+  "exercise": ["R", "l", "r", "l", "r", "l", "r", "L", "r", "l", "r", "l", "r", "l", "r"],
+  "diagram": "<div class='diagram-title'>Grupos de 7 (Septupletas)</div><pre class='diagram-ascii'>R l r l r l r L r l r l r l r\n↑               ↑              \nacento         acento         \n\n|---- grupo 7 ----|---- grupo 7 ----|</pre><div class='diagram-note'>7 notas no espaço de 6 — textura densa e envolvente</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1-2-3-4-5-6-7' em voz alta para marcar o grupo.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece MUITO devagar (40 BPM). A precisão vem antes da velocidade.</div><div class='tip-box'><strong>💡 Referência:</strong> Ouça bateristas de jazz moderno para ouvir septupletas em contexto.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 70,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

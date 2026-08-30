@@ -1,0 +1,21 @@
+{
+  "id": 24,
+  "title": "Five Stroke Roll",
+  "description": "Rolo de 5 batidas",
+  "objectives": [
+    "Entender o five stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Five Stroke Roll?</h3><p>É um rulo de <span class='highlight'>cinco batidas</span>: dois duplos + um acento. <strong>RR LL R</strong> — e emendando com a outra mão: <strong>RR LL R | LL RR L</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL R | LL RR L | RR LL R<br>(duplo, duplo, acento)</div><p>As <span class='highlight'>4 primeiras notas são duplos rápidos</span> (2 na direita + 2 na esquerda) e a <span class='highlight'>5ª é um acento</span>, tocada com a mão oposta. Por isso 'five': 4 rápidas + 1 forte = 5 notas.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>R:</strong> o <strong>acento</strong> — a 5ª nota soa mais forte e começa o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 RÁ'</span>, repetindo — o acento cai sempre na 5ª nota.</p><h3>Por que é Importante?</h3><p>É um dos rulos mais usados na bateria: aparece em <strong>fills, viradas e solos</strong>. Aprenda a emendá-lo sem parar (RRLLR LLRRL RRLLR...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "L", "L", "R", "R", "L", "R", "R", "L", "L", "R"],
+  "diagram": "<div class='diagram-title'>Five Stroke Roll</div><pre class='diagram-ascii'>R R L L R | L L R R L | R R L L R\n↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓\nd d e e A   d d e e A   d d e e A\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>5 notas: 4 duplos rápidos + 1 acento. O acento alterna de mão a cada grupo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 RÁ'. Se perder o acento, volte e conte em voz alta.</div><div class='tip-box'><strong>💡 Duplos:</strong> As 4 primeiras notas são o double stroke que você já treinou — não apresse.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Fazer o acento com o mesmo volume das outras notas. Ele precisa se destacar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": 22,
+  "title": "Single Stroke Roll",
+  "description": "Rolo de batidas simples rápidas",
+  "objectives": [
+    "Aprender o single stroke roll",
+    "Aumentar velocidade progressivamente",
+    "Manter equalidade entre mãos"
+  ],
+  "concept": "<h3>O Single Stroke Roll</h3><p>O single stroke roll é a <span class='highlight'>alternância mais rápida possível</span>: R L R L R L...</p><h3>Por que é Importante?</h3><p>É o rolo mais básico e mais usado. Aparece em:<ul><li><strong>Fills:</strong> Transições rápidas</li><li><strong>Solos:</strong> Momentos de intensidade</li><li><strong>Ritmo:</strong> Padrões rápidos</li></ul><h3>Como Funciona</h3><div class='pattern-example'>R L R L R L R L R L R L R L R L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 e & a 2 e & a 3 e & a 4 e & a</div><p>É apenas alternância rápida!</p><h3>O Desafio</h3><p>O difícil é manter a <span class='highlight'>equalidade</span> entre as mãos. A maioria das pessoas tem uma mão mais rápida - o objetivo é equilibrar.</p></p>",
+  "exercise": [
+    "R",
+    "L",
+    "r",
+    "l",
+    "R",
+    "L",
+    "r",
+    "l",
+    "R",
+    "L",
+    "r",
+    "l",
+    "R",
+    "L",
+    "r",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Single Stroke Roll</div><pre class='diagram-ascii'>R   L   R   L   R   L   R   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   e   &   a   2   e   &   a\n\nAlternância rápida e constante</pre><div class='diagram-note'>A alternância mais rápida possível</div>",
+  "tips": "<div class='tip-box'><strong>💡 Velocidade:</strong> Comece devagar e aumente 5 BPM por dia. Não tenha pressa!</div><div class='tip-box'><strong>💡 Equalidade:</strong> Ouça com atenção. As duas mãos devem soar iguais.</div><div class='tip-box'><strong>💡 Meta:</strong> Uma boa meta é 160 BPM por mão (320 batidas no total).</div>",
+  "bpm_default": 80,
+  "bpm_range": [
+    60,
+    200
+  ],
+  "weeklyGoal": {
+    "targetBpm": 120,
+    "minutesPerDay": 20,
+    "daysPerWeek": 5
+  }
+}

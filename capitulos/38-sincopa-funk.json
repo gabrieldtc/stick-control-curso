@@ -1,0 +1,21 @@
+{
+  "id": 38,
+  "title": "Sincopa de Funk",
+  "description": "Padrão rítmico sincopado característico da música funk.",
+  "objectives": [
+    "Executar o padrão sincopado com o feel característico do funk",
+    "Desenvolver flexibilidade rítmica para o groove de funk",
+    "Controlar a alternância entre acentos e notas suaves no funk"
+  ],
+  "concept": "<h3>O que é Sincopa de Funk?</h3><p>O funk é definido pelo <span class='highlight'>pocket</span> — aquela sensação de 'balanço' que faz a música ser dançante. A sincopa de Funk desloca os acentos para posições inesperadas, criando <strong>tensão e movimento</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>r R r l R r l R<br>  ↑     ↑   ↑<br>acento acento acento</div><p>Note que os acentos (R maiúsculos) estão em posições <span class='highlight'>deslocadas</span> — não na primeira batida. Isso cria o 'empurrão' sincopado que é a alma do funk.</p><h3>Por que é Importante?</h3><p>Sem sincopa, o funk <span class='highlight'>morre</span>. É o deslocamento dos acentos que faz a música 'andar'. Domine isso e você toca funk, rock, pop e qualquer estilo moderno.</p><h3>Onde é Usado?</h3><p>Sincopa de funk é onipresente:<ul><li><strong>James Brown:</strong> O pai do funk — tudo é sincopa</li><li><strong>Prince:</strong> Grooves inventivos e sincopados</li><li><strong>Red Hot Chili Peppers:</strong> Funk rock moderno</li><li><strong>Disc groove:</strong> Todo disco de dance usa sincopa</li></ul><h3>Segredo</h3><p>O segredo é o <span class='highlight'>pocket</span>. Não toque rápido — toque 'no meio' do tempo. O groove está na precisão, não na velocidade.</p></p>",
+  "exercise": ["r", "R", "r", "l", "R", "r", "l", "R"],
+  "diagram": "<div class='diagram-title'>Sincopa de Funk</div><pre class='diagram-ascii'>r   R   r   l   R   r   l   R\n    ↑       ↑       ↑       ↑\n  acento acento acento acento\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Acentos deslocados criam o 'pocket' do funk</div>",
+  "tips": "<div class='tip-box'><strong>💡 Pocket:</strong> Toque 'no meio' do tempo. Não adiante nem atrase. É a precisão que cria o groove.</div><div class='tip-box'><strong>💡 Escuta:</strong> Ouça James Brown e tente acompanhar. Sinta o 'swing' natural.</div><div class='tip-box'><strong>💡 Dinâmica:</strong> Os 'r' e 'l' devem ser quase invisíveis. Só os 'R' aparecem.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

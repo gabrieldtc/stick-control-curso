@@ -1,0 +1,21 @@
+{
+  "id": 41,
+  "title": "Grupos de 5",
+  "description": "Exercício de quintupletas com acentos em grupos de cinco notas.",
+  "objectives": [
+    "Executar quintupletas com acentos precisos",
+    "Desenvolver controle de grupos ímpares de notas",
+    "Manter a pulsação constante durante quintupletas"
+  ],
+  "concept": "<h3>O que são Grupos de 5?</h3><p>Grupos de 5 (quintupletas) são <span class='highlight'>5 notas no espaço de 4</span>. Isso cria uma sensação de 'aceleração sutil' — a música parece 'correr' um pouco, mas sem perder o compasso.</p><h3>Como Funciona</h3><div class='pattern-example'>R l r l r L r l r l<br>↑           ↑      <br>acento     acento  </div><p>Cada grupo tem <span class='highlight'>5 notas</span> com acentos na primeira e quinta. Isso gera uma textura rítmica densa e interessante, diferente dos grupos de 4 usuais.</p><h3>Por que é Importante?</h3><p>Grupos ímpares como o de 5 são a porta de entrada para <span class='highlight'>world music e jazz moderno</span>. Domine-os e você terá um vocabulário rítmico muito maior que a maioria dos bateristas.</p><h3>Onde é Usado?</h3><p>Grupos de 5 aparecem em:<ul><li><strong>Jazz:</strong> Runs e fills com quintupletas</li><li><strong>Fusão:</strong> Texturas rítmicas complexas</li><li><strong>World Music:</strong> Ritmos africanos e asiáticos</li><li><strong>Rock Progressivo:</strong> Fills criativos</li></ul><h3>Segredo</h3><p>Não tente ser rápido. <span class='highlight'>Seja preciso</span>. Cada nota do grupo de 5 deve ser igualmente espaçada. Use o metrônomo!</p></p>",
+  "exercise": ["R", "l", "r", "l", "r", "L", "r", "l", "r", "l"],
+  "diagram": "<div class='diagram-title'>Grupos de 5 (Quintupletas)</div><pre class='diagram-ascii'>R   l   r   l   r   L   r   l   r   l\n↑                       ↑           \nacento                 acento       \n\n|--- grupo 5 ---|--- grupo 5 ---|</pre><div class='diagram-note'>5 notas no espaço de 4 — sensação de aceleração</div>",
+  "tips": "<div class='tip-box'><strong>💡 Metrônomo:</strong> Obrigatório! Sem ele, você vai 'arrastar' ou 'adiantar' o grupo.</div><div class='tip-box'><strong>💡 Contagem:</strong> Conte em voz alta: '1-2-3-4-5, 1-2-3-4-5' para marcar o grupo.</div><div class='tip-box'><strong>💡 Progressão:</strong> Domine o de 5 antes de partir para o de 7 (cap. 42).</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 4,
+  "title": "Pares (RR LL)",
+  "description": "Alternância de pares",
+  "objectives": [
+    "Tocar duas vezes cada mão",
+    "Manter a igualdade entre as mãos",
+    "Preparar para padrões mais complexos"
+  ],
+  "concept": "<h3>O Padrão de Pares</h3><p>O padrão de pares é quando cada mão toca <span class='highlight'>duas vezes seguidas</span> antes de trocar:</p><div class='pattern-example'>R R L L R R L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓</div><h3>Por que aprender pares?</h3><p>Os pares são usados em muitos estilos musicais. Eles ajudam a desenvolver:<ul><li><strong>Controle</strong> de cada mão individualmente</li><li><strong>Força</strong> nas duas mãos</li><li><strong>Coordenação</strong> para padrões mais complexos</li></ul><h3>Como Practicar</h3><p>Foque em fazer as duas notas de cada mão com a <span class='highlight'>mesma intensidade</span>. A primeira nota não pode ser mais forte que a segunda.</p></p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Pares</div><pre class='diagram-ascii'>R   R   L   L   R   R   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   &   2   &   3   &   4   &\n\nMão: D D   E E   D D   E E</pre><div class='diagram-note'>Cada mão toca duas vezes seguidas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Igualdade:</strong> Preste atenção para que ambas as mãos tenham a mesma intensidade. Use um espelho se necessário.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece devagar. Os pares são mais difíceis do que parecem!</div><div class='warning-box'><strong>⚠️ Cuidado:</strong> Não force as notas. O controle vem com a prática, não com força.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

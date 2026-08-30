@@ -1,0 +1,38 @@
+{
+  "id": 55,
+  "title": "Grooves Aplicados",
+  "description": "Rudimentos em padrões reais de bateria",
+  "objectives": [
+    "Aplicar paradiddles em grooves de rock",
+    "Usar duplos em fills de transição",
+    "Criar grooves usando os conceitos aprendidos"
+  ],
+  "concept": "<h3>O que são Grooves Aplicados?</h3><p>É o momento em que os rudimentos <span class='highlight'>saem do exercício e entram na música</span>. Um padrão de alternância vira um <strong>groove de rock</strong>, os acentos criam <strong>movimento</strong> e o paradiddle fecha a virada.</p><h3>Como Funciona</h3><div class='pattern-example'>R l R l R l r l | R L R R L R L L<br>(groove de rock com acentos + paradiddle)</div><p>As <span class='highlight'>primeiras 8 notas são um groove de rock</span>: R tocado forte e l fraco, com o acento no R criando o 'pulo' do rock. As <span class='highlight'>últimas 8 são um paradiddle (R L R R L R L L)</span> que funciona como fill de transição.</p><h3>Como Tocar</h3><ul><li><strong>Acentos:</strong> as notas maiúsculas (R, L) são o <span class='highlight'>backbeat</span> — soam como caixa e abrem o groove.</li><li><strong>Notas fracas:</strong> as minúsculas (l, r) passam leve, tipo chimbal e viradas rápidas.</li><li><strong>Paradiddle final:</strong> entre no fill sem parar o pulso — ele é a ponte para o próximo ciclo.</li></ul><h3>Por que é Importante?</h3><p>Aqui você prova que <span class='highlight'>todo rudimento vira groove real</span>. O que parecia exercício vira rock, funk e pop — e os mesmos padrões aparecem em músicas que você conhece.</p>",
+  "exercise": [
+    "R",
+    "l",
+    "R",
+    "l",
+    "R",
+    "l",
+    "r",
+    "l",
+    "R",
+    "L",
+    "R",
+    "R",
+    "L",
+    "R",
+    "L",
+    "L"
+  ],
+  "diagram": "<div class='diagram-title'>Groove de Rock + Paradiddle</div><pre class='diagram-ascii'>R l R l R l r l | R L R R L R L L\n↓ · ↓ · ↓ · · ·   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\n>   >   >         > >   > >   >\n\nR l R l R l r l = groove de rock\n  (R = acento forte, l/r = fraco)\nR L R R L R L L = paradiddle (fill)\n\n↓ = nota   · = nota fraca   > = acento</pre><div class='diagram-note'>Primeiro compasso é o groove (acentos no R); segundo compasso é o paradiddle que emenda de volta.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Loop:</strong> Toque em loop: groove → paradiddle → groove → paradiddle. O paradiddle é o fill que devolve ao início.</div><div class='tip-box'><strong>💡 Swing:</strong> Solte os ombros. O groove de rock vive no movimento relaxado do pulso, não na rigidez.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Perder os acentos dentro do groove — tocar o R com o mesmo volume do l. Sem os acentos o padrão vira um exercício chato. O '> ' no R é o que faz soar rock.</div>",
+  "bpm_default": 80,
+  "bpm_range": [60, 160],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

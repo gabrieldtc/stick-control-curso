@@ -1,0 +1,37 @@
+{
+  "id": 61,
+  "title": "Ritmo Afro",
+  "description": "Padrões rítmicos de origem africana — a raiz de toda a música moderna.",
+  "objectives": [
+    "Compreender a estrutura dos ritmos africanos",
+    "Executar o padrão de 12/8 africano",
+    "Desenvolver a sensação de groove cíclico"
+  ],
+  "concept": "<h3>Ritmo Afro</h3><p>Os ritmos africanos são <span class='highlight'>cíclicos</span> — repetem-se em loops. O padrão mais conhecido é o <span class='highlight'>12/8 africano</span>, com 12 pulsos por ciclo.</p><h3>Padrão 12/8</h3><div class='pattern-example'>R l l R l l R l l R l l<br>↓           ↓           ↓<br>1   2   3   4   5   6   ...</div><p>Cada grupo de 3 forma um pulso. São 4 pulsos por ciclo.</p><h3>Onde é Usado?</h3><p><ul><li><strong>Música Afro-Cubana:</strong> Rumba, conga</li><li><strong>Samba:</strong> Herança africana no Brasil</li><li><strong>Jazz Modal:</strong> Miles Davis, John Coltrane</li></ul></p>",
+  "exercise": [
+    "R",
+    "l",
+    "l",
+    "R",
+    "l",
+    "l",
+    "R",
+    "l",
+    "l",
+    "R",
+    "l",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Ciclo Afro 12/8</div><pre class='diagram-ascii'>R   l   l   R   l   l   R   l   l   R   l   l\n↓           ↓           ↓           ↓\n1   &   a   2   &   a   3   &   a   4   &   a\n\nCada ↓ é um pulso principal</pre><div class='diagram-note'>Sinta o ciclo, não cada nota individualmente.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Cíclico:</strong> Não pare no final — o ciclo recomeça.</div><div class='tip-box'><strong>💡 Corporeo:</strong> Balance o corpo com o ritmo.</div><div class='tip-box'><strong>💡 Variação:</strong> Depois tente acentuar o 4 e o 10.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    130
+  ],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

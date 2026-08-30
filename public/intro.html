@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO TRAVESSEIRO AO GROOVE - Introdução</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    .intro-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .intro-hero {
+      text-align: center;
+      padding: 60px 0 40px;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .intro-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+      opacity: 0.3;
+    }
+
+    .intro-hero .drum-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .intro-hero h1 {
+      font-size: 36px;
+      font-family: 'Cinzel Decorative', serif;
+      margin-bottom: 8px;
+      color: var(--gold);
+      text-shadow: 0 0 24px var(--gold-glow-strong), 0 0 48px rgba(201, 168, 76, 0.2);
+      animation: goldPulse 4s ease-in-out infinite;
+    }
+
+    .intro-hero .subtitle {
+      color: var(--text-secondary);
+      font-size: 16px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .intro-hero .volume {
+      color: var(--gold-dim);
+      font-size: 12px;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(201, 168, 76, 0.1);
+    }
+
+    .intro-section {
+      margin-bottom: 48px;
+    }
+
+    .intro-section h2 {
+      font-size: 28px;
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--gold);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      display: inline-block;
+      text-shadow: 0 0 20px var(--gold-glow), 0 0 40px rgba(201, 168, 76, 0.15);
+      position: relative;
+    }
+
+    .intro-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dim), transparent);
+      opacity: 0.4;
+    }
+
+    .intro-section h3 {
+      font-size: 18px;
+      color: var(--text-primary);
+      margin: 24px 0 12px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .intro-section p {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .intro-section .lead {
+      font-size: 16px;
+      color: var(--gold-light);
+      font-style: italic;
+      padding-left: 16px;
+      margin: 24px 0;
+      font-family: 'Cinzel', serif;
+      text-shadow: 0 0 16px rgba(201, 168, 76, 0.2);
+      box-shadow: inset 3px 0 0 var(--gold);
+    }
+
+    .intro-section ul {
+      color: var(--text-secondary);
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .intro-section li {
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    .intro-section strong {
+      color: var(--text-primary);
+    }
+
+    .philosophy-quote {
+      background: rgba(201, 168, 76, 0.05);
+      background-image: var(--parchment);
+      background-size: 200px 200px;
+      border-radius: var(--radius-md);
+      padding: 32px;
+      margin: 24px 0;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.08), 0 0 60px rgba(201, 168, 76, 0.04);
+    }
+
+    .philosophy-quote .quote-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 12px;
+      font-family: 'Cinzel Decorative', serif;
+      text-shadow: 0 0 20px var(--gold-glow-strong), 0 0 40px rgba(201, 168, 76, 0.2);
+      animation: goldPulse 4s ease-in-out infinite;
+    }
+
+    .philosophy-quote .quote-author {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .mission-box {
+      background: rgba(201, 168, 76, 0.05);
+      background-image: var(--parchment);
+      background-size: 200px 200px;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.08), 0 0 60px rgba(201, 168, 76, 0.04);
+    }
+
+    .mission-box h4 {
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-family: 'Cinzel', serif;
+      text-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .mission-box .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mission-box .checklist li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+    }
+
+    .mission-box .checklist li::before {
+      content: "☐ ";
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    .tip-box {
+      background: rgba(201, 168, 76, 0.05);
+      background-image: var(--parchment);
+      background-size: 200px 200px;
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 16px 0;
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.06), inset 3px 0 0 var(--gold);
+    }
+
+    .tip-box strong {
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(201, 168, 76, 0.15);
+    }
+
+    .divider {
+      border: none;
+      height: 40px;
+      margin: 48px 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .divider::before {
+      content: '⚔';
+      font-size: 18px;
+      color: var(--gold);
+      text-shadow: 0 0 16px var(--gold-glow);
+      z-index: 1;
+      background: var(--bg-deep);
+      padding: 0 16px;
+    }
+
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+      opacity: 0.4;
+    }
+
+    .start-section {
+      text-align: center;
+      padding: 48px 0;
+    }
+
+    .start-section h2 {
+      border: none;
+      display: block;
+      margin-bottom: 16px;
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--gold);
+    }
+
+    .start-section p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold), var(--gold-dim));
+      background-size: 200% 200%;
+      color: var(--bg-deep);
+      padding: 16px 48px;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .start-btn:hover {
+      background-position: 100% 0;
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px var(--gold-glow), 0 0 80px rgba(201, 168, 76, 0.2), 0 4px 20px rgba(201, 168, 76, 0.3);
+      color: var(--bg-deep);
+    }
+
+    @media (max-width: 768px) {
+      .intro-hero h1 {
+        font-size: 28px;
+      }
+      
+      .intro-container {
+        padding: 24px 16px 60px;
+      }
+      
+      .intro-section h2 {
+        font-size: 22px;
+      }
+      
+      .philosophy-quote .quote-text {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-hero h1 {
+        font-size: 22px;
+      }
+      .intro-container {
+        padding: 16px 12px 40px;
+      }
+      .intro-section h2 {
+        font-size: 18px;
+      }
+      .intro-text {
+        font-size: 14px;
+      }
+      .philosophy-quote .quote-text {
+        font-size: 18px;
+      }
+      .philosophy-quote {
+        padding: 16px;
+        margin: 24px 0;
+      }
+      .mission-box,
+      .intro-highlight {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <button class="hamburger" id="hamburger-btn">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"></div>
+    <nav class="sidebar-nav">
+      <a href="/intro" class="active">📖 Introdução</a>
+      <a href="/dashboard">🏠 Aulas</a>
+      <a href="/curso">🎓 Curso</a>
+      <a href="/teste">📝 Teste</a>
+      <a href="/conquistas">🏅 Conquistas</a>
+      <a href="/evolucao">📈 Evolução</a>
+      <a href="/criar-exercicio">✏️ Criar Exercício</a>
+      <a href="/faq">❓ FAQ</a>
+      <div class="sidebar-theme-toggle">
+        <span>Tema</span>
+        <div class="theme-toggle-switch"></div>
+      </div>
+      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
+    </nav>
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">Progresso</div>
+      <div class="sidebar-progress-bar">
+        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <!-- Banner -->
+    <div class="banner">
+      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
+    </div>
+
+    <div class="intro-container">
+    <!-- Hero -->
+    <div class="intro-hero">
+    </div>
+
+    <!-- Apresentação -->
+    <section class="intro-section">
+      <h2>Apresentação</h2>
+
+      <p>Olá!</p>
+
+      <p>Antes de qualquer coisa, quero agradecer por você estar aqui.</p>
+
+      <p>Se este livro chegou às suas mãos, provavelmente existe um sonho dentro de você.</p>
+
+      <p>Talvez esse sonho tenha começado quando você assistiu a um show e ficou olhando para o baterista. Talvez tenha sido em um culto, em uma igreja, em um vídeo na internet ou até vendo um amigo tocar.</p>
+
+      <p>Ou talvez você simplesmente sempre tenha pensado: <strong>"Um dia eu ainda vou aprender bateria."</strong></p>
+
+      <p>Se esse é o seu caso, saiba de uma coisa:</p>
+
+      <p class="lead">Você está no lugar certo.</p>
+
+      <p>Este livro foi criado para pessoas comuns.</p>
+
+      <ul>
+        <li>Pessoas que nunca estudaram música.</li>
+        <li>Pessoas que não sabem ler partituras.</li>
+        <li>Pessoas que ainda não têm uma bateria em casa.</li>
+        <li>Pessoas que acham que já passaram da idade para aprender.</li>
+      </ul>
+
+      <p>Aqui você vai descobrir que nada disso impede alguém de se tornar baterista.</p>
+
+      <p>Durante muitos anos, os métodos de bateria ensinaram como se todo aluno já soubesse alguma coisa. Eles mostram exercícios. Partituras. Símbolos. Nomes complicados. E esperam que você descubra sozinho o significado de tudo aquilo.</p>
+
+      <p>Este livro nasceu para fazer exatamente o contrário.</p>
+
+      <p>Aqui nenhuma pergunta será considerada boba. Nenhum termo aparecerá sem explicação. Nenhum exercício será apresentado sem que você saiba por que ele existe.</p>
+
+      <p>Você não vai apenas aprender a mover as baquetas. Vai entender cada passo da sua evolução.</p>
+
+      <p>E o melhor de tudo... <strong>você nem precisa ter uma bateria para começar.</strong></p>
+
+      <p>Pode parecer estranho. Mas muitos bateristas profissionais treinam diariamente longe da bateria. Eles treinam em pads de estudo, almofadas e superfícies silenciosas para desenvolver controle, precisão e coordenação.</p>
+
+      <p>Foi pensando nisso que escolhi o nome deste livro:</p>
+
+      <p class="lead"><strong>Do Travesseiro ao Groove.</strong></p>
+
+      <p>Porque toda grande jornada começa com uma primeira batida. Talvez hoje você tenha apenas um travesseiro. Amanhã poderá ter um pad de estudos. Depois, uma bateria. E, quem sabe, um palco.</p>
+
+      <p>O importante não é onde você começa. O importante é nunca parar de evoluir.</p>
+
+      <p>Quero fazer um acordo com você. Não tenha pressa. A bateria não recompensa quem tenta correr. Ela recompensa quem pratica com atenção, paciência e constância.</p>
+
+      <p>Se você dedicar apenas alguns minutos por dia, todos os dias, ficará impressionado com o quanto conseguirá evoluir ao longo dos próximos meses.</p>
+
+      <p>Então respire fundo. Pegue suas baquetas (ou simplesmente sua vontade de aprender). E vamos dar juntos a primeira batida.</p>
+
+      <p class="lead">Bem-vindo ao seu primeiro passo no mundo da bateria.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Como Usar -->
+    <section class="intro-section">
+      <h2>Como Usar Este Livro</h2>
+
+      <p>Este não é um livro para ser lido de uma vez. Ele foi criado para ser vivido.</p>
+
+      <p>Cada página tem um objetivo. Cada exercício tem um motivo. Cada missão prepara você para a próxima.</p>
+
+      <p>Minha recomendação é simples:</p>
+
+      <ul>
+        <li>Estude entre 20 e 30 minutos por dia.</li>
+        <li>Não pule páginas.</li>
+        <li>Não tenha vergonha de repetir um exercício várias vezes.</li>
+        <li>Comemore cada pequena conquista.</li>
+      </ul>
+
+      <p>A evolução na bateria não acontece de um dia para o outro. Ela acontece uma batida de cada vez.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Filosofia -->
+    <section class="intro-section">
+      <h2>Nossa Filosofia</h2>
+
+      <p>Ao longo deste curso você verá uma frase muitas vezes:</p>
+
+      <div class="philosophy-quote">
+        <div class="quote-text">"Devagar é rápido."</div>
+      </div>
+
+      <p>Pode parecer estranho. Mas é verdade.</p>
+
+      <p>Quem tenta tocar rápido logo no começo normalmente cria vícios difíceis de corrigir. Quem aprende devagar constrói uma base sólida. E quem tem uma base sólida toca qualquer música com muito mais facilidade no futuro.</p>
+
+      <p>Por isso, nunca compare a sua evolução com a de outra pessoa. Compare apenas com quem você era ontem.</p>
+
+      <p class="lead">Se hoje você toca um pouco melhor do que ontem, então já está vencendo.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capítulo 1 -->
+    <section class="intro-section">
+      <h2>Capítulo 1 — O ritmo já mora dentro de você</h2>
+
+      <p class="lead">"Você nasceu ouvindo um ritmo. Antes mesmo de falar, antes de andar, antes mesmo de abrir os olhos pela primeira vez."</p>
+
+      <p>Pode parecer estranho. Mas é verdade.</p>
+
+      <p>O primeiro som que você ouviu não foi uma música. Foi um ritmo.</p>
+
+      <p>Durante aproximadamente nove meses, enquanto ainda estava na barriga da sua mãe, você ouviu milhares e milhares de vezes um som que nunca parava. <strong>Tum... tum... tum... tum...</strong> Era o coração dela.</p>
+
+      <p>Talvez você nunca tenha pensado nisso. Mas, muito antes de aprender qualquer música, seu cérebro já estava acostumado a reconhecer padrões. É por isso que conseguimos bater palmas junto com uma música. É por isso que balançamos a cabeça quando ouvimos uma batida marcante. É por isso que, às vezes, começamos a bater o pé sem perceber.</p>
+
+      <p>O ritmo faz parte da nossa vida. Ele sempre esteve aqui.</p>
+
+      <h3>Um pequeno desafio</h3>
+
+      <p>Antes de continuar lendo, quero que você faça uma experiência. Não precisa de baquetas. Não precisa de bateria. Não precisa de música.</p>
+
+      <p>Apenas coloque a mão sobre o peito. Feche os olhos por alguns segundos. Respire normalmente. Agora tente sentir.</p>
+
+      <p>Talvez você perceba uma pequena batida. <strong>Tum... tum...</strong></p>
+
+      <p>Esse é o seu coração. Ele está tocando um ritmo desde o dia em que você nasceu. E faz isso sem nunca perder o tempo.</p>
+
+      <h3>O mundo inteiro tem ritmo</h3>
+
+      <p>Agora olhe ao seu redor. O relógio faz: <strong>Tic... tac... Tic... tac...</strong></p>
+
+      <p>Se você caminhar, ouvirá: <strong>Passo... passo... passo... passo...</strong></p>
+
+      <p>A chuva cai em um ritmo. O limpador de para-brisa se move em um ritmo. O ventilador gira em um ritmo. O pisca-alerta de um carro acende e apaga em um ritmo. Até a forma como você fala possui ritmo.</p>
+
+      <p>Talvez você nunca tenha percebido. Mas o mundo inteiro está cheio de batidas.</p>
+
+      <h3>Então, o que é ritmo?</h3>
+
+      <p>Muitas pessoas imaginam que ritmo é algo complicado. Na verdade, a ideia é muito simples.</p>
+
+      <p>Imagine um relógio. A cada segundo ele faz exatamente a mesma coisa. <strong>Tic... tac... Tic... tac...</strong> Ele não acelera porque está feliz. Nem desacelera porque está cansado. Ele apenas mantém uma sequência constante.</p>
+
+      <p>Isso é ritmo.</p>
+
+      <p>Podemos definir ritmo como:</p>
+
+      <p class="lead">Uma sequência organizada de sons e silêncios ao longo do tempo.</p>
+
+      <p>Não se preocupe se essa definição parecer um pouco difícil agora. Você vai entendê-la naturalmente durante o curso.</p>
+
+      <h3>A bateria é uma máquina de ritmos</h3>
+
+      <p>Quando olhamos para uma bateria, vemos tambores e pratos. Mas um baterista enxerga outra coisa. Ele enxerga possibilidades.</p>
+
+      <p>Cada peça produz um som diferente. Quando esses sons são organizados dentro de um ritmo, nasce um groove. E é exatamente isso que vamos aprender.</p>
+
+      <div class="mission-box">
+        <h4>🎯 Missão 1</h4>
+        <p>Hoje você ainda não vai tocar. Sua missão é observar.</p>
+        <p>Durante o dia, encontre cinco ritmos diferentes. Pode ser qualquer coisa:</p>
+        <ul class="checklist">
+          <li>O relógio da parede</li>
+          <li>Seus passos</li>
+          <li>O ventilador</li>
+          <li>A chuva</li>
+          <li>O motor de um ônibus</li>
+        </ul>
+        <p>Quando terminar, escreva quais foram.</p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💬 Dica do Gabriel:</strong> Não tente encontrar música. Tente encontrar ritmo. A música é construída sobre o ritmo. Quem aprende a ouvir o ritmo aprende a tocar com muito mais facilidade.
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capítulo 2 -->
+    <section class="intro-section">
+      <h2>Capítulo 2 — Sua primeira companheira de jornada: a baqueta</h2>
+
+      <p>Antes de começarmos... Pegue uma baqueta. Se você ainda não tem uma, não tem problema. Leia este capítulo mesmo assim. Quando comprar a sua primeira, tudo fará sentido.</p>
+
+      <h3>Mais do que um pedaço de madeira</h3>
+
+      <p>À primeira vista, uma baqueta parece apenas um pedaço de madeira. Mas ela é muito mais do que isso. Ela será a extensão das suas mãos. É através dela que você vai conversar com a bateria.</p>
+
+      <p>Cada batida que você tocar passará primeiro pelas suas mãos, depois pela baqueta e só então chegará ao instrumento. Por isso, aprender a segurá-la corretamente é muito mais importante do que aprender a tocar rápido.</p>
+
+      <h3>Conhecendo sua baqueta</h3>
+
+      <p>Ela possui algumas partes importantes:</p>
+
+      <ul>
+        <li><strong>Ponta</strong> — É a parte que toca o instrumento. Influencia o tipo de som produzido, principalmente nos pratos.</li>
+        <li><strong>Ombro</strong> — É a região logo abaixo da ponta. Quando você tocar nos pratos usando essa parte, o som será diferente.</li>
+        <li><strong>Corpo</strong> — É a maior parte da baqueta. É aqui que ela ganha equilíbrio.</li>
+        <li><strong>Base</strong> — É a parte mais grossa. Ajuda no controle e no peso da baqueta.</li>
+      </ul>
+
+      <h3>Como escolher sua primeira baqueta</h3>
+
+      <p>Minha recomendação: <strong>5A de madeira.</strong></p>
+
+      <p>Por quê? Porque ela é um ótimo equilíbrio entre peso, tamanho e conforto. Ela funciona muito bem para quem está aprendendo e também é usada por muitos bateristas profissionais.</p>
+
+      <h3>Hora de segurar a baqueta</h3>
+
+      <p>Não vamos tocar ainda. Apenas segurá-la. E aqui está o segredo que muitos iniciantes não conhecem:</p>
+
+      <p class="lead">Você não segura a baqueta. Você apenas impede que ela caia.</p>
+
+      <p>Pense em um passarinho pousado na sua mão. Se apertar demais, você machuca o passarinho. Se soltar completamente, ele vai embora. Com a baqueta é igual. Ela deve ficar firme. Mas nunca apertada.</p>
+
+      <h3>O erro mais comum</h3>
+
+      <p>Quase todo iniciante aperta a baqueta como se fosse um martelo. Isso causa: cansaço, dor, falta de velocidade e falta de controle.</p>
+
+      <p>O jeito certo: imagine apenas que a baqueta está descansando entre os seus dedos. Você a guia. Não luta contra ela.</p>
+
+      <div class="tip-box">
+        <strong>💬 Dica do Gabriel:</strong> "A baqueta não é um martelo. Ela é um pincel." Um martelo bate com força. Um pincel faz movimentos leves, precisos e controlados. Nós queremos aprender controle antes de força.
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capítulo 3 -->
+    <section class="intro-section">
+      <h2>Capítulo 3 — O segredo não está na força. Está no movimento.</h2>
+
+      <p>Antes de começarmos... Faça uma experiência. Pegue uma bola de tênis, uma bolinha de borracha ou qualquer objeto que quique. Agora solte esse objeto de uma pequena altura.</p>
+
+      <p>O que aconteceu? Ele bateu no chão... e voltou sozinho. Você não precisou puxá-lo de volta. Ele simplesmente respondeu ao impacto.</p>
+
+      <p class="lead">A baqueta funciona exatamente da mesma forma. Ela foi feita para quicar.</p>
+
+      <p>O seu trabalho não é levantar a baqueta depois de cada batida. O seu trabalho é apenas guiá-la. Esse talvez seja o maior segredo da técnica de bateria.</p>
+
+      <h3>A gravidade é sua amiga</h3>
+
+      <p>Imagine que você está segurando uma maçã. Se abrir a mão, ela cai. Você não precisa empurrá-la para baixo. A gravidade faz esse trabalho.</p>
+
+      <p>Com a baqueta acontece algo parecido. Quando você toca, não precisa "martelar" o instrumento. Muitas vezes, basta deixar a baqueta cair de forma controlada.</p>
+
+      <h3>O que é o rebote?</h3>
+
+      <p>Imagine que você está jogando uma bola de basquete. Quando a bola toca o chão, ela volta. Se você tentar impedir esse movimento, a bola para de quicar.</p>
+
+      <p>Com a baqueta acontece a mesma coisa. Quando ela bate em um pad, na caixa ou até mesmo em um travesseiro mais firme, ela tende a voltar. Esse retorno chama-se <strong>rebote</strong>.</p>
+
+      <p>O rebote não é um problema. Ele é um presente. Quanto melhor você aprender a usar esse movimento, menos energia gastará para tocar.</p>
+
+      <p class="lead">A força faz barulho. O controle faz música.</p>
+
+      <p>Você não será um bom baterista porque bate mais forte. Será um bom baterista porque controla cada movimento.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capítulo 4 -->
+    <section class="intro-section">
+      <h2>Capítulo 4 — O fulcro: o ponto onde tudo acontece</h2>
+
+      <p>Antes de começar... Pegue uma régua de 30 centímetros. Coloque um dedo exatamente no meio da régua. Tente equilibrá-la.</p>
+
+      <p>Percebeu? Existe um ponto onde ela praticamente "flutua". Se mover o dedo alguns centímetros para qualquer lado, ela cai.</p>
+
+      <p class="lead">A baqueta funciona da mesma forma. Ela também possui um ponto de equilíbrio.</p>
+
+      <h3>O que é o fulcro?</h3>
+
+      <p>A palavra fulcro parece complicada. Mas a ideia é muito simples. Fulcro é apenas o nome dado ao ponto onde a baqueta gira.</p>
+
+      <p>Pense em uma gangorra de parque. Ela gira em torno de um eixo. A baqueta também. Ela precisa de um ponto para se movimentar.</p>
+
+      <p>Esse ponto será formado principalmente pelo seu <strong>polegar</strong> e pelo <strong>dedo indicador</strong>. Eles trabalham juntos para controlar a baqueta sem prendê-la.</p>
+
+      <h3>Experiência prática</h3>
+
+      <p>Segure a baqueta bem perto da ponta. Faça algumas batidas. Agora segure quase no final da baqueta. Faça novamente. Percebeu como ela muda de comportamento?</p>
+
+      <p>Agora experimente encontrar um ponto entre essas duas posições. Nesse ponto, a baqueta parece muito mais confortável. Ela responde melhor. Ela quica melhor. Ela parece "viva".</p>
+
+      <p class="lead">Controle não significa rigidez. Quanto mais relaxado você estiver, mais natural será o movimento.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capítulo 5 -->
+    <section class="intro-section">
+      <h2>Capítulo 5 — Deixe a baqueta trabalhar por você</h2>
+
+      <p>Antes de começar... Imagine que alguém lhe entrega uma bola de borracha. Você a joga no chão. Ela bate. E volta.</p>
+
+      <p>Agora imagine que você tenta impedir esse retorno segurando a bola no instante em que ela toca o chão. Ela não consegue quicar.</p>
+
+      <p class="lead">Com a baqueta acontece exatamente a mesma coisa. Toda vez que ela toca uma superfície, ela tenta voltar. Seu trabalho não é impedir esse movimento. É aproveitá-lo.</p>
+
+      <h3>O segredo dos grandes bateristas</h3>
+
+      <p>Muita gente pensa que bateristas profissionais tocam rápido porque são muito fortes. Na verdade, eles tocam rápido porque desperdiçam pouca energia.</p>
+
+      <p>Cada movimento tem um propósito. Nada é exagerado. Eles não levantam a baqueta mais do que o necessário. Não apertam mais do que o necessário. Não fazem força além do necessário.</p>
+
+      <p>Quanto mais eficiente for o movimento, mais tempo você conseguirá tocar sem se cansar.</p>
+
+      <h3>O teste da moeda</h3>
+
+      <p>Imagine que existe uma moeda sobre o dorso da sua mão. Enquanto você toca, essa moeda não deve sair voando por causa da tensão. Se seus movimentos são exagerados e tensos, a moeda "cairia" o tempo todo.</p>
+
+      <p>Essa é uma forma simples de lembrar que o corpo deve permanecer relaxado.</p>
+
+      <div class="tip-box">
+        <strong>💬 Dica do Gabriel:</strong> Se alguém assistir ao seu treino sem ouvir o som, seus movimentos devem parecer leves e naturais. Se parecer que você está cavando um buraco no chão, provavelmente está usando força demais.
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Botão de início -->
+    <div class="start-section">
+      <h2>Pronto para começar?</h2>
+      <p>Agora que você conheceu a filosofia, as baquetas, o rebote e o fulcro, é hora de colocar a mão na massa.</p>
+      <a href="/curso?cap=100" class="start-btn" onclick="localStorage.setItem('introCompleted', 'true');">Começar o Curso</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
+
+  <script src="js/particles.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = '/';
+    
+    // Hamburger menu
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('active');
+    });
+    document.getElementById('sidebar-overlay').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('active');
+    });
+    
+    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('introCompleted');
+      localStorage.removeItem('lastChapter');
+      window.location.href = '/';
+    });
+
+    // Sidebar progress
+    async function loadSidebarProgress() {
+      try {
+        const [progressRes, statsRes] = await Promise.all([
+          fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } }),
+          fetch('/api/stats')
+        ]);
+        const progress = await progressRes.json();
+        const stats = await statsRes.json();
+        const completed = progress.filter(p => p.completed).length;
+        const total = stats.totalAulas || 1;
+        const pct = Math.round((completed / total) * 100);
+        const fill = document.getElementById('sidebar-progress-fill');
+        if (fill) fill.style.width = pct + '%';
+      } catch(e) {}
+    }
+    loadSidebarProgress();
+
+    // Back to top
+    const backBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

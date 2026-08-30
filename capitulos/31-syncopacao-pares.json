@@ -1,0 +1,21 @@
+{
+  "id": 31,
+  "title": "Sincopação com Pares",
+  "description": "Exercício de sincopação usando pares acentuados com notas suaves entre eles.",
+  "objectives": [
+    "Desenvolver controle de acentuação em pares alternados",
+    "Manter dinâmica consistente entre notas fortes e suaves",
+    "Aplicar sincopação com padrões de dois tempos"
+  ],
+  "concept": "<h3>O que é Sincopação com Pares?</h3><p>Em vez de acentuar notas solas, aqui acentuamos <span class='highlight'>pares de notas</span> (duas seguidas). Isso quebra a expectativa do ouvinte — ele espera um acento, mas recebe dois. O resultado é um <strong>groove com mais tensão e energia</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>R R l L R R l L<br>↓ ↑       ↓ ↑<br>acento suave acento suave</div><p>O padrão tem dois componentes:<ul><li><strong>Pares acentuados (R R):</strong> duas notas fortes seguidas na mão direita</li><li><strong>Notas suaves (l L):</strong> duas notas leves alternando entre as mãos</li></ul><p>A alternância entre o par forte e o par suave cria o efeito de <span class='highlight'>empurrão rítmico</span> — é isso que faz a música 'balançar'.</p><h3>Por que é Importante?</h3><p>A maioria dos grooves usa acentos em notas solas. Quando você domina pares acentuados, ganha uma <span class='highlight'>nova camada de expressão</span>. É como passar de andar para correr — o mesmo compasso, mas com muito mais energia.</p><h3>Onde é Usado?</h3><p>Pares acentuados aparecem em:<ul><li><strong>Funk:</strong> O 'double stroke' sincopado é a base do groove</li><li><strong>Rock:</strong> fills e transições com pares criam impacto</li><li><strong>Pop:</strong> grossos de bateria com duplos acentuados</li><li><strong>Gospel:</strong> fills com pares são marca registrada</li></ul><h3>Segredo</h3><p>O segredo é a <span class='highlight'>diferença dinâmica</span>. Os pares 'R R' devem ser bem fortes e os 'l L' bem suaves. Se todos soarem igual, o groove morre. Treine devagar até a diferença ficar clara.</p></p></p>",
+  "exercise": ["R", "R", "l", "L", "R", "R", "l", "L"],
+  "diagram": "<div class='diagram-title'>Sincopação com Pares</div><pre class='diagram-ascii'>R   R   l   L   R   R   l   L\n↓   ↑               ↓   ↑\nFORTE suave         FORTE suave\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Pares acentuados (RR) alternam com pares suaves (lL)</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dinâmica:</strong> A diferença entre forte e suave deve ser MUITO clara. Use o swinging da baqueta para controlar a intensidade.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece a 50 BPM. Só aumente quando os pares estiverem perfeitamente iguais.</div><div class='tip-box'><strong>💡 Aplicação:</strong> Depois de dominar, tente trocar os pares: RRLL vira LLRR. Isso dobra seu vocabulário rítmico!</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

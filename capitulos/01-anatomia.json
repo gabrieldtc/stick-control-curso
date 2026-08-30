@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "title": "Anatomia da Bateria",
+  "description": "Conhecendo os componentes",
+  "objectives": [
+    "Identificar cada parte da bateria",
+    "Entender a funcao de cada componente",
+    "Associar sons as partes"
+  ],
+  "concept": "<h3>Conhecendo a Bateria</h3><p>A bateria e composta por varios componentes. Cada um tem um som diferente e uma funcao especifica. Vamos conhecer cada um:</p><h3>Os Tambores</h3><ul><li><strong>Bumbo (Bass Drum):</strong> E o maior tambor. Fica no chao e e tocado com o pe. E o coracao da bateria - faz o som mais grave e profundo.</li><li><strong>Caixa (Snare):</strong> E o tambor principal. Fica na sua frente e e onde voce mais vai tocar. Tem um som seco e cortante por causa dos snares (arame) embaixo.</li><li><strong>Toms:</strong> Sao tambores menores que ficam acima do bumbo. Tem sons diferentes (agudo, medio, grave) e sao usados em fills (viradas).</li></ul><h3>Os Pratos</h3><ul><li><strong>Chimbal (Hi-hat):</strong> Sao dois pratos que se juntam com um pedal. Faz um som de tchick quando fechado e shhh quando aberto. E o ritmo principal.</li><li><strong>Prato de Ataque (Crash):</strong> E o prato que faz um som estrondoso. E usado para marcar momentos importantes na musica.</li><li><strong>Prato de Ritmo (Ride):</strong> E o prato maior e mais sustain. E usado para manter o ritmo em jazz e outros estilos.</li></ul>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Visao Superior da Bateria</div><pre class='diagram-ascii'>     [Prato Crash]    [Chimbal]\n          \\              /\n    [Tom Alto]    [Tom Medio]\n          \\              /\n         [CAIXA - centro]\n               |\n          [BUMBO]</pre>",
+  "tips": "<div class='tip-box'><strong>Dica:</strong> Se voce nunca tocou bateria, comece apenas imaginando as batidas. Mentalize cada som enquanto pratica.</div><div class='tip-box'><strong>Dica:</strong> Sem bateria? Nao tem problema! Voce pode praticar em uma superficie plana, uma almofada ou ate na sua coxa. O importante e o movimento das maos.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 10,
+    "daysPerWeek": 3
+  }
+}

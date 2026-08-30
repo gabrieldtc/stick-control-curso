@@ -1,0 +1,22 @@
+{
+  "id": 106,
+  "title": "Pulso no Tempo 2",
+  "description": "Trove a mao alternada no segundo tempo do compasso",
+  "module": "preparatorio",
+  "objectives": [
+    "Sentir o segundo tempo do compasso",
+    "Manter o pulso interno enquanto espera",
+    "Desenvolver controle de entrada em tempo diferentes"
+  ],
+  "concept": "<h3>O segundo tempo</h3><p>No exercicio anterior, voce tocou apenas no <strong>primeiro tempo</strong>. Agora vamos mudar: as batidas vao cair no <strong>segundo tempo</strong>.</p><h3>Como funciona</h3><p>Em um compasso de 4/4, temos 4 tempos: 1 - 2 - 3 - 4. Agora voce vai tocar no tempo 2:</p><div class='pattern-example'>- R - - | - L - - | - R - - | - L - -<br>1 2 3 4   1 2 3 4   1 2 3 4   1 2 3 4</div><h3>Por que isso importa?</h3><p>A maioria dos iniciantes so consegue tocar no primeiro tempo. Mas na musica, os acentos e as batidas podem aparecer em <span class='highlight'>qualquer tempo</span>. Treinar cada tempo separadamente desenvolve uma percepcao muito mais forte do compasso.</p><h3>O desafio</h3><p>O dificil nao e tocar. E <strong>esperar</strong>. Voce precisa segurar o impulso de tocar no tempo 1 e deixar a mao cair exatamente no tempo 2. Isso treina o <span class='highlight'>controle interno</span>.</p>",
+  "exercise": ["-", "R", "-", "-", "-", "L", "-", "-", "-", "R", "-", "-", "-", "L", "-", "-"],
+  "diagram": "<div class='diagram-title'>Pulso no Tempo 2</div><pre class='diagram-ascii'>-   R   -   -   -   L   -   -   -   R   -   -   -   L   -   -\n|-------|-------|-------|-------|\n  1   2   3   4   1   2   3   4</pre><div class='diagram-note'>Note que R e L caem apenas no segundo tempo de cada compasso</div>",
+  "tips": "<div class='tip-box'><strong>Dica:</strong> Coloque o metronomo e conte em voz alta: 'UM - dois - tres - quatro'. Toque so no 'dois'.</div><div class='tip-box'><strong>Devagar e Rapido:</strong> Comece a 40 BPM. O silencio no tempo 1 e o mais dificil de manter. Tenha paciencia.</div><div class='tip-box'><strong>Proximo Passo:</strong> Quando estiver confortavel, va para o proximo exercicio: pulso no tempo 3!</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 70],
+  "weeklyGoal": {
+    "targetBpm": 55,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

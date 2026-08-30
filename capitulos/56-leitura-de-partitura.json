@@ -1,0 +1,38 @@
+{
+  "id": 56,
+  "title": "Leitura de Partitura",
+  "description": "Exercícios de leitura à primeira vista",
+  "objectives": [
+    "Ler padrões simples de partitura",
+    "Identificar valores de nota e silêncios",
+    "Tocar um exercício desconhecido à primeira vista"
+  ],
+  "concept": "<h3>O que é Leitura de Partitura?</h3><p>Ler partitura é como <span class='highlight'>ler um livro</span>: quanto mais você pratica, mais fluido fica. Em vez de decorar, você <strong>olha e toca na hora</strong> — as letras do padrão são o texto, e a leitura à primeira vista é a fluência.</p><h3>Como Funciona</h3><div class='pattern-example'>R L - L R - R L R - L R - R - L<br>(R/L = notas tocadas, '-' = pausa)</div><p>No padrão, <span class='highlight'>R e L são batidas</span> — você toca, alternando a mão que o símbolo indicar. <span class='highlight'>'-' é uma pausa</span>: o tempo passa, mas você não toca. A sequência mistura notas e pausas para você treinar o olho em ambos.</p><h3>Como Ler</h3><ul><li><strong>Quarter notes (nota preta):</strong> uma nota por tempo, cheia e redonda — o '1, 2, 3, 4' do compasso.</li><li><strong>Eighth notes (colcheia):</strong> metade do tempo, a nota com 'rabo' — duas por tempo.</li><li><strong>Pausa:</strong> um tempo em silêncio — leia o espaço como quem lê um espaço entre palavras.</li></ul><p>Pratique <span class='highlight'>contando antes de tocar</span>: diga 'R, L, pausa, L, R...' e só depois leve as baquetas à pele.</p><h3>Por que é Importante?</h3><p>Leitura à primeira vista é o que permite <span class='highlight'>tocar qualquer música sem ensaio</span>. Pare de memorizar nota a nota — aprenda a reconhecer padrões e o ritmo flui sozinho.</p>",
+  "exercise": [
+    "R",
+    "L",
+    "-",
+    "L",
+    "R",
+    "-",
+    "R",
+    "L",
+    "R",
+    "-",
+    "L",
+    "R",
+    "-",
+    "R",
+    "-",
+    "L"
+  ],
+  "diagram": "<div class='diagram-title'>Leitura — Notas e Pausas</div><pre class='diagram-ascii'>R L - L R - R L R - L R - R - L\n↓ ↓   ↓ ↓   ↓ ↓ ↓   ↓ ↓   ↓   ↓\nq q p q q p q q q p q q p q p q\n\n 1 & 2 & 3 & 4 & | 1 & 2 & 3 & 4 &\n\nq = nota tocada (R ou L)\np = pausa (não tocar)\n↓ = batida   · = espaço de pausa\n\nquarter note = 1 tempo   eighth note = ½ tempo</pre><div class='diagram-note'>Cada símbolo ocupa um espaço no compasso. Leia em voz alta (R, L, pausa...) antes de tocar — é o treino de leitura.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Conte antes:</strong> Diga a sequência em voz alta uma vez, depois toque. Ver + falar + tocar grava o padrão mais rápido.</div><div class='tip-box'><strong>💡 Olhe à frente:</strong> Leia sempre 2 símbolos à frente do que está tocando — como um leitor fluente não olha letra por letra.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Tocar a pausa — preencher o '-' com uma nota ou um rufo. A pausa tem tempo e silêncio; conte-a como quem conta qualquer outro tempo.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

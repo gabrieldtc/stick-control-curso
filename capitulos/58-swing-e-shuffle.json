@@ -1,0 +1,33 @@
+{
+  "id": 58,
+  "title": "Swing e Shuffle",
+  "description": "O feeling swingado que transforma ritmos retos em grooves envolventes.",
+  "objectives": [
+    "Compreender a diferença entre ritmo reto e swingado",
+    "Executar o shuffle com precisão",
+    "Desenvolver o feeling de swing"
+  ],
+  "concept": "<h3>Swing e Shuffle</h3><p>No swing, as colcheias não são iguais — a primeira é mais longa, a segunda é mais curta. Isso cria o <span class='highlight'>balanço</span> característico do jazz e do blues.</p><h3>Pattern de Shuffle</h3><div class='pattern-example'>R l R l R l R l<br>↓   ↓   ↓   ↓  <br>1  &  2  &  3  &  4  &</div><p>Cada par é tocado como uma <span class='highlight'>tercina</span>: a primeira nota dura 2/3, a segunda 1/3 do tempo.</p><h3>Onde é Usado?</h3><p><ul><li><strong>Blues:</strong> Shuffle é a base do blues elétrico</li><li><strong>Jazz:</strong> Swing é a essência do jazz</li><li><strong>Rock:</strong> Muitos rocks têm swing sutil</li></ul></p>",
+  "exercise": [
+    "R",
+    "l",
+    "R",
+    "l",
+    "R",
+    "l",
+    "R",
+    "l"
+  ],
+  "diagram": "<div class='diagram-title'>Shuffle</div><pre class='diagram-ascii'>Notação:  R    l   R    l   R    l   R    l\n         ↓         ↓         ↓         ↓\nTocar:   TA  -  ta   TA  -  ta   TA  -  ta\n         1    &    2    &    3    &    4    &\n         \n\"TA\" é longo, \"ta\" é curto</pre><div class='diagram-note'>Sinta o balanço! O shuffle não é apressado.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Feeling:</strong> Cante \"TA - ta\" antes de tocar.</div><div class='tip-box'><strong>💡 Metrônomo:</strong> Comece lento e sinta o espaço entre as notas.</div><div class='tip-box'><strong>💡 Referência:</strong> Ouça John Bonham (Led Zeppelin) — shuffle puro!</div>",
+  "bpm_default": 70,
+  "bpm_range": [
+    40,
+    150
+  ],
+  "weeklyGoal": {
+    "targetBpm": 110,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

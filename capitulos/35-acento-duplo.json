@@ -1,0 +1,21 @@
+{
+  "id": 35,
+  "title": "Acento Duplo",
+  "description": "Exercício de acentuação dupla com dois acentos consecutivos seguidos de notas suaves.",
+  "objectives": [
+    "Executar dois acentos consecutivos com controle preciso",
+    "Alternar entre seções acentuadas e suaves com fluidez",
+    "Desenvolver potência e velocidade nos acentos duplos"
+  ],
+  "concept": "<h3>O que é Acento Duplo?</h3><p>Em vez de um acento solo, aqui temos <span class='highlight'>dois acentos seguidos</span> (R R) seguidos de duas notas suaves (l l). Isso cria um padrão de <strong>'impacto e respiro'</strong> — dois golpes fortes, depois uma pausa dinâmica.</p><h3>Como Funciona</h3><div class='pattern-example'>R R l l R R l l<br>↓ ↑           <br>FORTE suave    </div><p>O padrão alterna entre <span class='highlight'>pares acentuados</span> e <span class='highlight'>pares suaves</span>. A transição entre eles é o que torna este exercício desafiador — você precisa trocar de intensidade rapidamente.</p><h3>Por que é Importante?</h3><p>Acentos duplos são a base de <span class='highlight'>fills e variações</span> com impacto. Quando você quer 'socar' a música, usa duplos. É a diferença entre um fill suave e um fill dramático.</p><h3>Onde é Usado?</h3><p>Acento duplo aparece em:<ul><li><strong>Rock:</strong> Fills de Led Zeppelin, AC/DC</li><li><strong>Metal:</strong> blast beats e variações pesadas</li><li><strong>Fusão:</strong> fills complexos e energéticos</li><li><strong>Gospel:</strong> 'Chops' com duplos rápidos</li></ul><h3>Segredo</h3><p>O segredo é a <span class='highlight'>troca dinâmica</span>. Os 'R R' devem ser brutais e os 'l l' quase silenciosos. Treine a transição até ficar automática.</p></p>",
+  "exercise": ["R", "R", "l", "l", "R", "R", "l", "l"],
+  "diagram": "<div class='diagram-title'>Acento Duplo</div><pre class='diagram-ascii'>R   R   l   l   R   R   l   l\n↓   ↑               ↓   ↑\nFORTE suave         FORTE suave\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Pares acentuados alternam com pares suaves</div>",
+  "tips": "<div class='tip-box'><strong>💡 Impacto:</strong> Os 'R R' devem ser MUITO fortes. Imagine que está marcando um ponto musical.</div><div class='tip-box'><strong>💡 Respiro:</strong> Os 'l l' são o 'respiro' entre os impactos. Não os negligencie.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Em alta velocidade, os duplos criam um 'roll' impressionante. Comece devagar!</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

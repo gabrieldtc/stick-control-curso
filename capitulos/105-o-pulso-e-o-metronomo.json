@@ -1,0 +1,22 @@
+{
+  "id": 105,
+  "title": "O Pulso e o Metrônomo",
+  "description": "Entenda o pulso, BPM e como usar o metrônomo como aliado",
+  "module": "preparatorio",
+  "objectives": [
+    "Compreender o conceito de pulso musical",
+    "Entender o que significa BPM (batidas por minuto)",
+    "Aprender a usar o metrônomo como ferramenta de treino"
+  ],
+  "concept": "<h3>O coração da música</h3><p>O <strong>pulso</strong> é o batimento cardíco da música. É aquele \"tum... tum... tum...\" que sente quando ouve uma canção. Sem pulso, não há música — só ruído.</p><h3>Por que umas músicas parecem rápidas?</h3><p>Uma música parece rápida quando o pulso é <strong>mais acelerado</strong>. Uma balada tem pulso lento. Um funk tem pulso mais rápido. O que muda é a <span class='highlight'>velocidade do pulso</span>.</p><h3>O que é BPM?</h3><p>BPM significa <strong>Beats Per Minute</strong> — batidas por minuto. É a medida do pulso:</p><ul><li><strong>60 BPM:</strong> Um batimento por segundo (como o relógio)</li><li><strong>90 BPM:</strong> Pulso médio, como uma caminhada</li><li><strong>120 BPM:</strong> Pulso acelerado, como uma corrida leve</li></ul><h3>O metrônomo: aliado ou inimigo?</h3><p>Muita gente tem <strong>medo do metrônomo</strong>. Parece que ele está julgando. Mas na verdade, ele é o seu <span class='highlight'>melhor amigo</span>. Ele é honesto — não mente, não erra, não se cansa.</p><h3>Como usar</h3><ol><li><strong>Comece devagar</strong> — 40 BPM é perfeito para começar</li><li><strong>Aumente aos poucos</strong> — quando estiver confortável, suba 5 BPM</li><li><strong>Não tenha pressa</strong> — devagar é rápido</li></ol><h3>Devagar é rápido</h3><p>Quando você se sente <strong>confortável com as pausas</strong>, quando o silêncio entre as batidas faz sentido, quando o pulso interno bate junto com o metrônomo — aí sim, você está pronto para o <span class='highlight'>Módulo 1</span>.</p>",
+  "exercise": ["R", "-", "-", "-", "L", "-", "-", "-", "R", "-", "-", "-", "L", "-", "-", "-"],
+  "diagram": "<div class='diagram-title'>Pulso e BPM</div><div class='diagram-row'>  60 BPM:  R · · · · · L · · · · · R · · · · · L</div><div class='diagram-row'>  90 BPM:  R · · L · · R · · L · · R · · L · · R</div><div class='diagram-row'>  120 BPM: R · L · R · L · R · L · R · L · R · L</div><div class='diagram-note'>Cada linha = um pulso. Quanto mais rápido, mais batidas por minuto.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dica:</strong> Coloque o metrônomo e só escute por 1 minuto antes de tocar. Sinta o pulso. Deixe ele entrar na sua cabeça.</div><div class='tip-box'><strong>💡 Devagar é Rápido:</strong> Comece a 40 BPM. Não aumente até se sentir totalmente confortável. A paciência é a chave.</div><div class='tip-box'><strong>💡 Próximo Passo:</strong> Quando estiver confortável com as pausas e o pulso interno, você está pronto para o Módulo 1 do curso!</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 70],
+  "weeklyGoal": {
+    "targetBpm": 55,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 43,
+  "title": "Grupos de 9",
+  "description": "Exercício de nonupletas com acentos em grupos de nove notas.",
+  "objectives": [
+    "Executar nonupletas com acentos controlados",
+    "Desenvolver controle sobre subdivisões de tempo elevadas",
+    "Manter a pulsação constante durante padrões rítmicos longos"
+  ],
+  "concept": "<h3>O que são Grupos de 9?</h3><p>Grupos de 9 (nonupletas) são <span class='highlight'>9 notas no espaço de 8</span>. É um dos grupos mais longos e desafiadores — uma <strong>'rajada'</strong> de notas que testa seu controle ao máximo.</p><h3>Como Funciona</h3><div class='pattern-example'>R l r l r l r l r L r l r l r l r l r<br>↑                       ↑              <br>acento                 acento         </div><p>Cada grupo tem <span class='highlight'>9 notas</span> com acentos na primeira e nona. É como uma 'onda' rítmica que sobe e desce, criando uma textura extremamente densa.</p><h3>Por que é Importante?</h3><p>Nonupletas são o <span class='highlight'>ápice do controle rítmico</span>. Poucos bateristas dominam grupos tão longos. Conquistá-los te coloca em uma categoria elite.</p><h3>Onde é Usado?</h3><p>Grupos de 9 são raros, mas poderosos:<ul><li><strong>Jazz Avançado:</strong> Improvisações com subdivisões extremas</li><li><strong>Fusão Experimental:</strong> Texturas rítmicas densas</li><li><strong>Composição Contemporânea:</strong> Desafios técnicos</li><li><strong>Shows Técnicos:</strong> Demonstração de habilidade</li></ul><h3>Segredo</h3><p><span class='highlight'>Concentração total</span>. Não tente ser rápido — seja cirúrgico. Cada nota deve ser perfeitamente igual à anterior.</p></p>",
+  "exercise": ["R", "l", "r", "l", "r", "l", "r", "l", "r", "L", "r", "l", "r", "l", "r", "l", "r", "l", "r"],
+  "diagram": "<div class='diagram-title'>Grupos de 9 (Nonupletas)</div><pre class='diagram-ascii'>R l r l r l r l r L r l r l r l r l r\n↑                       ↑              \nacento                 acento         \n\n|------ grupo 9 ------|------ grupo 9 ------|</pre><div class='diagram-note'>9 notas no espaço de 8 — o desafio máximo de controle</div>",
+  "tips": "<div class='tip-box'><strong>💡 Realismo:</strong> Comece com 40 BPM. Sério. Velocidade sem precisão é ruído.</div><div class='tip-box'><strong>💡 Contagem:</strong> Conte '1-2-3-4-5-6-7-8-9' em voz alta. É difícil, mas necessário.</div><div class='tip-box'><strong>💡 Meta:</strong> Se você dominar grupos de 9, grupos de 5 e 7 serão fáceis.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 60,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

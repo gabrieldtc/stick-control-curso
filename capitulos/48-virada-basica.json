@@ -1,0 +1,41 @@
+{
+  "id": 48,
+  "title": "Viradas Básicas",
+  "description": "Primeiras viradas para transições",
+  "objectives": [
+    "Aprender viradas simples",
+    "Conectar uma seção à outra",
+    "Manter o timing durante a virada"
+  ],
+  "concept": "<h3>O que é uma Virada (Fill)?</h3><p>Uma <span class='highlight'>virada (fill)</span> é um <strong>preenchimento</strong> tocado no fim de uma frase ou compasso, quebrando o groove e anunciando a volta da música. É a 'resposta' à batida que vem antes: cria <span class='highlight'>expectativa</span> e direciona o ouvido para o <strong>retorno do tema</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>R L R L R L R L | R R L L R R L L<br>(8 alternâncias + 8 duplos = 16 notas)</div><p>Esta virada tem <span class='highlight'>16 notas</span> (um compasso de semicolcheias). A primeira metade é <strong>alternância pura</strong> (RLRL RLRL) e a segunda são <strong>duplos</strong> (RR LL RR LL). Ela ocupa o espaço do fim do compasso — onde normalmente só tocaria a batida — e se resolve quando a música retorna no '1'.</p><h3>Como Tocar</h3><ul><li><strong>Batidas 1 e 2:</strong> alternâncias R L R L R L R L.</li><li><strong>Batidas 3 e 4:</strong> duplos RR LL RR LL — mais densos, preparam a chegada.</li><li><strong>Resolução:</strong> a última nota (L) volta ao '1' do compasso seguinte, sem pular.</li></ul><p>Conte <span class='highlight'>'1 2 3 4'</span> (cada batida = 4 semicolcheias) e imagine a música voltando no '1'. A virada não é um solo — ela <span class='highlight'>serve ao tempo</span>.</p><h3>Por que é Importante?</h3><p>É a sua <strong>primeira virada de verdade</strong>: um preenchimento completo, com começo, meio e fim. Dominá-la é o passo que liga os rudimentos ao <strong>instrumento</strong> — tocar frases, não só padrões.</p>",
+  "exercise": [
+    "R",
+    "L",
+    "R",
+    "L",
+    "R",
+    "L",
+    "R",
+    "L",
+    "R",
+    "R",
+    "L",
+    "L",
+    "R",
+    "R",
+    "L",
+    "L"
+  ],
+  "diagram": "<div class='diagram-title'>Virada Básica</div><pre class='diagram-ascii'>R L R L R L R L | R R L L R R L L\n1 2 3 4 1 2 3 4   1 2 3 4 1 2 3 4\n\n| = onde a alternância vira duplos</pre><div class='diagram-note'>Fill de 16 semicolcheias: 8 alternâncias (RLRL RLRL) + 8 duplos (RR LL RR LL) no fim da frase.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Crescendo:</strong> Comece a virada mais suave e vá crescendo até os duplos — o final soa como 'chegada'.</div><div class='tip-box'><strong>💡 Volta ao tempo:</strong> Treine emendar a virada de volta no '1' do compasso seguinte, sem acelerar nem pular.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Acelerar na segunda metade dos duplos. Mantenha o mesmo tempo da alternância até a última nota.</div>",
+  "bpm_default": 60,
+  "bpm_range": [
+    40,
+    120
+  ],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

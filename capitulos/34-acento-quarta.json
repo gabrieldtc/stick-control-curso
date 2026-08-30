@@ -1,0 +1,21 @@
+{
+  "id": 34,
+  "title": "Acento na Quarta Batida",
+  "description": "Exercício de acentuação na quarta batida de cada grupo de quatro notas.",
+  "objectives": [
+    "Controlar acentos na quarta posição de cada grupo",
+    "Desenvolver timing preciso para acentos no final do grupo",
+    "Manter estabilidade rítmica com acentos deslocados"
+  ],
+  "concept": "<h3>O que é Acento na Quarta Batida?</h3><p>A quarta batida é a posição <span class='highlight'>mais extrema</span> para um acento. Ela cai exatamente no 'a' do compasso — a última nota antes do próximo grupo. Isso cria uma sensação de <strong>'condução'</strong> irresistível para a frente.</p><h3>Como Funciona</h3><div class='pattern-example'>r l r R r l r R<br>          ↑       ↑<br>        acento acento</div><p>O acento (R maiúsculo) está na <span class='highlight'>quarta posição</span> — a última nota do grupo. É como um 'quase' que nunca resolve, puxando o ouvinte para o próximo compasso.</p><h3>Por que é Importante?</h3><p>Este é o acento mais <span class='highlight'>contra-intuitivo</span>. Dominá-lo prova que você tem controle total sobre onde colocar acentos. É a diferença entre um baterista técnico e um musical.</p><h3>Onde é Usado?</h3><p>Acento na quarta batida aparece em:<ul><li><strong>Transições:</strong> Fills que conduzem para o próximo verso</li><li><strong>Jazz:</strong> Bossa nova e samba usam este princípio</li><li><strong>Funk:</strong> Grooves com 'push' rítmico</li><li><strong>Gospel:</strong> Fills dramáticos e energéticos</li></ul><h3>Segredo</h3><p>Não force o acento. Deixe-o <span class='highlight'>fluir</span> como um 'quase-acento' que puxa a música. É sutil, mas poderoso.</p></p>",
+  "exercise": ["r", "l", "r", "R", "r", "l", "r", "R"],
+  "diagram": "<div class='diagram-title'>Acento na Quarta Batida</div><pre class='diagram-ascii'>r   l   r   R   r   l   r   R\n            ↑           ↑\n          acento     acento\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>O acento no 'a' cria condução para o próximo grupo</div>",
+  "tips": "<div class='tip-box'><strong>💡 Sutilidade:</strong> Este acento deve ser mais sutil que os anteriores. É um 'empurrão', não um 'soco'.</div><div class='tip-box'><strong>💡 Transições:</strong> Use este acento para conduzir entre seções da música. É perfeito para fills.</div><div class='tip-box'><strong>💡 Combinação:</strong> Alterne entre cap. 32, 33 e 34 para criar padrões complexos.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

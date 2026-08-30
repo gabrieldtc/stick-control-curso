@@ -1,0 +1,22 @@
+{
+  "id": 100,
+  "title": "O Ritmo Já Mora Dentro de Você",
+  "description": "Descubra que o ritmo faz parte da sua vida desde antes do nascimento",
+  "module": "preparatorio",
+  "objectives": [
+    "Entender que o ritmo é inato ao ser humano",
+    "Reconhecer ritmos no cotidiano",
+    "Conceituar ritmo como sequência organizada de sons e silêncios"
+  ],
+  "concept": "<h3>O primeiro som que você ouviu</h3><p>Antes de nascer, você já estava ouvindo ritmo. O <strong>primeiro som</strong> que chegou aos seus ouvidos foi o batimento cardíco da sua mãe: <span class='highlight'>Tum... tum... tum... tum...</span></p><p>Seu cérebro já estava <strong>treinado para reconhecer padrões</strong> mesmo antes de você vir ao mundo. Essa é a base de tudo.</p><h3>Por que batemos palmas?</h3><p>Quando ouvimos música, é quase impossível ficar parado. Batemos palmas, balançamos a cabeça, movemos os pés. Isso não é coincidência — é <strong>natureza</strong>. O ritmo mora dentro de nós.</p><h3>Desafio</h3><p>Coloque a mão no peito e sinta seu coração. <span class='highlight'>Tum... tum... tum...</span> Esse é o seu primeiro ritmo. Ele esteve com você a vida inteira.</p><h3>O mundo está cheio de ritmo</h3><p>Olhe ao seu redor. O <strong>tique-taque</strong> do relógio. O som dos seus <strong>passos</strong>. A chuva batendo no telhado. A ventoinha girando. O pisca-pisca do carro. Tudo isso são <span class='highlight'>ritmos</span>.</p><h3>O que é ritmo?</h3><p>Ritmo é uma <strong>sequência organizada de sons e silêncios ao longo do tempo</strong>. Não precisa ser música. Qualquer padrão de som repetido é ritmo.</p><h3>E os instrumentos de percussão?</h3><p>Os tambores são uma <strong>máquina de ritmo</strong>. Cada peça faz um som diferente, organizado para criar um groove. É como uma conversa — cada voz tem sua hora.</p>",
+  "exercise": [],
+  "diagram": "<div class='diagram-title'>O Batimento Cardíaco</div><div class='diagram-row'>      TUM    tum    TUM    tum    TUM    tum</div><div class='diagram-row'>       ↓      ↓      ↓      ↓      ↓      ↓</div><div class='diagram-row'>   ─────────────────────────────────────────</div><div class='diagram-row'>      ♡      ♡      ♡      ♡      ♡      ♡</div><div class='diagram-note'>Seu primeiro ritmo — constante, confiável, eterno</div>",
+  "tips": "<div class='tip-box'><strong>🎯 Missão do Dia:</strong> Encontre 5 ritmos durante o dia de hoje: o relógio, seus passos, a ventoinha, a chuva, o motor do ônibus. Anote ou grave no celular.</div><div class='tip-box'><strong>💡 Dica do Gabriel:</strong> \"Não tente encontrar música. Tente encontrar ritmo.\" O ritmo está em tudo — você só precisa prestar atenção.</div><div class='tip-box'><strong>💡 Exercício:</strong> Coloque a mão no peito e conte 10 batimentos. Sinta a cadência. Esse é o seu metrônomo interno.</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 60],
+  "weeklyGoal": {
+    "targetBpm": 50,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

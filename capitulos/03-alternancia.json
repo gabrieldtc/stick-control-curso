@@ -1,0 +1,21 @@
+{
+  "id": 3,
+  "title": "Alternância Simples",
+  "description": "O exercício mais importante do livro",
+  "objectives": [
+    "Dominar a alternância R L R L",
+    "Manter ritmo constante",
+    "Aumentar velocidade gradualmente"
+  ],
+  "concept": "<h3>O Exercício Mais Importante</h3><p>A alternância simples é a <span class='highlight'>base de tudo</span> na bateria. É quando você troca constantemente entre mão direita e esquerda.</p><h3>Por que é tão importante?</h3><p>Porque quase todos os padrões da bateria usam alternância. Se você dominar este exercício, tudo o que vier depois será mais fácil.</p><h3>Como Funciona</h3><p>Simples: toque R, depois L, depois R, depois L. Sempre alternando.</p><div class='pattern-example'>R L R L R L R L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 2 3 4 1 2 3 4</div><h3>O Segredo</h3><p><span class='highlight'>Devagar é rápido!</span> Comece muito devagar (60 BPM) e só aumente quando estiver 100% confortável. Se errar, volte a velocidade anterior.</p><h3>Quanto Tempo?</h3><p>Pratique este exercício todos os dias por pelo menos 2 semanas antes de avançar para o próximo capítulo.</p>",
+  "exercise": ["R", "L", "R", "L", "R", "L", "R", "L"],
+  "diagram": "<div class='diagram-title'>Alternância Simples</div><pre class='diagram-ascii'>R   L   R   L   R   L   R   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   2   3   4   1   2   3   4\n\nMão: D   E   D   E   D   E   D   E</pre><div class='diagram-note'>D = Direita | E = Esquerda</div>",
+  "tips": "<div class='tip-box'><strong>💡 Punhos soltos:</strong> Mantenha os punhos relaxados. A tensão é inimiga da velocidade. Se sentir dor, pare e descanse.</div><div class='tip-box'><strong>💡 Metrônomo:</strong> Use sempre! Comece em 60 BPM e aumente 2-5 BPM por dia.</div><div class='tip-box'><strong>💡 Iguais:</strong> Tente fazer ambas as mãos soar igual. A maioria das pessoas tem uma mão mais forte - o objetivo é equilibrar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 160],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

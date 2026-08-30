@@ -1,0 +1,22 @@
+{
+  "id": 102,
+  "title": "O Rebote e a Gravidade",
+  "description": "Entenda que a baqueta foi feita para quicar - aproveite o rebote",
+  "module": "preparatorio",
+  "objectives": [
+    "Compreender o conceito de rebote da baqueta",
+    "Aprender a soltar a baqueta em vez de forçar o movimento",
+    "Desenvolver toque relaxado e eficiente"
+  ],
+  "concept": "<h3>A bola de tênis</h3><p>Se você deixar cair uma bola de tênis no chão, ela volta. <strong>Quicou.</strong> A baqueta faz a mesma coisa. Quando bate numa superfície, ela quer voltar.</p><h3>Seu trabalho não é levantar</h3><p>O seu trabalho <strong>não é levantar</strong> a baqueta depois de cada golpe. O seu trabalho é <strong>guiá-la</strong>.</p><h3>A gravidade é sua amiga</h3><p>Você não precisa <span class='highlight'>empurrar para baixo</span>. A gravidade já faz isso por você. Deixe a baqueta cair e aproveite o rebote.</p><h3>O que é rebote?</h3><p>Quando a baqueta atinge uma superfície, ela <strong>retorna naturalmente</strong>. O rebote não é um problema — é um <span class='highlight'>presente</span>. É a natureza trabalhando a seu favor.</p><h3>Experiência 1: Força total</h3><p>Bata com toda a força que tiver. Perceba: a baqueta <strong>quase não se move</strong>. Você trava o movimento.</p><h3>Experiência 2: Relaxe</h3><p>Agora bata com a mão relaxada. A baqueta parece <strong>viva</strong>, quase tem vontade própria. Ela quica sozinha.</p><h3>O iê-iê</h3><p>É como um iê-iê: você não controla cada centímetro. Você <strong>aprende o ritmo</strong> e deixa o instrumento trabalhar.</p><h3>Regra de ouro</h3><p><span class='highlight'>A força faz barulho. O controle faz música.</span></p>",
+  "exercise": ["R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"],
+  "diagram": "<div class='diagram-title'>O Rebote</div><div class='diagram-row'>  Força total:     ↓↓↓↓ → travado, sem rebote</div><div class='diagram-row'>  Relaxed:        ↓ ↗ ↓ ↗ → natural, vivo</div><div class='diagram-row'>                  bate   volta</div><div class='diagram-note'>A baqueta quica sozinha — deixe ela trabalhar</div>",
+  "tips": "<div class='tip-box'><strong>💡 Regra de Ouro:</strong> \"A força faz barulho. O controle faz música.\" Sempre que esquecer, volte a esta frase.</div><div class='tip-box'><strong>🎯 Missão do Dia:</strong> 50 batidas consecutivas, todas iguais. Mão relaxada. Rebote natural. Sem forçar.</div><div class='warning-box'><strong>⚠️ Erro Comum:</strong> Forçar a baqueta para baixo. A gravidade já faz isso. Você só precisa deixá-la cair e guiar o retorno.</div>",
+  "bpm_default": 40,
+  "bpm_range": [40, 60],
+  "weeklyGoal": {
+    "targetBpm": 50,
+    "minutesPerDay": 5,
+    "daysPerWeek": 3
+  }
+}

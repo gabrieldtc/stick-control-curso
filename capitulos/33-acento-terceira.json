@@ -1,0 +1,21 @@
+{
+  "id": 33,
+  "title": "Acento na Terceira Batida",
+  "description": "Exercício de acentuação na terceira batida de cada grupo de quatro notas.",
+  "objectives": [
+    "Dominar o acento na terceira posição de cada grupo",
+    "Desenvolver precisão na alternância de intensidades",
+    "Integrar acentos deslocados em padrões rítmicos"
+  ],
+  "concept": "<h3>O que é Acento na Terceira Batida?</h3><p>Quando acentuamos a <span class='highlight'>terceira nota</span> de cada grupo, criamos uma sensação de <strong>'antecipação'</strong>. O acento aparece logo antes do próximo grupo começar, como se estivesse 'puxando' a música para frente.</p><h3>Como Funciona</h3><div class='pattern-example'>r l R l r l R l<br>      ↑       ↑<br>    acento acento</div><p>O acento (R maiúsculo) está na <span class='highlight'>terceira posição</span> de cada grupo de 4. Isso cria um efeito de 'lead-in' — o acento conduz o ouvinte para o próximo grupo.</p><h3>Por que é Importante?</h3><p>A terceira batida é uma posição <span class='highlight'>poderosa</span> porque está no '&amp;' do compasso — exatamente onde o ouvinte menos espera. Isso gera tensão e movimento na música.</p><h3>Onde é Usado?</h3><p>Acento na terceira batida é essencial em:<ul><li><strong>Jazz:</strong> O swing usa acentos no '&' constantemente</li><li><strong>Latin:</strong> Clave e sincopação latina</li><li><strong>World Music:</strong> Polirritmias africanas</li><li><strong>Rock:</strong> Fills com acentos antecipados</li></ul><h3>Segredo</h3><p>Sinta o '&' do compasso. O acento deve <span class='highlight'>puxar</span> a música, não empurrar. Imagine que está 'caindo' no próximo grupo.</p></p>",
+  "exercise": ["r", "l", "R", "l", "r", "l", "R", "l"],
+  "diagram": "<div class='diagram-title'>Acento na Terceira Batida</div><pre class='diagram-ascii'>r   l   R   l   r   l   R   l\n        ↑           ↑\n      acento     acento\n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>O acento no '&' cria sensação de antecipação</div>",
+  "tips": "<div class='tip-box'><strong>💡 Feeling:</strong> Sinta o '&' como um 'puxão' para o próximo grupo. Não é só técnica — é musicalidade.</div><div class='tip-box'><strong>💡 Escuta:</strong> Ouça jazz e preste atenção nos acentos no '&'. É exatamente isso.</div><div class='tip-box'><strong>💡 Progressão:</strong> Depois de dominar, combine com o acento na segunda batida (cap. 32).</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

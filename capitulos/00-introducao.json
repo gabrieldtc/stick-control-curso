@@ -1,0 +1,21 @@
+{
+  "id": 0,
+  "title": "Introdução ao Curso",
+  "description": "Por que este livro é a bíblia da percussão",
+  "objectives": [
+    "Entender por que este curso é tão importante",
+    "Conhecer a história do livro",
+    "Saber como usar este curso"
+  ],
+  "concept": "<h3>O que é este curso?</h3><p>O curso <strong>Do Travesseiro ao Groove</strong> é um programa completo de técnica de baquetas, inspirado nos métodos clássicos de George Lawrence Stone, publicados em 1935.</p><h3>Por que é tão famoso?</h3><p>Porque ensina o <strong>controle total das mãos</strong>. Não importa se você quer tocar rock, jazz, samba ou qualquer outro estilo - tudo começa com o controle das baquetas.</p><h3>Quem usou estes princípios?</h3><p>Grandes nomes como <strong>John Bonham</strong> (Led Zeppelin), <strong>Keith Moon</strong> (The Who) e muitos outros desenvolveram sua técnica com estes exercícios.</p><h3>Como usar este curso</h3><p>Cada capítulo tem:<ul><li><strong>Teoria</strong> - O conceito por trás do exercício</li><li><strong>Exercício prático</strong> - Para tocar junto</li><li><strong>Meta semanal</strong> - Quanto praticar por semana</li></ul><p>Comece devagar e aumente a velocidade aos poucos. <span class='highlight'>Devagar é rápido!</span></p></p>",
+  "exercise": ["R", "L", "R", "L", "R", "L", "R", "L"],
+  "diagram": "<div class='diagram-title'>As Mãos</div><div class='diagram-row'><span class='right'>R</span> = Mão Direita</div><div class='diagram-row'><span class='left'>L</span> = Mão Esquerda</div><div class='diagram-note'>R e L alternam constantemente</div>",
+  "tips": "<div class='tip-box'><strong>💡 Dica importante:</strong> Não tenha pressa! A maioria das pessoas quer logo tocar rápido, mas o segredo é começar devagar e ir aumentando aos poucos.</div><div class='tip-box'><strong>💡 Postura:</strong> Sente-se ereto, pés no chão, braços relaxados. Evite tensão nos ombros e punhos.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 10,
+    "daysPerWeek": 3
+  }
+}

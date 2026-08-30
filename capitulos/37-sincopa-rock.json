@@ -1,0 +1,21 @@
+{
+  "id": 37,
+  "title": "Sincopa de Rock",
+  "description": "Padrão clássico de sincopação utilizado na música rock.",
+  "objectives": [
+    "Dominar o padrão rítmico sincopado clássico do rock",
+    "Integrar acentos sincopados com o groove de rock",
+    "Manter energia e intensidade no padrão sincopado"
+  ],
+  "concept": "<h3>Sincopa de Rock</h3><p>A sincopa de rock é um dos <span class='highlight'>padrões mais reconhecíveis</span> da música popular. É o que faz a música 'andar' e ter energia!</p><h3>Como Funciona</h3><div class='pattern-example'>R r R l R r R l<br>↓   ↓   ↓   ↓  <br>acento acento acento acento</div><p>Note que os acentos estão no 'R' que vem depois do 'r' (parte fraca). Isso cria o efeito de 'empurrão' característico do rock.</p><h3>Onde é Usado?</h3><p>Este padrão aparece em:<ul><li><strong>Rock Clássico:</strong> Led Zeppelin, AC/DC, The Who</li><li><strong>Rock Alternativo:</strong> Nirvana, Radiohead</li><li><strong>Metal:</strong> Muitos grooves usam sincopa</li></ul><h3>Segredo</h3><p>O segredo é manter os 'r' e 'l' <span class='highlight'>bem suaves</span> enquanto os 'R' são fortes. A diferença de intensidade é o que cria o groove.</p></p>",
+  "exercise": ["R", "r", "R", "l", "R", "r", "R", "l"],
+  "diagram": "<div class='diagram-title'>Sincopa de Rock</div><pre class='diagram-ascii'>R   r   R   l   R   r   R   l\n↓       ↓       ↓       ↓      \nFORTE   FORTE   FORTE   FORTE  \n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>Os acentos estão nas partes fracas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Feeling:</strong> Escute rock clássico e tente acompanhar com as mãos. Sinta o groove!</div><div class='tip-box'><strong>💡 Dinâmica:</strong> A diferença entre forte e suave deve ser muito clara.</div><div class='tip-box'><strong>💡 Energia:</strong> Este padrão deve ter energia! Não toque de forma robótica.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": 28,
+  "title": "Eleven Stroke Roll",
+  "description": "Rolo de 11 batidas",
+  "objectives": [
+    "Aprender o eleven stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Eleven Stroke Roll?</h3><p>É um rulo de <span class='highlight'>onze batidas</span>: cinco duplos + um acento. <strong>RR LL RR LL RR L</strong> — e emendando com a outra mão: <strong>RR LL RR LL RR L | LL RR LL RR LL R</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR LL RR L | LL RR LL RR LL R | RR LL RR LL RR L<br>(duplo, duplo, duplo, duplo, duplo, acento)</div><p>As <span class='highlight'>10 primeiras notas são duplos rápidos</span> (5 na direita + 5 na esquerda) e a <span class='highlight'>11ª é um acento</span>, tocada com a mão oposta. Por isso 'eleven': 10 rápidas + 1 forte = 11 notas.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> duplo na direita, mesmo volume.</li><li><strong>L:</strong> o <strong>acento</strong> — a 11ª nota soa mais forte e começa o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 5 6 7 8 9 10 RÁ'</span>, repetindo — o acento cai sempre na 11ª nota.</p><h3>Por que é Importante?</h3><p>Com cinco duplos, o eleven é um dos rulos <strong>mais longos da série</strong> e exige controle de resistência: os duplos precisam se manter limpos até o acento final. Aprenda a emendá-lo sem parar (RRLLRRLLRRL LLRRLLRRLLR RRLLRRLLRRL...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "L", "R", "R", "L", "L", "R", "R", "L", "L", "R"],
+  "diagram": "<div class='diagram-title'>Eleven Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L L R R L | L L R R L L R R L L R\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nd d d d d d d d d d A   d d d d d d d d d d A\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>11 notas: 10 duplos rápidos + 1 acento. O acento alterna de mão a cada grupo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 5 6 7 8 9 10 RÁ'. Se perder o acento, volte e conte em voz alta.</div><div class='tip-box'><strong>💡 Duplos:</strong> São 5 pares de duplos — não apresse na reta final, o espaçamento deve ser idêntico do início ao fim.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Apressar os duplos para chegar no acento. Toque cada par no tempo, sem acelerar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

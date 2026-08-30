@@ -1,0 +1,21 @@
+{
+  "id": 10,
+  "title": "Quádruplos",
+  "description": "Batidas quádruplas em cada mão",
+  "objectives": [
+    "Tocar quatro batidas cada mão",
+    "Manter velocidade constante",
+    "Desenvolver resistência muscular"
+  ],
+  "concept": "<h3>Quádruplos (Quatro Batidas)</h3><p>Quádruplos são quando cada mão toca <span class='highlight'>quatro vezes seguidas</span>. São usados em fills rápidos e solos.</p><h3>Por que Aprender?</h3><p>Quádruplos desenvolvem:<ul><li><strong>Resistência</strong> muscular</li><li><strong>Controle</strong> de velocidade</li><li><strong>Força</strong> das mãos</li></ul><h3>Aplicação</h3><p>Quádruplos são comuns em:<ul><li><strong>Rock:</strong> Fills pesados e energéticos</li><li><strong>Metal:</strong> Solos rápidos e intensos</li><li><strong>Pop:</strong> Transições marcantes</li></ul><h3>Como Funciona</h3><div class='pattern-example'>R R R R L L L L R R R R L L L L<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<br>1 e & a 2 e & a 3 e & a 4 e & a</div></p></p>",
+  "exercise": ["R", "R", "R", "R", "L", "L", "L", "L", "R", "R", "R", "R", "L", "L", "L", "L"],
+  "diagram": "<div class='diagram-title'>Quádruplos</div><pre class='diagram-ascii'>R   R   R   R   L   L   L   L\n↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓\n1   e   &   a   2   e   &   a\n\nMão: D D D D   E E E E</pre><div class='diagram-note'>Quatro batidas em cada mão</div>",
+  "tips": "<div class='tip-box'><strong>💡 Punhos soltos:</strong> Mantenha os punhos relaxados. Quádruplos exigem movimento fluido, não força bruta.</div><div class='tip-box'><strong>💡 Velocidade constante:</strong> Não aumente a velocidade no meio do exercício. Mantenha o mesmo ritmo do início ao fim.</div><div class='warning-box'><strong>⚠️ Cuidado:</strong> Quádruplos são exigentes. Se sentir dor, pare imediatamente e descanse.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 120],
+  "weeklyGoal": {
+    "targetBpm": 80,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

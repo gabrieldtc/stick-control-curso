@@ -1,0 +1,21 @@
+{
+  "id": 2,
+  "title": "Notação Básica",
+  "description": "Lendo partitura para bateria",
+  "objectives": [
+    "Entender o que significam as notas",
+    "Saber o que é um compasso",
+    "Ler padrões simples"
+  ],
+  "concept": "<h3>Lendo a Partitura</h3><p>Na bateria, usamos uma notação simples para indicar qual mão tocar:</p><h3>As Letras</h3><ul><li><strong><span class='right'>R</span></strong> = Mão <span class='highlight'>Direita</span></li><li><strong><span class='left'>L</span></strong> = Mão <span class='highlight'>Esquerda</span></li><li><strong><span class='right'>R</span></strong> (maiúsculo) = Acento forte (tocar mais alto)</li><li><strong><span class='left'>r</span></strong> (minúsculo) = Suave (tocar mais baixo)</li></ul><h3>O Compasso</h3><p>O compasso indica quantas batidas tem cada parte da música. O mais comum é o <strong>4/4</strong>, que significa 4 batidas por compasso:</p><div class='notation-example'>Compasso 4/4:<br><span class='right'>R</span> <span class='left'>L</span> <span class='right'>R</span> <span class='left'>L</span><br>1   2   3   4</div><h3>Como Praticar</h3><p>Leia a sequência de letras e toque cada batida. Conte em voz alta: 'Um, dois, três, quatro...' para manter o ritmo.</p>",
+  "exercise": ["R", "R", "L", "R", "L", "L", "R", "L"],
+  "diagram": "<div class='diagram-title'>Exemplo de Leitura</div><pre class='diagram-ascii'>Compasso 4/4:\n\n  R   R   L   R   L   L   R   L\n  |   |   |   |   |   |   |   |\n  1   2   3   4   1   2   3   4</pre><div class='diagram-note'>Note que cada letra representa uma batida</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contando:</strong> Conte em voz alta enquanto toca. Isso ajuda a manter o ritmo e a não se perder.</div><div class='warning-box'><strong>⚠️ Cuidado:</strong> Não confunda o compasso (4/4) com o BPM (velocidade). O compasso é a estrutura, o BPM é a velocidade.</div><div class='tip-box'><strong>💡 Dica:</strong> Comece lendo as letras sem tocar. Quando se familiarizar, comece a tocar junto.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 10,
+    "daysPerWeek": 3
+  }
+}

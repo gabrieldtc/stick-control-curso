@@ -1,0 +1,21 @@
+{
+  "id": 47,
+  "title": "Combinação Avançada 2",
+  "description": "Exercício completo de controle",
+  "objectives": [
+    "Aumentar velocidade progressivamente",
+    "Manter precisão em alta velocidade",
+    "Integrar todos os ornamentos"
+  ],
+  "concept": "<h3>O que é a Combinação 2?</h3><p>É a combinação 1 com <span class='highlight'>flams</span>: agora cada grupo de 4 começa com um <strong>flam (rR ou lL)</strong> e completa um paradiddle pela frente. Somando os dois grupos, as notas principais formam o <strong>paradiddle RLRR LRLL</strong> que você já conhece — com a 1ª nota de cada metade virada em flam.</p><h3>Como Funciona</h3><div class='pattern-example'>rR L R R | lL R L L<br>(flam + paradiddle pela frente)</div><p>O grupo <strong>rR L R R</strong> é um flam na direita seguido de alternância com duplo interno. Repare: o flam <span class='highlight'>não adiciona batida</span> — o 'r' é um enfeite e a nota principal R é a 1ª do grupo, vindo depois L R R. A mesma ideia vale para <strong>lL R L L</strong> na esquerda.</p><h3>Como Tocar</h3><ul><li><strong>Flam:</strong> o enfeite toca um instante antes e soa bem mais fraco; a nota principal vem logo em seguida, quase junto.</li><li><strong>Sequência:</strong> rR L R R — o flam abre o grupo e o paradiddle segue sem perder a colocação da mão.</li><li><strong>Emendar:</strong> lL R L L começa na esquerda; mantenha o mesmo desenho do grupo anterior.</li></ul><p>Conte <span class='highlight'>'1 2 3 4'</span> por grupo — o flam cai sempre na '1'. Não desacelere para caber o enfeite: ele é tocado <em>antes</em> da batida, sem roubar tempo dela.</p><h3>Por que é Importante?</h3><p>É um exercício completo de controle: junta o <span class='highlight'>precisão do flam</span> com a precisão do paradiddle e dos duplos. Dominar isso mantém a qualidade do som mesmo quando a música acelera.</p>",
+  "exercise": ["rR", "L", "R", "R", "lL", "R", "L", "L", "rR", "L", "R", "R", "lL", "R", "L", "L"],
+  "diagram": "<div class='diagram-title'>Combinação 2</div><pre class='diagram-ascii'>rR L R R | lL R L L | rR L R R | lL R L L\n  1 2 3 4    1 2 3 4    1 2 3 4    1 2 3 4\n\nr = enfeite do flam   R = nota principal do flam</pre><div class='diagram-note'>4 grupos: o flam abre cada grupo e o paradiddle segue pela frente (rR L R R | lL R L L).</div>",
+  "tips": "<div class='tip-box'><strong>💡 Flam primeiro:</strong> Treine o flam isolado (rR) antes de emendar o grupo. Só depois junte rR + L R R.</div><div class='tip-box'><strong>💡 Acento:</strong> A nota principal do flam é a 1ª de cada grupo — deixe-a firme, sem apressar o enfeite.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Acelerar para 'caber' o flam no tempo. O enfeite toca antes da batida — a batida não se move.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

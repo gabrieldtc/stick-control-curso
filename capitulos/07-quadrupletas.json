@@ -1,0 +1,21 @@
+{
+  "id": 7,
+  "title": "Grupos de 4 Acentuados",
+  "description": "Quadrupletas com acento na primeira",
+  "objectives": [
+    "Tocar grupos de 4 com acento",
+    "Manter velocidade constante",
+    "Controlar a intensidade"
+  ],
+  "concept": "<h3>Quadrupletas</h3><p>Quadrupletas são <span class='highlight'>4 notas iguais</span> no espaço de uma batida. Com acento na primeira, fica 'TA-ta-ta-ta'.</p><h3>Como Funciona</h3><p>Em vez de tocar 4 batidas normais, você toca 4 batidas <span class='highlight'>mais rápidas</span> no mesmo tempo:</p><div class='pattern-example'>R l r l | R l r l | R l r l | R l r l<br>1 e & a   1 e & a   1 e & a   1 e & a</div><h3>Por que Acentuar?</h3><p>O acento na primeira nota ajuda a:<ul><li>Marcar o início de cada grupo</li><li>Criar sensação de pulsação</li><li>Manter o ritmo organizado</li></ul><h3>Aplicação</h3><p>Quadrupletas são usadas em:<ul><li>Fills (viradas)</li><li>Solos de bateria</li><li>Transições entre partes da música</li></ul></p></p>",
+  "exercise": ["R", "l", "r", "l", "R", "l", "r", "l", "R", "l", "r", "l", "R", "l", "r", "l"],
+  "diagram": "<div class='diagram-title'>Quadrupletas</div><pre class='diagram-ascii'>R   l   r   l   R   l   r   l\n↓                   ↓          \nFORTE               FORTE      \n\n1   e   &   a   2   e   &   a</pre><div class='diagram-note'>4 notas no espaço de 2 batidas</div>",
+  "tips": "<div class='tip-box'><strong>💡 Movimento:</strong> Use o movimento do punho para criar a diferença de intensidade. Não use apenas os dedos.</div><div class='tip-box'><strong>💡 Velocidade:</strong> Comece devagar. Quadrupletas exigem controle, não velocidade.</div><div class='tip-box'><strong>💡 Aplicação:</strong> Pratique alternando entre batidas normais e quadrupletas para sentir a diferença.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 100,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}

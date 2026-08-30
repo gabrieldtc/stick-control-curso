@@ -1,0 +1,21 @@
+{
+  "id": 25,
+  "title": "Seven Stroke Roll",
+  "description": "Rolo de 7 batidas",
+  "objectives": [
+    "Aprender o seven stroke roll",
+    "Controlar a contagem",
+    "Integrar em fills"
+  ],
+  "concept": "<h3>O que é um Seven Stroke Roll?</h3><p>É um rulo de <span class='highlight'>sete batidas</span>: três duplos + um acento. <strong>RR LL RR L</strong> — e emendando com a outra mão: <strong>RR LL RR L | LL RR LL R</strong>.</p><h3>Como Funciona</h3><div class='pattern-example'>RR LL RR L | LL RR LL R | RR LL RR L<br>(duplo, duplo, duplo, acento)</div><p>As <span class='highlight'>6 primeiras notas são duplos rápidos</span> (3 na direita + 3 na esquerda) e a <span class='highlight'>7ª é um acento</span>, tocada com a mão oposta. Por isso 'seven': 6 rápidas + 1 forte = 7 notas.</p><h3>Como Tocar</h3><ul><li><strong>RR:</strong> duplo na direita, igual ao double stroke.</li><li><strong>LL:</strong> duplo na esquerda, mesmo volume.</li><li><strong>RR:</strong> mais um duplo na direita, mantendo o mesmo volume.</li><li><strong>L:</strong> o <strong>acento</strong> — a 7ª nota soa mais forte e começa o próximo grupo.</li></ul><p>Conte <span class='highlight'>'1 2 3 4 5 6 RÁ'</span>, repetindo — o acento cai sempre na 7ª nota.</p><h3>Por que é Importante?</h3><p>É o próximo passo depois do five: com <strong>um duplo a mais</strong>, ele dá mais espaço para o acento e aparece em <strong>fills e solos</strong>. Aprenda a emendá-lo sem parar (RRLLRRL LLRRLLR RRLLRRL...).</p>",
+  "exercise": ["R", "R", "L", "L", "R", "R", "L", "L", "L", "R", "R", "L", "L", "R"],
+  "diagram": "<div class='diagram-title'>Seven Stroke Roll</div><pre class='diagram-ascii'>R R L L R R L | L L R R L L R\n↓ ↓ ↓ ↓ ↓ ↓ ↓   ↓ ↓ ↓ ↓ ↓ ↓ ↓\nd d d d d d A   d d d d d d A\n\nd = duplo fraco   A = acento</pre><div class='diagram-note'>7 notas: 6 duplos rápidos + 1 acento. O acento alterna de mão a cada grupo.</div>",
+  "tips": "<div class='tip-box'><strong>💡 Contagem:</strong> Conte '1 2 3 4 5 6 RÁ'. Se perder o acento, volte e conte em voz alta.</div><div class='tip-box'><strong>💡 Duplos:</strong> São 3 pares de duplos antes do acento — mantenha todos com o mesmo volume.</div><div class='warning-box'><strong>⚠️ Erro comum:</strong> Apressar os duplos para chegar no acento. Toque cada par no tempo, sem acelerar.</div>",
+  "bpm_default": 60,
+  "bpm_range": [40, 140],
+  "weeklyGoal": {
+    "targetBpm": 90,
+    "minutesPerDay": 15,
+    "daysPerWeek": 4
+  }
+}
