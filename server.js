@@ -24,6 +24,16 @@ const DB_PATH = path.join('/tmp', 'travesseiro-groove.db');
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+
+// Debug route
+app.get('/debug', (req, res) => {
+  res.json({ 
+    dirname: __dirname,
+    cwd: process.cwd(),
+    files: require('fs').readdirSync(process.cwd())
+  });
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 let db;
