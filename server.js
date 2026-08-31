@@ -17,6 +17,15 @@ process.on('unhandledRejection', (reason) => {
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'stick-control-secret-2024';
+
+// ============ ADMIN CONFIG ============
+// Email que será tratado como administrador (lido de variável de ambiente
+// ADMIN_EMAIL para não expor dados sensíveis em repositórios públicos).
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'gabrieldtc@hotmail.com').toLowerCase().trim();
+// Código mestre adicional pedido na página /admin.
+// CONFIGURAÇÃO RECOMENDADA: defina na variável de ambiente ADMIN_MASTER_CODE.
+// O valor abaixo é apenas um fallback provisório — troque-o!
+const ADMIN_MASTER_CODE = process.env.ADMIN_MASTER_CODE || 'admin2024';
 const DB_PATH = path.join('/tmp', 'travesseiro-groove.db');
 //const DB_PATH = process.env.DB_PATH ? path.join(process.env.DB_PATH, 'travesseiro-groove.db') : path.join(__dirname, 'database', 'travesseiro-groove.db');
 
@@ -87,6 +96,19 @@ async function initDatabase() {
   // Add daily goal column if missing
   try {
     db.run('ALTER TABLE users ADD COLUMN daily_goal INTEGER DEFAULT 10');
+  } catch (e) {}
+  
+  // Add admin marker column if missing
+  try {
+    db.run('ALTER TABLE users ADD COLUMN is_admin INTEGER DEFAULT 0');
+  } catch (e) {}
+  
+  // Add last login + login counter columns if missing
+  try {
+    db.run('ALTER TABLE users ADD COLUMN last_login DATETIME');
+  } catch (e) {}
+  try {
+    db.run('ALTER TABLE users ADD COLUMN login_count INTEGER DEFAULT 0');
   } catch (e) {}
   
   // Ensure unique constraint on user_id + chapter_id
@@ -278,11 +300,22 @@ function authenticateToken(req, res, next) {
   
   if (!token) return res.status(401).json({ error: 'Token não fornecido' });
   
-  jwt.verify(token, JWT_SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(401).json({ error: 'Token inválido ou expirado' });
     req.user = user;
     next();
   });
+}
+
+// ============ ADMIN MIDDLEWARE ============
+// Garante que apenas usuários marcados como admin passem.
+function requireAdmin(req, res, next) {
+  if (!req.user) return res.status(401).json({ error: 'Token não fornecido' });
+  const admin = dbGet('SELECT is_admin FROM users WHERE id = ?', [req.user.id]);
+  if (!admin || admin.is_admin !== 1) {
+    return res.status(403).json({ error: 'Acesso negado' });
+  }
+  next();
 }
 
 // ============ AUTH ROUTES ============
@@ -316,14 +349,15 @@ app.post('/api/auth/register', async (req, res) => {
     
     const hashedPassword = await bcrypt.hash(password, 10);
     const hashedAnswer = await bcrypt.hash(secretAnswer.toLowerCase().trim(), 10);
+    const isAdmin = email.toLowerCase().trim() === ADMIN_EMAIL.toLowerCase().trim() ? 1 : 0;
     const userId = dbRun(
-      'INSERT INTO users (name, email, password, secret_question, secret_answer) VALUES (?, ?, ?, ?, ?)',
-      [name, email, hashedPassword, secretQuestion, hashedAnswer]
+      'INSERT INTO users (name, email, password, secret_question, secret_answer, is_admin, last_login, login_count) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 1)',
+      [name, email, hashedPassword, secretQuestion, hashedAnswer, isAdmin]
     );
     
-    const token = jwt.sign({ id: userId, name, email }, JWT_SECRET);
+    const token = jwt.sign({ id: userId, name, email, isAdmin }, JWT_SECRET);
     
-    res.json({ token, user: { id: userId, name, email } });
+    res.json({ token, user: { id: userId, name, email, isAdmin } });
   } catch (error) {
     console.error('Register error:', error);
     res.status(500).json({ error: 'Erro ao criar conta' });
@@ -345,9 +379,19 @@ app.post('/api/auth/login', async (req, res) => {
       return res.status(400).json({ error: 'Email ou senha incorretos' });
     }
     
-    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET);
+    // Marca como admin caso o email corresponda (e registra login)
+    const isAdmin = user.email.toLowerCase().trim() === ADMIN_EMAIL.toLowerCase().trim();
+    if (isAdmin && user.is_admin !== 1) {
+      dbExec('UPDATE users SET is_admin = 1 WHERE id = ?', [user.id]);
+    }
+    dbExec(
+      'UPDATE users SET last_login = CURRENT_TIMESTAMP, login_count = COALESCE(login_count, 0) + 1 WHERE id = ?',
+      [user.id]
+    );
     
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+    const token = jwt.sign({ id: user.id, name: user.name, email: user.email, isAdmin: isAdmin ? 1 : 0 }, JWT_SECRET);
+    
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, isAdmin: isAdmin ? 1 : 0 } });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Erro ao fazer login' });
@@ -356,7 +400,7 @@ app.post('/api/auth/login', async (req, res) => {
 
 // Get current user
 app.get('/api/auth/me', authenticateToken, (req, res) => {
-  const user = dbGet('SELECT id, name, email, created_at FROM users WHERE id = ?', [req.user.id]);
+  const user = dbGet('SELECT id, name, email, created_at, is_admin, last_login, login_count FROM users WHERE id = ?', [req.user.id]);
   res.json(user);
 });
 
@@ -753,6 +797,90 @@ app.post('/api/achievements/check', authenticateToken, (req, res) => {
   res.json({ new: details });
 });
 
+// ============ ADMIN ROUTES ============
+
+// Verifica o código master para liberar a página /admin
+// (usado junto com o login de admin; retorna se o código está correto)
+app.post('/api/admin/verify-code', (req, res) => {
+  const { code } = req.body;
+  if (code && code === ADMIN_MASTER_CODE) {
+    return res.json({ success: true });
+  }
+  res.status(403).json({ success: false, error: 'Código incorreto' });
+});
+
+// Resumo geral: total de inscritos, ativos e frequência
+app.get('/api/admin/stats', authenticateToken, requireAdmin, (req, res) => {
+  const totalUsers = dbGet('SELECT COUNT(*) as c FROM users');
+  
+  // Ativos = quem logou ou praticou nos últimos 30 dias
+  const active30 = dbGet(`
+    SELECT COUNT(DISTINCT u.id) as c FROM users u
+    WHERE (u.last_login IS NOT NULL AND u.last_login >= datetime('now', '-30 days'))
+       OR (EXISTS (SELECT 1 FROM progress p WHERE p.user_id = u.id AND p.last_practiced >= datetime('now', '-30 days')))
+  `);
+  
+  // Novos usuários nos últimos 7 dias
+  const new7 = dbGet("SELECT COUNT(*) as c FROM users WHERE created_at >= datetime('now', '-7 days')");
+  
+  // Logins hoje
+  const loginsToday = dbGet("SELECT COUNT(*) as c FROM users WHERE last_login >= datetime('now', 'localtime', 'start of day')");
+  
+  // Total de logins já registrados
+  const totalLogins = dbGet('SELECT COALESCE(SUM(login_count),0) as s FROM users');
+  
+  res.json({
+    totalUsers: totalUsers ? totalUsers.c : 0,
+    active30: active30 ? active30.c : 0,
+    new7: new7 ? new7.c : 0,
+    loginsToday: loginsToday ? loginsToday.c : 0,
+    totalLogins: totalLogins ? totalLogins.s : 0
+  });
+});
+
+// Lista de usuários inscritos com atividade
+app.get('/api/admin/users', authenticateToken, requireAdmin, (req, res) => {
+  const users = dbAll(`
+    SELECT u.id, u.name, u.email, u.created_at, u.is_admin, u.last_login, u.login_count,
+      (SELECT COUNT(*) FROM progress p WHERE p.user_id = u.id) as total_progress,
+      (SELECT COUNT(*) FROM progress p WHERE p.user_id = u.id AND p.completed = 1) as completed_chapters,
+      (SELECT COALESCE(SUM(practice_time),0) FROM progress p WHERE p.user_id = u.id) as total_practice
+    FROM users u
+    ORDER BY u.created_at ASC
+  `);
+  res.json(users);
+});
+
+// Frequência de atividade por dia (últimos ~90 dias) para o heatmap
+app.get('/api/admin/activity', authenticateToken, requireAdmin, (req, res) => {
+  const days = Math.max(1, parseInt(req.query.days) || 30);
+  const startDate = new Date();
+  startDate.setUTCDate(startDate.getUTCDate() - (days - 1));
+  startDate.setUTCHours(0, 0, 0, 0);
+  
+  // Logins por dia (baseado em last_login)
+  const logins = dbAll(`
+    SELECT date(last_login) as day, COUNT(*) as total
+    FROM users WHERE last_login IS NOT NULL AND last_login >= ?
+    GROUP BY date(last_login) ORDER BY day ASC
+  `, [startDate.toISOString().split('T')[0]]);
+  
+  // Prática por dia (que já existe, dos dois tipos de progresso)
+  const practice = dbAll(`
+    SELECT practice_date, SUM(total_seconds) as total_seconds FROM (
+      SELECT date(last_practiced) as practice_date, SUM(practice_time) as total_seconds
+      FROM progress WHERE last_practiced IS NOT NULL AND practice_time > 0
+      GROUP BY date(last_practiced)
+      UNION ALL
+      SELECT date(last_practiced) as practice_date, SUM(practice_time) as total_seconds
+      FROM user_exercise_progress WHERE last_practiced IS NOT NULL AND practice_time > 0
+      GROUP BY date(last_practiced)
+    ) GROUP BY practice_date ORDER BY practice_date ASC
+  `);
+  
+  res.json({ days, start: startDate.toISOString().split('T')[0], logins, practice });
+});
+
 // ============ PUBLIC STATS (no auth needed) ============
 app.get('/api/stats', (req, res) => {
   const chapters = chaptersCache || [];
@@ -814,6 +942,10 @@ app.get('/evolucao', (req, res) => {
 
 app.get('/criar-exercicio', (req, res) => {
   res.sendFile('public/criar-exercicio.html', { root: __dirname });
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile('public/admin.html', { root: __dirname });
 });
 
 //app.get('/', (req, res) => {
