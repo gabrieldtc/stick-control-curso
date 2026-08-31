@@ -857,6 +857,23 @@ app.get('/criar-exercicio', (req, res) => {
 async function start() {
   await initDatabase();
   loadChaptersCache();
+
+// Error handling
+
+  process.on('uncaughtException', (err) => {
+  console.error('❌ ERRO NÃO TRATADO:', err.message);
+  console.error(err.stack);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ PROMISE REJECTION:', reason);
+});
+
+// Request logging
+app.use((req, res, next) => {
+  console.log(`📝 ${req.method} ${req.path}`);
+  next();
+});
   
   app.listen(PORT, () => {
     console.log(`🎵 Do Travesseiro ao Groove rodando em http://localhost:${PORT}`);
