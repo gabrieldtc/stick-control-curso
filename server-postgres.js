@@ -1,19 +1,29 @@
 const express = require('express');
 const { Pool } = require('pg');
+const path = require('path');
+const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+
+// ============ SETUP ============
+process.on('uncaughtException', (err) => {
+  console.error('⚠️ Erro não capturado:', err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('⚠️ Promise rejeitada:', reason instanceof Error ? reason.message : reason);
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'stick-control-secret-2024';
 
+// ============ MIDDLEWARE ============
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// PostgreSQL Connection
+// ============ PostgreSQL CONNECTION ============
 if (!process.env.DATABASE_URL) {
   console.error('❌ ERRO: DATABASE_URL não está definida!');
   process.exit(1);
@@ -27,158 +37,335 @@ const pool = new Pool({
 pool.on('error', (err) => {
   console.error('❌ Erro na conexão com PostgreSQL:', err.message);
 });
-//const pool = new Pool({  connectionString: process.env.DATABASE_URL,  ssl: { rejectUnauthorized: false }});
 
-let capitulos = [];
-try {
-  const capitulosDir = path.join(__dirname, 'capitulos');
-  if (fs.existsSync(capitulosDir)) {
-    const files = fs.readdirSync(capitulosDir).filter(f => f.endsWith('.json')).sort();
-    capitulos = files.map(file => {
-      const content = fs.readFileSync(path.join(capitulosDir, file), 'utf-8');
-      return JSON.parse(content);
-    });
-    console.log(`📚 ${capitulos.length} capítulos carregados em cache`);
-  }
-} catch (err) {
-  console.error('Erro ao carregar capítulos:', err.message);
-}
-
-// Testa conexão
-pool.query('SELECT 1', (err, res) => {
-  if (err) {
-    console.error('❌ Falha ao conectar no PostgreSQL:', err.message);
-  } else {
-    console.log('✅ Conectado ao PostgreSQL!');
-  }
-});
-
-async function initializeDatabase() {
+// ============ DATABASE INITIALIZATION ============
+async function initDatabase() {
   try {
+    // Tabela users
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS usuarios (
+      CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        senha_hash VARCHAR(255) NOT NULL,
-        nome VARCHAR(255),
-        pergunta_secreta VARCHAR(255),
-        resposta_secreta_hash VARCHAR(255),
-        criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        password VARCHAR(255) NOT NULL,
+        secret_question VARCHAR(255),
+        secret_answer VARCHAR(255),
+        weekly_goal INTEGER DEFAULT 60,
+        daily_goal INTEGER DEFAULT 10,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
 
+    // Tabela progress
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS progresso (
+      CREATE TABLE IF NOT EXISTS progress (
         id SERIAL PRIMARY KEY,
-        usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
-        capitulo_id INT,
-        exercicio_id INT,
-        concluido BOOLEAN DEFAULT FALSE,
-        atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        chapter_id INTEGER NOT NULL,
+        completed BOOLEAN DEFAULT FALSE,
+        max_bpm INTEGER DEFAULT 60,
+        practice_time INTEGER DEFAULT 0,
+        test_completed BOOLEAN DEFAULT FALSE,
+        last_practiced TIMESTAMP,
+        UNIQUE(user_id, chapter_id)
       )
     `);
 
-    console.log('🗄️ Banco de dados inicializado');
+    // Tabela achievements
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS achievements (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        badge_name VARCHAR(255) NOT NULL,
+        unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Tabela user_exercises
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS user_exercises (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        nome VARCHAR(255) NOT NULL,
+        sequencia TEXT NOT NULL,
+        bpm_alvo INTEGER DEFAULT 60,
+        bpm_range_min INTEGER DEFAULT 40,
+        bpm_range_max INTEGER DEFAULT 200,
+        notes_per_beat INTEGER DEFAULT 2,
+        time_signature INTEGER DEFAULT 4,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Tabela user_exercise_progress
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS user_exercise_progress (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        exercise_id INTEGER NOT NULL,
+        max_bpm INTEGER DEFAULT 0,
+        practice_time INTEGER DEFAULT 0,
+        completed BOOLEAN DEFAULT FALSE,
+        last_practiced TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    console.log('✅ Banco de dados PostgreSQL inicializado');
   } catch (err) {
-    console.error('Erro ao inicializar banco:', err.message);
+    console.error('❌ Erro ao inicializar banco:', err.message);
   }
 }
 
-//app.post('/api/register', async (req, res) => {
-app.post('/api/auth/register', async (req, res) => {    
+// ============ CHAPTERS CACHE ============
+let chaptersCache = null;
+function loadChaptersCache() {
+  const chaptersDir = path.join(__dirname, 'capitulos');
   try {
-    const { email, senha, pergunta_secreta, resposta_secreta } = req.body;
-    if (!email || !senha) {
-      return res.status(400).json({ error: 'Email e senha são obrigatórios' });
+    const files = fs.readdirSync(chaptersDir).filter(f => f.endsWith('.json'));
+    chaptersCache = files.map(f => {
+      const data = JSON.parse(fs.readFileSync(path.join(chaptersDir, f), 'utf8'));
+      return data;
+    });
+    chaptersCache.sort((a, b) => a.id - b.id);
+    console.log(`📚 ${chaptersCache.length} capítulos carregados em cache`);
+  } catch (error) {
+    console.error('⚠️ Erro ao carregar capítulos:', error.message);
+    chaptersCache = [];
+  }
+}
+
+// ============ AUTH MIDDLEWARE ============
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  
+  if (!token) return res.status(401).json({ error: 'Token não fornecido' });
+  
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(401).json({ error: 'Token inválido ou expirado' });
+    req.user = user;
+    next();
+  });
+}
+
+// ============ AUTH ROUTES ============
+
+// Register
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    const { name, email, password, secretQuestion, secretAnswer } = req.body;
+    
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Nome, email e senha são obrigatórios' });
     }
-
-    const senhaHash = await bcrypt.hash(senha, 10);
-    const respostaHash = await bcrypt.hash(resposta_secreta, 10);
-
+    
+    if (!secretQuestion || !secretAnswer) {
+      return res.status(400).json({ error: 'Pergunta secreta e resposta são obrigatórias' });
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedAnswer = await bcrypt.hash(secretAnswer.toLowerCase(), 10);
+    
     const result = await pool.query(
-      'INSERT INTO usuarios (email, senha_hash, pergunta_secreta, resposta_secreta_hash) VALUES ($1, $2, $3, $4) RETURNING id',
-      [email, senhaHash, pergunta_secreta, respostaHash]
+      'INSERT INTO users (name, email, password, secret_question, secret_answer) VALUES ($1, $2, $3, $4, $5) RETURNING id',
+      [name, email, hashedPassword, secretQuestion, hashedAnswer]
     );
-
-    const token = jwt.sign({ userId: result.rows[0].id }, process.env.JWT_SECRET || 'seu_secret');
-    res.status(201).json({ message: 'Usuário criado com sucesso', token, userId: result.rows[0].id });
+    
+    const userId = result.rows[0].id;
+    const token = jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: '7d' });
+    
+    res.status(201).json({ message: 'Usuário criado com sucesso', token, userId });
   } catch (err) {
-    console.error('Erro ao registrar:', err.message);
+    if (err.code === '23505') {
+      return res.status(400).json({ error: 'Email já registrado' });
+    }
+    console.error('❌ Erro ao registrar:', err.message);
     res.status(500).json({ error: 'Erro ao criar usuário' });
   }
 });
 
-//app.post('/api/login', async (req, res) => {
-app.post('/api/auth/login', async (req, res) => {    
+// Login
+app.post('/api/auth/login', async (req, res) => {
   try {
-    const { email, senha } = req.body;
-    const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email e senha são obrigatórios' });
+    }
+    
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    
     if (result.rows.length === 0) {
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
-    const usuario = result.rows[0];
-    const senhaValida = await bcrypt.compare(senha, usuario.senha_hash);
-    if (!senhaValida) {
+    
+    const user = result.rows[0];
+    const validPassword = await bcrypt.compare(password, user.password);
+    
+    if (!validPassword) {
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
-    const token = jwt.sign({ userId: usuario.id }, process.env.JWT_SECRET || 'seu_secret');
-    res.json({ message: 'Login bem-sucedido', token, userId: usuario.id });
+    
+    const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
+    
+    res.json({ message: 'Login bem-sucedido', token, userId: user.id });
   } catch (err) {
-    console.error('Erro ao fazer login:', err.message);
+    console.error('❌ Erro ao fazer login:', err.message);
     res.status(500).json({ error: 'Erro ao fazer login' });
   }
 });
 
-//app.get('/api/chapters', (req, res) => {
-app.get('/api/chapters', (req, res) => {    
-  res.json(capitulos);
-});
+// ============ USER ROUTES ============
 
-app.get('/api/chapters/:id', (req, res) => {
-  const capitulo = capitulos.find(c => c.id === parseInt(req.params.id));
-  if (!capitulo) return res.status(404).json({ error: 'Capítulo não encontrado' });
-  res.json(capitulo);
-});
-
-app.post('/api/progress', async (req, res) => {
+// Get user profile
+app.get('/api/users/:id', authenticateToken, async (req, res) => {
   try {
-    const { userId, capituloId, exercicioId, concluido } = req.body;
-    await pool.query(
-      'INSERT INTO progresso (usuario_id, capitulo_id, exercicio_id, concluido) VALUES ($1, $2, $3, $4)',
-      [userId, capituloId, exercicioId, concluido]
-    );
-    res.json({ message: 'Progresso salvo' });
+    const result = await pool.query('SELECT id, name, email, weekly_goal, daily_goal FROM users WHERE id = $1', [req.params.id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    
+    res.json(result.rows[0]);
   } catch (err) {
-    console.error('Erro ao salvar progresso:', err.message);
-    res.status(500).json({ error: 'Erro ao salvar progresso' });
+    console.error('❌ Erro ao buscar usuário:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
   }
 });
 
-app.get('/api/progress/:userId', async (req, res) => {
+// ============ CHAPTER ROUTES ============
+
+app.get('/api/chapters', (req, res) => {
+  res.json(chaptersCache || []);
+});
+
+app.get('/api/chapters/:id', (req, res) => {
+  const chapter = chaptersCache?.find(c => c.id === parseInt(req.params.id));
+  if (!chapter) {
+    return res.status(404).json({ error: 'Capítulo não encontrado' });
+  }
+  res.json(chapter);
+});
+
+// ============ PROGRESS ROUTES ============
+
+// Get user progress
+app.get('/api/progress/:userId', authenticateToken, async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM progresso WHERE usuario_id = $1', [req.params.userId]);
+    const result = await pool.query('SELECT * FROM progress WHERE user_id = $1', [req.params.userId]);
     res.json(result.rows);
   } catch (err) {
+    console.error('❌ Erro ao buscar progresso:', err.message);
     res.status(500).json({ error: 'Erro ao buscar progresso' });
   }
 });
 
-app.get('/api/stats', (req, res) => {
-  res.json({ totalCapitulos: capitulos.length });
+// Update progress
+app.post('/api/progress', authenticateToken, async (req, res) => {
+  try {
+    const { userId, chapterId, completed, maxBpm, practiceTime, testCompleted } = req.body;
+    
+    const result = await pool.query(
+      `INSERT INTO progress (user_id, chapter_id, completed, max_bpm, practice_time, test_completed, last_practiced)
+       VALUES ($1, $2, $3, $4, $5, $6, NOW())
+       ON CONFLICT (user_id, chapter_id) DO UPDATE SET
+       completed = $3, max_bpm = $4, practice_time = $5, test_completed = $6, last_practiced = NOW()`,
+      [userId, chapterId, completed, maxBpm, practiceTime, testCompleted]
+    );
+    
+    res.json({ message: 'Progresso salvo com sucesso' });
+  } catch (err) {
+    console.error('❌ Erro ao salvar progresso:', err.message);
+    res.status(500).json({ error: 'Erro ao salvar progresso' });
+  }
 });
+
+// ============ CUSTOM EXERCISES ROUTES ============
+
+app.post('/api/exercises', authenticateToken, async (req, res) => {
+  try {
+    const { nome, sequencia, bpmAlvo, bpmRangeMin, bpmRangeMax, notesPerBeat, timeSignature } = req.body;
+    
+    const result = await pool.query(
+      `INSERT INTO user_exercises (user_id, nome, sequencia, bpm_alvo, bpm_range_min, bpm_range_max, notes_per_beat, time_signature)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
+      [req.user.userId, nome, sequencia, bpmAlvo, bpmRangeMin, bpmRangeMax, notesPerBeat, timeSignature]
+    );
+    
+    res.status(201).json({ message: 'Exercício criado', exerciseId: result.rows[0].id });
+  } catch (err) {
+    console.error('❌ Erro ao criar exercício:', err.message);
+    res.status(500).json({ error: 'Erro ao criar exercício' });
+  }
+});
+
+app.get('/api/exercises/:userId', authenticateToken, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM user_exercises WHERE user_id = $1', [req.params.userId]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error('❌ Erro ao buscar exercícios:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar exercícios' });
+  }
+});
+
+// ============ ACHIEVEMENTS ROUTES ============
+
+app.get('/api/achievements/:userId', authenticateToken, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT badge_name FROM achievements WHERE user_id = $1', [req.params.userId]);
+    res.json(result.rows.map(r => r.badge_name));
+  } catch (err) {
+    console.error('❌ Erro ao buscar achievements:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar achievements' });
+  }
+});
+
+// ============ STATS ROUTE ============
+
+app.get('/api/stats', async (req, res) => {
+  try {
+    const userCount = await pool.query('SELECT COUNT(*) as count FROM users');
+    const completions = await pool.query('SELECT COUNT(*) as count FROM progress WHERE completed = true');
+    
+    res.json({
+      totalCapitulos: chaptersCache?.length || 0,
+      totalUsuarios: userCount.rows[0].count,
+      capitulosCompletados: completions.rows[0].count
+    });
+  } catch (err) {
+    console.error('❌ Erro ao buscar stats:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar stats' });
+  }
+});
+
+// ============ ROOT ROUTE ============
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// ============ START SERVER ============
+
 async function start() {
   try {
-    await initializeDatabase();
+    // Test connection
+    await pool.query('SELECT 1');
+    console.log('✅ Conectado ao PostgreSQL!');
+    
+    // Initialize database
+    await initDatabase();
+    
+    // Load chapters
+    loadChaptersCache();
+    
+    // Start server
     app.listen(PORT, () => {
       console.log(`🎵 Do Travesseiro ao Groove rodando em http://localhost:${PORT}`);
     });
   } catch (err) {
-    console.error('Erro ao iniciar:', err.message);
+    console.error('❌ Erro ao iniciar servidor:', err.message);
     process.exit(1);
   }
 }
