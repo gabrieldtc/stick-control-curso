@@ -84,7 +84,8 @@ async function initializeDatabase() {
   }
 }
 
-app.post('/api/register', async (req, res) => {
+//app.post('/api/register', async (req, res) => {
+app.post('/api/auth/register', async (req, res) => {    
   try {
     const { email, senha, pergunta_secreta, resposta_secreta } = req.body;
     if (!email || !senha) {
@@ -107,7 +108,8 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-app.post('/api/login', async (req, res) => {
+//app.post('/api/login', async (req, res) => {
+app.post('/api/auth/login', async (req, res) => {    
   try {
     const { email, senha } = req.body;
     const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
@@ -127,7 +129,8 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/chapters', (req, res) => {
+//app.get('/api/chapters', (req, res) => {
+app.get('/api/chapters', (req, res) => {    
   res.json(capitulos);
 });
 
