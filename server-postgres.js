@@ -13,10 +13,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// PostgreSQL Connection
+if (!process.env.DATABASE_URL) {
+  console.error('❌ ERRO: DATABASE_URL não está definida!');
+  process.exit(1);
+}
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
+
+pool.on('error', (err) => {
+  console.error('❌ Erro na conexão com PostgreSQL:', err.message);
+});
+//const pool = new Pool({  connectionString: process.env.DATABASE_URL,  ssl: { rejectUnauthorized: false }});
 
 let capitulos = [];
 try {
@@ -32,6 +43,15 @@ try {
 } catch (err) {
   console.error('Erro ao carregar capítulos:', err.message);
 }
+
+// Testa conexão
+pool.query('SELECT 1', (err, res) => {
+  if (err) {
+    console.error('❌ Falha ao conectar no PostgreSQL:', err.message);
+  } else {
+    console.log('✅ Conectado ao PostgreSQL!');
+  }
+});
 
 async function initializeDatabase() {
   try {
