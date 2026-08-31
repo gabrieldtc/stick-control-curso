@@ -4,15 +4,16 @@
   "description": "Curso completo Do Travesseiro ao Groove",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server-postgres.js",
     "dev": "nodemon server.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "sql.js": "^1.10.2",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "cors": "^2.8.5"
+    "pg": "^8.23.0",
+    "sql.js": "^1.10.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
