@@ -26,13 +26,8 @@ const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'gabrieldtc@hotmail.com').toLowe
 // CONFIGURAÇÃO RECOMENDADA: defina na variável de ambiente ADMIN_MASTER_CODE.
 // O valor abaixo é apenas um fallback provisório — troque-o!
 const ADMIN_MASTER_CODE = process.env.ADMIN_MASTER_CODE || 'admin2024';
-// Armazenamento do banco.
-// Na nuvem (Railway) usamos /tmp (diretório temporário da plataforma) — padrão
-// que mantém o site funcionando como estava. Para rodar local, basta a pasta
-// existir; se preferir persistir os dados em uma pasta, defina DB_PATH.
-const DB_PATH = process.env.DB_PATH
-  ? path.join(process.env.DB_PATH, 'travesseiro-groove.db')
-  : path.join('/tmp', 'travesseiro-groove.db');
+const DB_PATH = path.join('/tmp', 'travesseiro-groove.db');
+//const DB_PATH = process.env.DB_PATH ? path.join(process.env.DB_PATH, 'travesseiro-groove.db') : path.join(__dirname, 'database', 'travesseiro-groove.db');
 
 // Middleware
 app.use(cors());
