@@ -238,8 +238,13 @@ app.post('/api/auth/register', async (req, res) => {
       return res.status(400).json({ error: 'Pergunta secreta e resposta são obrigatórias' });
     }
     
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Email inválido' });
+    }
+    
     const hashedPassword = await bcrypt.hash(password, 10);
-    const hashedAnswer = await bcrypt.hash(secretAnswer.toLowerCase(), 10);
+    const hashedAnswer = await bcrypt.hash(secretAnswer.toLowerCase().trim(), 10);
     
     const result = await pool.query(
       'INSERT INTO users (name, email, password, secret_question, secret_answer) VALUES ($1, $2, $3, $4, $5) RETURNING id',
@@ -247,12 +252,12 @@ app.post('/api/auth/register', async (req, res) => {
     );
     
     const userId = result.rows[0].id;
-    const token = jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: userId, name, email }, JWT_SECRET);
     
-    res.status(201).json({ message: 'Usuário criado com sucesso', token, userId });
+    res.json({ token, user: { id: userId, name, email } });
   } catch (err) {
     if (err.code === '23505') {
-      return res.status(400).json({ error: 'Email já registrado' });
+      return res.status(400).json({ error: 'Email já cadastrado' });
     }
     console.error('❌ Erro ao registrar:', err.message);
     res.status(500).json({ error: 'Erro ao criar usuário' });
@@ -271,22 +276,87 @@ app.post('/api/auth/login', async (req, res) => {
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     
     if (result.rows.length === 0) {
-      return res.status(401).json({ error: 'Credenciais inválidas' });
+      return res.status(401).json({ error: 'Email ou senha incorretos' });
     }
     
     const user = result.rows[0];
     const validPassword = await bcrypt.compare(password, user.password);
     
     if (!validPassword) {
-      return res.status(401).json({ error: 'Credenciais inválidas' });
+      return res.status(401).json({ error: 'Email ou senha incorretos' });
     }
     
-    const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET);
     
-    res.json({ message: 'Login bem-sucedido', token, userId: user.id });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
   } catch (err) {
     console.error('❌ Erro ao fazer login:', err.message);
     res.status(500).json({ error: 'Erro ao fazer login' });
+  }
+});
+
+// Get current user
+app.get('/api/auth/me', authenticateToken, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT id, name, email, created_at FROM users WHERE id = $1', [req.user.id]);
+    if (result.rows.length === 0) return res.status(404).json({ error: 'Usuário não encontrado' });
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('❌ Erro ao buscar usuário:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
+  }
+});
+
+// Forgot password - get secret question
+app.post('/api/auth/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email é obrigatório' });
+    
+    const result = await pool.query('SELECT secret_question FROM users WHERE email = $1', [email]);
+    if (result.rows.length === 0) return res.status(400).json({ error: 'Email não encontrado' });
+    
+    if (!result.rows[0].secret_question) {
+      return res.status(400).json({ error: 'Esta conta não possui pergunta secreta configurada' });
+    }
+    
+    res.json({ secretQuestion: result.rows[0].secret_question });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({ error: 'Erro ao processar solicitação' });
+  }
+});
+
+// Reset password with secret answer
+app.post('/api/auth/reset-password', async (req, res) => {
+  try {
+    const { email, secretAnswer, newPassword } = req.body;
+    if (!email || !secretAnswer || !newPassword) {
+      return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'A nova senha deve ter no mínimo 6 caracteres' });
+    }
+    
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (result.rows.length === 0) return res.status(400).json({ error: 'Email não encontrado' });
+    
+    const user = result.rows[0];
+    if (!user.secret_answer) {
+      return res.status(400).json({ error: 'Esta conta não possui pergunta secreta configurada' });
+    }
+    
+    const validAnswer = await bcrypt.compare(secretAnswer.toLowerCase().trim(), user.secret_answer);
+    if (!validAnswer) return res.status(400).json({ error: 'Resposta incorreta' });
+    
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await pool.query('UPDATE users SET password = $1 WHERE id = $2', [hashedPassword, user.id]);
+    
+    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET);
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    res.status(500).json({ error: 'Erro ao redefinir senha' });
   }
 });
 
@@ -325,9 +395,9 @@ app.get('/api/chapters/:id', (req, res) => {
 // ============ PROGRESS ROUTES ============
 
 // Get user progress
-app.get('/api/progress/:userId', authenticateToken, async (req, res) => {
+app.get('/api/progress', authenticateToken, async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM progress WHERE user_id = $1', [req.params.userId]);
+    const result = await pool.query('SELECT * FROM progress WHERE user_id = $1', [req.user.id]);
     res.json(result.rows);
   } catch (err) {
     console.error('❌ Erro ao buscar progresso:', err.message);
@@ -338,61 +408,368 @@ app.get('/api/progress/:userId', authenticateToken, async (req, res) => {
 // Update progress
 app.post('/api/progress', authenticateToken, async (req, res) => {
   try {
-    const { userId, chapterId, completed, maxBpm, practiceTime, testCompleted } = req.body;
+    const { chapterId, completed, maxBpm, practiceTime, testCompleted } = req.body;
     
-    const result = await pool.query(
-      `INSERT INTO progress (user_id, chapter_id, completed, max_bpm, practice_time, test_completed, last_practiced)
-       VALUES ($1, $2, $3, $4, $5, $6, NOW())
-       ON CONFLICT (user_id, chapter_id) DO UPDATE SET
-       completed = $3, max_bpm = $4, practice_time = $5, test_completed = $6, last_practiced = NOW()`,
-      [userId, chapterId, completed, maxBpm, practiceTime, testCompleted]
+    const existing = await pool.query(
+      'SELECT id FROM progress WHERE user_id = $1 AND chapter_id = $2',
+      [req.user.id, chapterId]
     );
     
-    res.json({ message: 'Progresso salvo com sucesso' });
+    if (existing.rows.length > 0) {
+      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', 'last_practiced = NOW()'];
+      let params = [maxBpm || 0, practiceTime || 0];
+      
+      if (typeof completed !== 'undefined' && completed !== null) {
+        updates.push('completed = $' + (params.length + 1));
+        params.push(completed ? true : false);
+      }
+      if (typeof testCompleted !== 'undefined' && testCompleted !== null) {
+        updates.push('test_completed = COALESCE($' + (params.length + 1) + ', test_completed)');
+        params.push(testCompleted ? true : null);
+      }
+      
+      params.push(existing.rows[0].id);
+      await pool.query(`UPDATE progress SET ${updates.join(', ')} WHERE id = $${params.length}`, params);
+    } else {
+      await pool.query(
+        `INSERT INTO progress (user_id, chapter_id, completed, max_bpm, practice_time, test_completed, last_practiced)
+         VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
+        [req.user.id, chapterId, completed ? true : false, maxBpm || 60, practiceTime || 0, testCompleted ? true : false]
+      );
+    }
+    
+    res.json({ success: true });
   } catch (err) {
     console.error('❌ Erro ao salvar progresso:', err.message);
     res.status(500).json({ error: 'Erro ao salvar progresso' });
   }
 });
 
-// ============ CUSTOM EXERCISES ROUTES ============
-
-app.post('/api/exercises', authenticateToken, async (req, res) => {
+// GET practice history (daily aggregate for heatmap)
+app.get('/api/progress/history', authenticateToken, async (req, res) => {
   try {
-    const { nome, sequencia, bpmAlvo, bpmRangeMin, bpmRangeMax, notesPerBeat, timeSignature } = req.body;
-    
     const result = await pool.query(
-      `INSERT INTO user_exercises (user_id, nome, sequencia, bpm_alvo, bpm_range_min, bpm_range_max, notes_per_beat, time_signature)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-      [req.user.userId, nome, sequencia, bpmAlvo, bpmRangeMin, bpmRangeMax, notesPerBeat, timeSignature]
+      `SELECT practice_date, SUM(total_seconds) as total_seconds FROM (
+        SELECT date(last_practiced) as practice_date, SUM(practice_time) as total_seconds
+        FROM progress
+        WHERE user_id = $1 AND last_practiced IS NOT NULL AND practice_time > 0
+        GROUP BY date(last_practiced)
+        UNION ALL
+        SELECT date(last_practiced) as practice_date, SUM(practice_time) as total_seconds
+        FROM user_exercise_progress
+        WHERE user_id = $1 AND last_practiced IS NOT NULL AND practice_time > 0
+        GROUP BY date(last_practiced)
+      ) t GROUP BY practice_date ORDER BY practice_date ASC`,
+      [req.user.id]
     );
-    
-    res.status(201).json({ message: 'Exercício criado', exerciseId: result.rows[0].id });
+    res.json(result.rows);
   } catch (err) {
-    console.error('❌ Erro ao criar exercício:', err.message);
-    res.status(500).json({ error: 'Erro ao criar exercício' });
+    console.error('❌ Erro ao buscar histórico:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar histórico' });
   }
 });
 
-app.get('/api/exercises/:userId', authenticateToken, async (req, res) => {
+// GET weekly + daily goals
+app.get('/api/user/weekly-goal', authenticateToken, async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM user_exercises WHERE user_id = $1', [req.params.userId]);
-    res.json(result.rows);
+    const result = await pool.query('SELECT weekly_goal, daily_goal FROM users WHERE id = $1', [req.user.id]);
+    const user = result.rows[0] || {};
+    res.json({
+      weeklyGoal: user.weekly_goal !== null && user.weekly_goal !== undefined ? user.weekly_goal : 60,
+      dailyGoal: user.daily_goal !== null && user.daily_goal !== undefined ? user.daily_goal : 10
+    });
+  } catch (err) {
+    console.error('❌ Erro ao buscar metas:', err.message);
+    res.status(500).json({ error: 'Erro ao buscar metas' });
+  }
+});
+
+// PUT weekly + daily goals
+app.put('/api/user/weekly-goal', authenticateToken, async (req, res) => {
+  try {
+    if (req.body.weeklyGoal !== undefined && req.body.weeklyGoal !== null) {
+      const goal = Math.max(15, Math.min(600, parseInt(req.body.weeklyGoal) || 60));
+      await pool.query('UPDATE users SET weekly_goal = $1 WHERE id = $2', [goal, req.user.id]);
+    }
+    if (req.body.dailyGoal !== undefined && req.body.dailyGoal !== null) {
+      const daily = Math.max(5, Math.min(240, parseInt(req.body.dailyGoal) || 10));
+      await pool.query('UPDATE users SET daily_goal = $1 WHERE id = $2', [daily, req.user.id]);
+    }
+    const result = await pool.query('SELECT weekly_goal, daily_goal FROM users WHERE id = $1', [req.user.id]);
+    const user = result.rows[0] || {};
+    res.json({
+      success: true,
+      weeklyGoal: user.weekly_goal !== undefined ? user.weekly_goal : 60,
+      dailyGoal: user.daily_goal !== undefined ? user.daily_goal : 10
+    });
+  } catch (err) {
+    console.error('❌ Erro ao salvar metas:', err.message);
+    res.status(500).json({ error: 'Erro ao salvar metas' });
+  }
+});
+
+// ============ EXERCÍCIOS PERSONALIZADOS ============
+
+// GET listar exercícios do usuário (com progresso)
+app.get('/api/user/exercises', authenticateToken, async (req, res) => {
+  try {
+    const exercisesResult = await pool.query('SELECT * FROM user_exercises WHERE user_id = $1 ORDER BY updated_at DESC', [req.user.id]);
+    const progressResult = await pool.query('SELECT * FROM user_exercise_progress WHERE user_id = $1', [req.user.id]);
+    
+    const progressMap = {};
+    for (const p of progressResult.rows) {
+      progressMap[p.exercise_id] = p;
+    }
+    
+    const result = exercisesResult.rows.map(ex => ({
+      ...ex,
+      sequencia: JSON.parse(ex.sequencia || '[]'),
+      progress: progressMap[ex.id] || null
+    }));
+    
+    res.json(result);
   } catch (err) {
     console.error('❌ Erro ao buscar exercícios:', err.message);
     res.status(500).json({ error: 'Erro ao buscar exercícios' });
   }
 });
 
-// ============ ACHIEVEMENTS ROUTES ============
-
-app.get('/api/achievements/:userId', authenticateToken, async (req, res) => {
+// POST criar exercício
+app.post('/api/user/exercises', authenticateToken, async (req, res) => {
   try {
-    const result = await pool.query('SELECT badge_name FROM achievements WHERE user_id = $1', [req.params.userId]);
-    res.json(result.rows.map(r => r.badge_name));
+    const { nome, sequencia, bpm_alvo, notes_per_beat, time_signature } = req.body;
+    if (!nome || !sequencia || !Array.isArray(sequencia) || sequencia.length === 0) {
+      return res.status(400).json({ error: 'Nome e sequência são obrigatórios' });
+    }
+    const seqJson = JSON.stringify(sequencia);
+    
+    const result = await pool.query(
+      `INSERT INTO user_exercises (user_id, nome, sequencia, bpm_alvo, notes_per_beat, time_signature)
+       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+      [req.user.id, nome.trim(), seqJson, bpm_alvo || 60, notes_per_beat || 2, time_signature || 4]
+    );
+    const id = result.rows[0].id;
+    
+    await pool.query(
+      'INSERT INTO user_exercise_progress (user_id, exercise_id) VALUES ($1, $2)',
+      [req.user.id, id]
+    );
+    
+    res.json({ id, success: true });
+  } catch (err) {
+    console.error('❌ Erro ao criar exercício:', err.message);
+    res.status(500).json({ error: 'Erro ao criar exercício' });
+  }
+});
+
+// PUT atualizar exercício
+app.put('/api/user/exercises/:id', authenticateToken, async (req, res) => {
+  try {
+    const { nome, sequencia, bpm_alvo, notes_per_beat, time_signature } = req.body;
+    const exResult = await pool.query('SELECT * FROM user_exercises WHERE id = $1 AND user_id = $2', [req.params.id, req.user.id]);
+    if (exResult.rows.length === 0) return res.status(404).json({ error: 'Exercício não encontrado' });
+    
+    const ex = exResult.rows[0];
+    const seqJson = sequencia ? JSON.stringify(sequencia) : ex.sequencia;
+    
+    await pool.query(
+      `UPDATE user_exercises SET nome = $1, sequencia = $2, bpm_alvo = $3, notes_per_beat = $4, time_signature = $5, updated_at = NOW()
+       WHERE id = $6 AND user_id = $7`,
+      [nome || ex.nome, seqJson, bpm_alvo || ex.bpm_alvo, notes_per_beat || ex.notes_per_beat, time_signature || ex.time_signature, req.params.id, req.user.id]
+    );
+    
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ Erro ao atualizar exercício:', err.message);
+    res.status(500).json({ error: 'Erro ao atualizar exercício' });
+  }
+});
+
+// DELETE excluir exercício
+app.delete('/api/user/exercises/:id', authenticateToken, async (req, res) => {
+  try {
+    await pool.query('DELETE FROM user_exercise_progress WHERE exercise_id = $1 AND user_id = $2', [req.params.id, req.user.id]);
+    await pool.query('DELETE FROM user_exercises WHERE id = $1 AND user_id = $2', [req.params.id, req.user.id]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ Erro ao excluir exercício:', err.message);
+    res.status(500).json({ error: 'Erro ao excluir exercício' });
+  }
+});
+
+// POST salvar progresso do exercício personalizado
+app.post('/api/user/exercises/:id/progress', authenticateToken, async (req, res) => {
+  try {
+    const { maxBpm, practiceTime, completed } = req.body;
+    const progResult = await pool.query(
+      'SELECT id FROM user_exercise_progress WHERE exercise_id = $1 AND user_id = $2',
+      [req.params.id, req.user.id]
+    );
+    
+    if (progResult.rows.length > 0) {
+      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', 'last_practiced = NOW()'];
+      let params = [maxBpm || 0, practiceTime || 0];
+      if (typeof completed !== 'undefined') {
+        updates.push('completed = $' + (params.length + 1));
+        params.push(completed ? true : false);
+      }
+      params.push(progResult.rows[0].id);
+      await pool.query(`UPDATE user_exercise_progress SET ${updates.join(', ')} WHERE id = $${params.length}`, params);
+    }
+    
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ Erro ao salvar progresso do exercício:', err.message);
+    res.status(500).json({ error: 'Erro ao salvar progresso' });
+  }
+});
+
+// ============ ACHIEVEMENTS ============
+
+const ACHIEVEMENTS = [
+  { id: 'first_chapter', name: 'Primeiro Capítulo', desc: 'Complete seu primeiro capítulo', icon: '📖' },
+  { id: 'five_chapters', name: 'Pentacampeão', desc: 'Complete 5 capítulos', icon: '⭐' },
+  { id: 'ten_chapters', name: 'Decacampeão', desc: 'Complete 10 capítulos', icon: '🌟' },
+  { id: 'twenty_chapters', name: 'Veterano', desc: 'Complete 20 capítulos', icon: '💫' },
+  { id: 'thirty_chapters', name: 'Guerreiro Experiente', desc: 'Complete 30 capítulos', icon: '🗡' },
+  { id: 'forty_chapters', name: 'Cavaleiro', desc: 'Complete 40 capítulos', icon: '🛡' },
+  { id: 'fifty_chapters', name: 'Lorde', desc: 'Complete 50 capítulos', icon: '👑' },
+  { id: 'all_prep', name: 'Mestre do Preparatório', desc: 'Complete todo o módulo preparatório', icon: '⚔' },
+  { id: 'all_main', name: 'Mestre do Módulo 1', desc: 'Complete todos os 66 capítulos', icon: '🏆' },
+  { id: 'first_prep', name: 'Primeiros Passos', desc: 'Complete a primeira aula preparatória', icon: '👣' },
+  { id: 'chapter_0', name: 'Portão de Entrada', desc: 'Complete o primeiro capítulo principal', icon: '🚪' },
+  { id: 'chapter_56', name: 'Groove Final', desc: 'Complete o capítulo 56 — o desafio final', icon: '🏁' },
+  { id: 'bpm_60', name: 'Passo Lento', desc: 'Pratique a 60 BPM', icon: '🐢' },
+  { id: 'bpm_100', name: 'Velocidade 100', desc: 'Atinga 100 BPM', icon: '💨' },
+  { id: 'bpm_150', name: 'Velocidade 150', desc: 'Atinga 150 BPM', icon: '🔥' },
+  { id: 'bpm_180', name: 'Turbinado', desc: 'Atinga 180 BPM', icon: '⚡' },
+  { id: 'bpm_200', name: 'Relâmpago', desc: 'Atinga 200 BPM', icon: '💥' },
+  { id: 'streak_1', name: 'Disciplina', desc: '1 dia consecutivo de prática', icon: '👉' },
+  { id: 'streak_3', name: 'Consistente', desc: '3 dias consecutivos de prática', icon: '📅' },
+  { id: 'streak_7', name: 'Dedicado', desc: '7 dias consecutivos de prática', icon: '📆' },
+  { id: 'streak_14', name: 'Duas Semanas', desc: '14 dias consecutivos de prática', icon: '🗓' },
+  { id: 'streak_30', name: 'Guerreiro', desc: '30 dias consecutivos de prática', icon: '🏅' },
+  { id: 'practice_15m', name: 'Aquecimento', desc: '15 minutos totais de prática', icon: '🔥' },
+  { id: 'practice_1h', name: 'Iniciante', desc: '1 hora total de prática', icon: '⏱' },
+  { id: 'practice_5h', name: 'Persistente', desc: '5 horas total de prática', icon: '⏳' },
+  { id: 'practice_10h', name: 'Incansável', desc: '10 horas total de prática', icon: '⌛' },
+  { id: 'practice_50h', name: 'Lenda', desc: '50 horas total de prática', icon: '🏅' },
+  { id: 'practice_100h', name: 'Lendário', desc: '100 horas total de prática', icon: '🗿' },
+  { id: 'practice_200h', name: 'Imortal', desc: '200 horas total de prática', icon: '⚱' },
+  { id: 'first_test', name: 'Testado', desc: 'Passe no primeiro teste', icon: '📝' },
+  { id: 'five_tests', name: 'Estudante', desc: 'Passe em 5 testes', icon: '📚' },
+  { id: 'fifteen_tests', name: 'Dedicado aos Estudos', desc: 'Passe em 15 testes', icon: '📖' },
+  { id: 'twentyfive_tests', name: 'Sábio', desc: 'Passe em 25 testes', icon: '🔮' },
+  { id: 'thirtyfive_tests', name: 'Mestre Acadêmico', desc: 'Passe em 35 testes', icon: '🎓' },
+  { id: 'all_tests', name: 'Mestre dos Testes', desc: 'Passe em todos os 75 testes', icon: '🎯' },
+  { id: 'rhythm_3', name: 'Aprendiz de Ritmos', desc: 'Complete 3 lições de ritmo', icon: '🥁' },
+  { id: 'rhythm_6', name: 'Ritmista', desc: 'Complete 6 lições de ritmo', icon: '🪘' },
+  { id: 'rhythm_all', name: 'Mestre dos Ritmos', desc: 'Complete todas as 9 lições de ritmo', icon: '🌍' },
+  { id: 'rhythm_tests', name: 'Políglota Rítmico', desc: 'Passe em todos os testes de ritmo', icon: '🎼' }
+];
+
+// Check and unlock achievements
+async function checkAchievements(userId) {
+  const progressResult = await pool.query('SELECT * FROM progress WHERE user_id = $1', [userId]);
+  const progress = progressResult.rows;
+  const completedIds = progress.filter(p => p.completed).map(p => p.chapter_id);
+  const testCompletedIds = progress.filter(p => p.test_completed).map(p => p.chapter_id);
+  const totalPracticeTime = progress.reduce((sum, p) => sum + (p.practice_time || 0), 0);
+  const maxBpmOverall = progress.reduce((mx, p) => Math.max(mx, p.max_bpm || 0), 0);
+
+  const existingResult = await pool.query('SELECT badge_name FROM achievements WHERE user_id = $1', [userId]);
+  const existingBadges = new Set(existingResult.rows.map(a => a.badge_name));
+
+  const practiceDates = [...new Set(progress.filter(p => p.last_practiced).map(p => new Date(p.last_practiced).toISOString().split('T')[0]))];
+  practiceDates.sort().reverse();
+  let streak = 0;
+  const now = new Date();
+  const utcToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  for (let d = 0; d < practiceDates.length; d++) {
+    const expected = new Date(utcToday.getTime() - d * 86400000);
+    if (practiceDates[d] === expected.toISOString().split('T')[0]) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+
+  const prepComplete = completedIds.filter(id => id >= 100).length === 9;
+  const mainComplete = completedIds.filter(id => id < 100).length === 66;
+  const allTestsPassed = testCompletedIds.length === 75;
+
+  const checks = [
+    { id: 'first_chapter', ok: completedIds.length >= 1 },
+    { id: 'five_chapters', ok: completedIds.length >= 5 },
+    { id: 'ten_chapters', ok: completedIds.length >= 10 },
+    { id: 'twenty_chapters', ok: completedIds.length >= 20 },
+    { id: 'thirty_chapters', ok: completedIds.length >= 30 },
+    { id: 'forty_chapters', ok: completedIds.length >= 40 },
+    { id: 'fifty_chapters', ok: completedIds.length >= 50 },
+    { id: 'all_prep', ok: prepComplete },
+    { id: 'all_main', ok: mainComplete },
+    { id: 'first_prep', ok: completedIds.includes(100) },
+    { id: 'chapter_0', ok: completedIds.includes(0) },
+    { id: 'chapter_56', ok: completedIds.includes(56) },
+    { id: 'bpm_60', ok: maxBpmOverall >= 60 },
+    { id: 'bpm_100', ok: maxBpmOverall >= 100 },
+    { id: 'bpm_150', ok: maxBpmOverall >= 150 },
+    { id: 'bpm_180', ok: maxBpmOverall >= 180 },
+    { id: 'bpm_200', ok: maxBpmOverall >= 200 },
+    { id: 'streak_1', ok: streak >= 1 },
+    { id: 'streak_3', ok: streak >= 3 },
+    { id: 'streak_7', ok: streak >= 7 },
+    { id: 'streak_14', ok: streak >= 14 },
+    { id: 'streak_30', ok: streak >= 30 },
+    { id: 'practice_15m', ok: totalPracticeTime >= 900 },
+    { id: 'practice_1h', ok: totalPracticeTime >= 3600 },
+    { id: 'practice_5h', ok: totalPracticeTime >= 18000 },
+    { id: 'practice_10h', ok: totalPracticeTime >= 36000 },
+    { id: 'practice_50h', ok: totalPracticeTime >= 180000 },
+    { id: 'practice_100h', ok: totalPracticeTime >= 360000 },
+    { id: 'practice_200h', ok: totalPracticeTime >= 720000 },
+    { id: 'first_test', ok: testCompletedIds.length >= 1 },
+    { id: 'five_tests', ok: testCompletedIds.length >= 5 },
+    { id: 'fifteen_tests', ok: testCompletedIds.length >= 15 },
+    { id: 'twentyfive_tests', ok: testCompletedIds.length >= 25 },
+    { id: 'thirtyfive_tests', ok: testCompletedIds.length >= 35 },
+    { id: 'all_tests', ok: allTestsPassed },
+    { id: 'rhythm_3', ok: completedIds.filter(id => id >= 57 && id <= 65).length >= 3 },
+    { id: 'rhythm_6', ok: completedIds.filter(id => id >= 57 && id <= 65).length >= 6 },
+    { id: 'rhythm_all', ok: completedIds.filter(id => id >= 57 && id <= 65).length === 9 },
+    { id: 'rhythm_tests', ok: testCompletedIds.filter(id => id >= 57 && id <= 65).length === 9 }
+  ];
+
+  const unlocked = [];
+  for (const c of checks) {
+    if (c.ok && !existingBadges.has(c.id)) {
+      await pool.query('INSERT INTO achievements (user_id, badge_name) VALUES ($1, $2)', [userId, c.id]);
+      unlocked.push(c);
+    }
+  }
+  return unlocked;
+}
+
+// GET achievements
+app.get('/api/achievements', authenticateToken, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM achievements WHERE user_id = $1', [req.user.id]);
+    res.json({ achievements: result.rows, all: ACHIEVEMENTS });
   } catch (err) {
     console.error('❌ Erro ao buscar achievements:', err.message);
     res.status(500).json({ error: 'Erro ao buscar achievements' });
+  }
+});
+
+// POST check achievements
+app.post('/api/achievements/check', authenticateToken, async (req, res) => {
+  try {
+    const unlocked = await checkAchievements(req.user.id);
+    const details = unlocked.map(u => ACHIEVEMENTS.find(a => a.id === u.id));
+    res.json({ new: details });
+  } catch (err) {
+    console.error('❌ Erro ao checar achievements:', err.message);
+    res.status(500).json({ error: 'Erro ao checar achievements' });
   }
 });
 
@@ -404,7 +781,7 @@ app.get('/api/stats', async (req, res) => {
     const completions = await pool.query('SELECT COUNT(*) as count FROM progress WHERE completed = true');
     
     res.json({
-      totalCapitulos: chaptersCache?.length || 0,
+      totalAulas: chaptersCache?.length || 0,
       totalUsuarios: userCount.rows[0].count,
       capitulosCompletados: completions.rows[0].count
     });
