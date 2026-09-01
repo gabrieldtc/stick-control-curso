@@ -1,316 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DO TRAVESSEIRO AO GROOVE - Conquistas</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
-  <style>
-    .achievements-header {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    .achievements-header h1 {
-      font-family: 'Cinzel Decorative', serif;
-      color: var(--gold);
-      font-size: 28px;
-      text-shadow: 0 0 24px var(--gold-glow);
-    }
-    .achievements-header p {
-      color: var(--text-muted);
-      margin-top: 8px;
-    }
-    .achievements-summary {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      padding: 20px;
-      background: rgba(8, 6, 4, 0.6);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.3);
-    }
-    .achievements-summary .summary-item {
-      text-align: center;
-    }
-    .achievements-summary .summary-value {
-      font-family: 'MedievalSharp', cursive;
-      font-size: 32px;
-      color: var(--gold);
-      text-shadow: 0 0 16px var(--gold-glow);
-    }
-    .achievements-summary .summary-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 4px;
-    }
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
-    }
-    .achievement-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(145deg, #16130e, #100e0a);
-      background-image: var(--parchment), linear-gradient(145deg, #16130e, #100e0a);
-      background-size: 200px 200px, 100% 100%;
-      border-radius: var(--radius-md);
-      padding: 16px;
-      transition: all var(--transition-normal);
-      box-shadow: var(--shadow-sm), 0 0 15px rgba(201, 168, 76, 0.05);
-    }
-    .achievement-card.unlocked {
-      border-left: 3px solid var(--gold);
-      box-shadow: var(--shadow-sm), 0 0 20px rgba(201, 168, 76, 0.1);
-    }
-    .achievement-card.locked-ach {
-      opacity: 0.7;
-      filter: grayscale(0.3);
-    }
-    .achievement-card:hover {
-      transform: translateY(-2px);
-    }
-    .achievement-card .ach-icon {
-      font-size: 28px;
-      width: 44px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .achievement-card .ach-info {
-      flex: 1;
-      min-width: 0;
-    }
-    .achievement-card .ach-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-primary);
-      font-family: 'Cinzel', serif;
-    }
-    .achievement-card.unlocked .ach-name {
-      color: var(--gold);
-    }
-    .achievement-card .ach-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-    .achievement-card .ach-status {
-      font-size: 16px;
-      flex-shrink: 0;
-      width: 28px;
-      text-align: center;
-    }
-    .achievement-card.unlocked .ach-status {
-      color: var(--success);
-      font-weight: 700;
-    }
-    @media (max-width: 768px) {
-      .achievements-header h1 { font-size: 22px; }
-      .achievements-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      }
-      .achievement-card { padding: 12px; gap: 8px; }
-      .achievement-card .ach-icon { font-size: 22px; width: 36px; }
-      .achievement-card .ach-name { font-size: 12px; }
-      .achievement-card .ach-desc { font-size: 11px; }
-      .achievements-summary { gap: 16px; padding: 16px; }
-      .achievements-summary .summary-value { font-size: 24px; }
-    }
-    @media (max-width: 480px) {
-      .achievements-summary { flex-direction: column; gap: 12px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquistas - Do Travesseiro ao Groove</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <button class="hamburger" id="hamburger-btn">☰</button>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"></div>
-    <nav class="sidebar-nav">
-      <a href="/intro">📖 Introdução</a>
-      <a href="/dashboard">🏠 Aulas</a>
-      <a href="/curso">🎓 Curso</a>
-      <a href="/teste">📝 Teste</a>
-      <a href="/conquistas" class="active">🏅 Conquistas</a>
-      <a href="/evolucao">📈 Evolução</a>
-      <a href="/criar-exercicio">✏️ Criar Exercício</a>
-      <a href="/faq">❓ FAQ</a>
-      <div class="sidebar-theme-toggle">
-        <span>Tema</span>
-        <div class="theme-toggle-switch"></div>
-      </div>
-      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
-    </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">Progresso</div>
-      <div class="sidebar-progress-bar">
-        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
-      </div>
+    <div class="navbar">
+        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
+        <div class="navbar-menu">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/curso" class="nav-link">Curso</a>
+            <a href="/conquistas" class="nav-link active">Conquistas</a>
+            <a href="#" onclick="logout()" class="nav-link">Sair</a>
+        </div>
     </div>
-  </aside>
-
-  <div class="main-content">
-    <div class="banner">
-      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
+    
+    <div class="achievements-container">
+        <h1>🏆 Suas Conquistas</h1>
+        
+        <div class="achievements-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="achievements-count">0</div>
+                <div class="stat-label">Conquistas Desbloqueadas</div>
+            </div>
+        </div>
+        
+        <div class="achievements-grid" id="achievements-list">
+            <p class="loading">Carregando conquistas...</p>
+        </div>
     </div>
-
-    <div class="achievements-header scroll-reveal">
-      <h1>🏅 Conquistas</h1>
-      <p>Desbloqueie medalhas completando desafios</p>
-    </div>
-
-    <div class="achievements-summary scroll-reveal">
-      <div class="summary-item">
-        <div class="summary-value" id="ach-unlocked">0</div>
-        <div class="summary-label">Desbloqueadas</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-value" id="ach-total">0</div>
-        <div class="summary-label">Total</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-value" id="ach-percent">0%</div>
-        <div class="summary-label">Completo</div>
-      </div>
-    </div>
-
-    <div class="achievements-grid" id="achievements-grid">
-      <p style="color: var(--text-secondary);">Carregando...</p>
-    </div>
-  </div>
-
-  <!-- Back to top -->
-  <button class="back-to-top" id="back-to-top">⬆</button>
-
-  <script src="js/particles.js"></script>
-  <script src="js/theme.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const token = localStorage.getItem('token');
-      if (!token) { window.location.href = '/'; return; }
-
-      // Load achievements first — before anything that could throw
-      loadAchievements();
-
-      // Sidebar toggle
-      const hamburger = document.getElementById('hamburger-btn');
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      if (hamburger && sidebar && overlay) {
-        hamburger.addEventListener('click', () => {
-          sidebar.classList.toggle('open');
-          overlay.classList.toggle('active');
-        });
-        overlay.addEventListener('click', () => {
-          sidebar.classList.remove('open');
-          overlay.classList.remove('active');
-        });
-      }
-
-      // Logout
-      document.querySelectorAll('.logout').forEach(el => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          localStorage.clear();
-          window.location.href = '/';
-        });
-      });
-
-      // Sidebar progress
-      loadSidebarProgress();
-
-      // Back to top
-      const backBtn = document.getElementById('back-to-top');
-      if (backBtn) {
-        window.addEventListener('scroll', () => {
-          backBtn.classList.toggle('visible', window.scrollY > 400);
-        });
-        backBtn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      // Scroll reveal
-      if ('IntersectionObserver' in window) {
-        const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('revealed');
-              revealObserver.unobserve(entry.target);
+    
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadAchievements);
+        
+        async function loadAchievements() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/';
+                return;
             }
-          });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-      }
-
-      async function loadSidebarProgress() {
-        try {
-          const [progressRes, statsRes] = await Promise.all([
-            fetch('/api/progress', { headers: { 'Authorization': 'Bearer ' + token } }),
-            fetch('/api/stats')
-          ]);
-          const progress = await progressRes.json();
-          const stats = await statsRes.json();
-          const completed = progress.filter(p => p.completed).length;
-          const total = stats.totalAulas || 1;
-          const pct = Math.round((completed / total) * 100);
-          const fill = document.getElementById('sidebar-progress-fill');
-          if (fill) fill.style.width = pct + '%';
-        } catch(e) {}
-      }
-
-      async function loadAchievements() {
-        try {
-          const res = await fetch('/api/achievements', {
-            headers: { 'Authorization': 'Bearer ' + token }
-          });
-          const data = await res.json();
-          const unlockedIds = new Set(data.achievements.map(a => a.badge_name));
-          const total = data.all.length;
-          const unlocked = unlockedIds.size;
-
-          document.getElementById('ach-unlocked').textContent = unlocked;
-          document.getElementById('ach-total').textContent = total;
-          document.getElementById('ach-percent').textContent = total > 0 ? Math.round((unlocked / total) * 100) + '%' : '0%';
-
-          const grid = document.getElementById('achievements-grid');
-          if (!grid) return;
-          grid.innerHTML = data.all.map(a => {
-            const isUnlocked = unlockedIds.has(a.id);
-            return '<div class="achievement-card ' + (isUnlocked ? 'unlocked' : 'locked-ach') + ' scroll-reveal">' +
-              '<div class="ach-icon">' + a.icon + '</div>' +
-              '<div class="ach-info">' +
-                '<div class="ach-name">' + a.name + '</div>' +
-                '<div class="ach-desc">' + (isUnlocked ? a.desc : '🔒 ' + a.desc) + '</div>' +
-              '</div>' +
-              '<div class="ach-status">' + (isUnlocked ? '\u2713' : '') + '</div>' +
-            '</div>';
-          }).join('');
-          if ('IntersectionObserver' in window) {
-            document.querySelectorAll('#achievements-grid .scroll-reveal').forEach(function(el) {
-              var obs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                  if (entry.isIntersecting) { entry.target.classList.add('revealed'); obs.unobserve(entry.target); }
+            
+            try {
+                const res = await fetch('/api/achievements', {
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
-              }, { threshold: 0.1 });
-              obs.observe(el);
-            });
-          }
-        } catch(e) {
-          var g = document.getElementById('achievements-grid');
-          if (g) g.innerHTML = '<p style="color: var(--text-secondary);">Erro ao carregar conquistas.</p>';
+                
+                if (!res.ok) throw new Error('Erro ao carregar conquistas');
+                
+                const data = await res.json();
+                renderAchievements(data.achievements, data.all);
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('achievements-list').innerHTML = '<p class="error">Erro ao carregar conquistas</p>';
+            }
         }
-      }
-    });
-  </script>
+        
+        function renderAchievements(unlocked, all) {
+            const unlockedIds = new Set(unlocked.map(a => a.badge_name));
+            document.getElementById('achievements-count').textContent = unlocked.length;
+            
+            const list = document.getElementById('achievements-list');
+            
+            list.innerHTML = all.map(achievement => {
+                const isUnlocked = unlockedIds.has(achievement.id);
+                return `
+                    <div class="achievement-card ${isUnlocked ? 'unlocked' : 'locked'}">
+                        <div class="achievement-icon">${achievement.icon || '🏅'}</div>
+                        <h3>${achievement.name}</h3>
+                        <p>${achievement.description}</p>
+                        ${isUnlocked ? '<span class="badge-status">✓ Desbloqueada</span>' : '<span class="badge-status">🔒 Bloqueada</span>'}
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
 </body>
 </html>

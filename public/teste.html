@@ -1,883 +1,162 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DO TRAVESSEIRO AO GROOVE - Testes</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praticar - Do Travesseiro ao Groove</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <button class="hamburger" id="hamburger-btn">☰</button>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"></div>
-    <nav class="sidebar-nav">
-      <a href="/intro">📖 Introdução</a>
-      <a href="/dashboard">🏠 Aulas</a>
-      <a href="/curso">🎓 Curso</a>
-      <a href="/teste" class="active">📝 Teste</a>
-      <a href="/conquistas">🏅 Conquistas</a>
-      <a href="/evolucao">📈 Evolução</a>
-      <a href="/criar-exercicio">✏️ Criar Exercício</a>
-      <a href="/faq">❓ FAQ</a>
-      <div class="sidebar-theme-toggle">
-        <span>Tema</span>
-        <div class="theme-toggle-switch"></div>
-      </div>
-      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
-    </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">Progresso</div>
-      <div class="sidebar-progress-bar">
-        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
-      </div>
-    </div>
-  </aside>
-
-  <div class="main-content">
-    <!-- Banner -->
-    <div class="banner">
-      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
-    </div>
-
-    <!-- Header -->
-    <section class="dashboard-hero scroll-reveal">
-      <h2>📝 Testes</h2>
-      <p class="lead">Teste seus conhecimentos de cada aula e capítulo</p>
-    </section>
-
-    <!-- Progress Summary -->
-    <div class="stats-grid scroll-reveal" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 32px;">
-      <div class="stat-card">
-        <div class="stat-value" id="stat-tests-done">0</div>
-        <div class="stat-label">Testes Realizados</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-tests-passed">0</div>
-        <div class="stat-label">Aprovados</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-tests-percent">0%</div>
-        <div class="stat-label">Aprovação</div>
-      </div>
-    </div>
-
-    <!-- Módulo Preparatório -->
-    <h3 class="module-title scroll-reveal">📘 Testes — Módulo Preparatório</h3>
-    <div class="tests-grid" id="prep-tests-grid">
-      <p style="color: var(--text-secondary);">Carregando...</p>
-    </div>
-
-    <!-- Módulo 1 -->
-    <h3 class="module-title" id="module1-test-title" style="opacity: 0.4;">📗 Testes — Módulo 1</h3>
-    <div class="tests-grid" id="main-tests-grid" style="opacity: 0.4;">
-      <p style="color: var(--text-secondary);">Complete o Módulo Preparatório para destravar</p>
-    </div>
-
-    <!-- Ritmos -->
-    <h3 class="module-title scroll-reveal" id="rhythm-test-title" style="opacity: 0.4;">🥁 Testes — Ritmos</h3>
-    <div class="tests-grid scroll-reveal" id="rhythm-tests-grid" style="opacity: 0.4;">
-      <p style="color: var(--text-secondary);">Complete o Módulo 1 para destravar</p>
-    </div>
-
-    <!-- Test Modal -->
-    <div class="modal-overlay" id="test-modal" style="display: none;">
-      <div class="modal-content">
-        <button class="modal-close" id="modal-close">&times;</button>
-        <h3 id="modal-title">Teste do Capítulo</h3>
-        <div id="modal-questions"></div>
-        <div class="modal-footer">
-          <button class="btn-control" id="submit-test">Enviar Respostas</button>
-          <div id="test-result" style="display: none;"></div>
+    <div class="navbar">
+        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
+        <div class="navbar-menu">
+            <a href="/curso" class="nav-link">← Voltar</a>
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="#" onclick="logout()" class="nav-link">Sair</a>
         </div>
-      </div>
     </div>
-  </div>
-
-  <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
-
-  <script src="js/particles.js"></script>
-  <script src="js/theme.js"></script>
-  <script>
-    const token = localStorage.getItem('token');
-    if (!token) window.location.href = '/';
-
-    // Hamburger menu
-    document.getElementById('hamburger-btn').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('sidebar-overlay').classList.toggle('active');
-    });
-    document.getElementById('sidebar-overlay').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('sidebar-overlay').classList.remove('active');
-    });
-
-    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('introCompleted');
-      localStorage.removeItem('lastChapter');
-      window.location.href = '/';
-    });
-
-    // Sidebar progress
-    async function loadSidebarProgress() {
-      try {
-        const [progressRes, statsRes] = await Promise.all([
-          fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } }),
-          fetch('/api/stats')
-        ]);
-        const progress = await progressRes.json();
-        const stats = await statsRes.json();
-        const completed = progress.filter(p => p.completed).length;
-        const total = stats.totalAulas || 1;
-        const pct = Math.round((completed / total) * 100);
-        const fill = document.getElementById('sidebar-progress-fill');
-        if (fill) fill.style.width = pct + '%';
-      } catch(e) {}
-    }
-    loadSidebarProgress();
-
-    // Back to top
-    const backBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      backBtn.classList.toggle('visible', window.scrollY > 400);
-    });
-    backBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Scroll reveal
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-
-    let userProgress = [];
-    let currentTest = null;
-    let userAnswers = {};
-
-    function renderTestCard(chapterId, label, isUnlocked, isCompleted, isChapterDone) {
-      let statusHtml = '';
-      if (isCompleted) {
-        statusHtml = '<span class="badge" style="background: rgba(63, 185, 80, 0.2); color: var(--success);">✓ Aprovado</span>';
-      } else if (isUnlocked) {
-        statusHtml = '<span class="badge" style="background: rgba(88, 166, 255, 0.15); color: var(--info);">Fazer Teste</span>';
-      } else {
-        statusHtml = '<span class="badge" style="background: var(--bg-tertiary); color: var(--text-secondary);">🔒 Trancado</span>';
-      }
-      
-      const chapterStatus = isChapterDone 
-        ? '<span style="font-size: 12px; color: var(--success); margin-top: 8px; display: block;">Aula concluída</span>'
-        : '<span style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; display: block;">Aula em andamento</span>';
-      
-      return `
-        <div class="chapter-card ${isUnlocked ? '' : 'locked'} ${isCompleted ? 'completed' : ''}" 
-             onclick="${isUnlocked ? `openTest(${chapterId})` : ''}"
-             style="${!isUnlocked ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
-          <div class="chapter-number">${label}</div>
-          <h4>${getTestTitle(chapterId)}</h4>
-          ${statusHtml}
-          ${chapterStatus}
-        </div>
-      `;
-    }
-
-    function getTestTitle(id) {
-      if (id >= 100) return `Aula ${id - 99}`;
-      if (id >= 57) return `Ritmo ${id - 56}`;
-      return `Capítulo ${id + 1}`;
-    }
-
-    async function loadTests() {
-      try {
-        const progressRes = await fetch('/api/progress', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        userProgress = await progressRes.json();
-        const completedIds = new Set(userProgress.filter(p => p.completed).map(p => p.chapter_id));
-        const testCompletedIds = new Set(userProgress.filter(p => p.test_completed).map(p => p.chapter_id));
-
-        // Update stats
-        const totalTests = 75;
-        const doneCount = testCompletedIds.size;
-        const passedCount = doneCount;
-        const percent = totalTests > 0 ? Math.round((passedCount / totalTests) * 100) : 0;
-        document.getElementById('stat-tests-done').textContent = doneCount;
-        document.getElementById('stat-tests-passed').textContent = passedCount;
-        document.getElementById('stat-tests-percent').textContent = `${percent}%`;
-
-        const prepGrid = document.getElementById('prep-tests-grid');
-        const mainGrid = document.getElementById('main-tests-grid');
-        const module1Title = document.getElementById('module1-test-title');
-
-        // Preparatory module tests (100-108)
-        let prepHtml = '';
-        for (let i = 100; i <= 108; i++) {
-          const chapterProgress = userProgress.find(p => p.chapter_id === i);
-          const isCompleted = chapterProgress && chapterProgress.test_completed;
-          const isChapterDone = chapterProgress && chapterProgress.completed;
-          
-          let isUnlocked = false;
-          if (i === 100) {
-            isUnlocked = isChapterDone || isCompleted || completedIds.has(100);
-          } else {
-            isUnlocked = isChapterDone || isCompleted;
-          }
-
-          prepHtml += renderTestCard(i, `Aula ${i - 99}`, isUnlocked, isCompleted, isChapterDone);
-        }
-        prepGrid.innerHTML = prepHtml;
-
-        // Main module tests (0-50) - only unlocked after prep complete
-        const prepComplete = completedIds.has(108);
-
-        if (prepComplete) {
-          mainGrid.style.opacity = '1';
-          module1Title.style.opacity = '1';
-
-          let mainHtml = '';
-          for (let i = 0; i <= 56; i++) {
-            const chapterProgress = userProgress.find(p => p.chapter_id === i);
-            const isCompleted = chapterProgress && chapterProgress.test_completed;
-            const isChapterDone = chapterProgress && chapterProgress.completed;
+    
+    <div class="practice-container">
+        <h1 id="chapter-title">Praticar Capítulo</h1>
+        
+        <div class="practice-content">
+            <div id="chapter-content" class="chapter-content">
+                <p class="loading">Carregando conteúdo...</p>
+            </div>
             
-            let isUnlocked = false;
-            if (i === 0) {
-              isUnlocked = isChapterDone || isCompleted || completedIds.has(0);
-            } else {
-              isUnlocked = isChapterDone || isCompleted;
-            }
-
-            mainHtml += renderTestCard(i, `Capítulo ${i + 1}`, isUnlocked, isCompleted, isChapterDone);
-          }
-          mainGrid.innerHTML = mainHtml;
-        } else {
-          mainGrid.style.opacity = '0.4';
-          module1Title.style.opacity = '0.4';
-          mainGrid.innerHTML = '<p style="color: var(--text-secondary); padding: 16px;">Complete o Módulo Preparatório para destravar</p>';
-        }
-
-        // Rhythm module tests (57-65) - unlocked after main complete
-        const rhythmGrid = document.getElementById('rhythm-tests-grid');
-        const rhythmTitle = document.getElementById('rhythm-test-title');
-        const mainComplete = completedIds.has(56);
-
-        if (mainComplete) {
-          rhythmGrid.style.opacity = '1';
-          rhythmTitle.style.opacity = '1';
-
-          let rhythmHtml = '';
-          for (let i = 57; i <= 65; i++) {
-            const chapterProgress = userProgress.find(p => p.chapter_id === i);
-            const isCompleted = chapterProgress && chapterProgress.test_completed;
-            const isChapterDone = chapterProgress && chapterProgress.completed;
-
-            let isUnlocked = false;
-            if (i === 57) {
-              isUnlocked = isChapterDone || isCompleted || completedIds.has(57);
-            } else {
-              isUnlocked = isChapterDone || isCompleted;
-            }
-
-            rhythmHtml += renderTestCard(i, `Ritmo ${i - 56}`, isUnlocked, isCompleted, isChapterDone);
-          }
-          rhythmGrid.innerHTML = rhythmHtml;
-        } else {
-          rhythmGrid.style.opacity = '0.4';
-          rhythmTitle.style.opacity = '0.4';
-          rhythmGrid.innerHTML = '<p style="color: var(--text-secondary); padding: 16px;">Complete o Módulo 1 para destravar</p>';
-        }
-
-      } catch (error) {
-        console.error('Error loading tests:', error);
-      }
-    }
-
-    const testQuestions = {
-      100: [
-        { q: "Onde segurar a baqueta?", options: ["Na ponta", "No meio", "No ponto de equilíbrio (1/3)", "Em qualquer lugar"], correct: 2 },
-        { q: "De onde vem o movimento?", options: ["Dos braços", "Dos punhos", "Dos ombros", "Do corpo todo"], correct: 1 },
-        { q: "A postura correta é:", options: ["Curvado", "Ereto e relaxado", "De pé", "Encolhido"], correct: 1 },
-        { q: "Se suas mãos doem, significa que:", options: ["Está fazendo certo", "Está apertando demais", "Deve tocar mais rápido", "Nada"], correct: 1 }
-      ],
-      101: [
-        { q: "Neste exercício, toca-se:", options: ["Alternado", "Só direita, depois só esquerda", "Junto", "Em trios"], correct: 1 },
-        { q: "O objetivo é:", options: ["Tocar rápido", "Acostumar as mãos com o movimento", "Fazer fills", "Tocar música"], correct: 1 },
-        { q: "A mão esquerda costuma ser:", options: ["Mais forte", "Mais fraca no início", "Igual", "Não importa"], correct: 1 },
-        { q: "Quantas batidas por mão no exercício?", options: ["4", "8", "16", "2"], correct: 1 }
-      ],
-      102: [
-        { q: "Alternância simples é:", options: ["RR LL", "RLRL", "RRLRLL", "RLLR"], correct: 1 },
-        { q: "O que manter constante?", options: ["Velocidade máxima", "Volume e ritmo", "Só a mão direita", "Nada"], correct: 1 },
-        { q: "Devagar é:", options: ["Ruim", "Lento demais", "Rápido", "Chato"], correct: 2 },
-        { q: "Praticar na frente de um espelho ajuda a:", options: ["Ver erros", "Ver se os movimentos são simétricos", "Não serve para nada", "Se olhar bonito"], correct: 1 }
-      ],
-      103: [
-        { q: "Batidas duplas são:", options: ["RLRL", "RR LL", "RRLRLL", "RRR LLL"], correct: 1 },
-        { q: "O erro mais comum é:", options: ["Tocar alto demais", "A segunda batida mais fraca que a primeira", "Tocar rápido demais", "Usar braços"], correct: 1 },
-        { q: "Por que batidas duplas importam?", options: ["Não importam", "São usadas em centenas de exercícios", "Só para jazz", "Só para rock"], correct: 1 },
-        { q: "Comece a que BPM?", options: ["120", "80", "40", "200"], correct: 2 }
-      ],
-      104: [
-        { q: "O padrão R R L R L L R L é:", options: ["Alternância simples", "Batidas duplas", "Uma combinação mista", "Um flam"], correct: 2 },
-        { q: "Este exercício prepara para:", options: ["Rulos", "Paradiddle", "Flams", "Nada"], correct: 1 },
-        { q: "Quantas notas tem o padrão?", options: ["4", "6", "8", "10"], correct: 2 },
-        { q: "Se confundir, deve:", options: ["Desistir", "Parar e recomeçar devagar", "Tocar mais rápido", "Pular"], correct: 1 }
-      ],
-      105: [
-        { q: "Ritmo com pausas usa:", options: ["Só som", "Som e silêncio", "Só silêncio", "Apenas palmadas"], correct: 1 },
-        { q: "Nas pausas, deve-se:", options: ["Tocar rápido", "Sentir o pulso interno", "Parar de respirar", "Não fazer nada"], correct: 1 },
-        { q: "O que é tão importante quanto tocar?", options: ["Velocidade", "O silêncio", "Volume", "Força"], correct: 1 },
-        { q: "No exercício, toca-se no:", options: ["Primeiro tempo", "Todos os tempos", "Segundo tempo", "Nenhum tempo"], correct: 0 }
-      ],
-      106: [
-        { q: "Neste exercício, toca-se no:", options: ["Primeiro tempo", "Segundo tempo", "Terceiro tempo", "Quarto tempo"], correct: 1 },
-        { q: "O desafio principal é:", options: ["Tocar rápido", "Esperar o tempo 1 e tocar no 2", "Tocar junto", "Não usar metrônomo"], correct: 1 },
-        { q: "O padrão de mãos é:", options: ["R - - - L - - -", "- R - - - L - -", "- - R - - - L -", "- - - R - - - L"], correct: 1 },
-        { q: "Este exercício treina:", options: ["Velocidade", "Controle de entrada em tempos diferentes", "Força", "Volume"], correct: 1 }
-      ],
-      107: [
-        { q: "Neste exercício, toca-se no:", options: ["Primeiro tempo", "Segundo tempo", "Terceiro tempo", "Quarto tempo"], correct: 2 },
-        { q: "Por que é mais difícil que o anterior?", options: ["Mais rápido", "Esperar dois tempos antes de tocar", "Mais lento", "Não é difícil"], correct: 1 },
-        { q: "O terceiro tempo na música é onde entra a:", options: ["Melodia", "Contracente", "Bateria", "Guitarra"], correct: 1 },
-        { q: "O padrão de mãos é:", options: ["R - - - L - - -", "- R - - - L - -", "- - R - - - L -", "- - - R - - - L"], correct: 2 }
-      ],
-      108: [
-        { q: "Neste exercício, toca-se no:", options: ["Primeiro tempo", "Segundo tempo", "Terceiro tempo", "Quarto tempo"], correct: 3 },
-        { q: "Quantos tempos de espera antes de tocar?", options: ["Um", "Dois", "Três", "Nenhum"], correct: 2 },
-        { q: "Ao completar este exercício, você dominou:", options: ["Só o primeiro tempo", "Todos os 4 tempos do compasso", "Apenas metade", "Nada"], correct: 1 },
-        { q: "Este é o último exercício do:", options: ["Módulo 1", "Módulo preparatório", "Curso inteiro", "Nenhum"], correct: 1 }
-      ],
-      0: [
-        { q: "O que é este curso?", options: ["Um tipo de bateria", "Um curso de técnica de baquetas", "Um ritmo musical", "Um instrumento"], correct: 1 },
-        { q: "Quem escreveu o livro original?", options: ["John Bonham", "Keith Moon", "George Lawrence Stone", "Mike Portnoy"], correct: 2 },
-        { q: "Em que ano foi publicado?", options: ["1950", "1935", "1975", "1920"], correct: 1 },
-        { q: "Qual a postura correta?", options: ["Encostado na cadeira", "Ereto, pés no chão, braços relaxados", "Curvado para frente", "De pé"], correct: 1 }
-      ],
-      1: [
-        { q: "Qual é o tambor mais grave da bateria?", options: ["Caixa", "Tom", "Bumbo", "Chimbal"], correct: 2 },
-        { q: "Qual componente tem arames (snares)?", options: ["Bumbo", "Tom", "Caixa", "Prato"], correct: 2 },
-        { q: "O que é o chimbal?", options: ["Um tambor", "Dois pratos com pedal", "Um prato grande", "Um pedal"], correct: 1 },
-        { q: "Qual prato faz som estrondoso?", options: ["Ride", "Chimbal", "Crash", "Splash"], correct: 2 }
-      ],
-      2: [
-        { q: "O que significa R na partitura?", options: ["Repetir", "Mão Direita", "Ritmo", "Rápido"], correct: 1 },
-        { q: "O que significa L na partitura?", options: ["Longo", "Mão Esquerda", "Lento", "Leve"], correct: 1 },
-        { q: "O que é um compasso 4/4?", options: ["4 batidas por compasso", "4 compassos", "Velocidade 4", "4 mãos"], correct: 0 },
-        { q: "R maiúsculo significa:", options: ["Suave", "Forte", "Repetir", "Parar"], correct: 1 }
-      ],
-      3: [
-        { q: "Como é a alternância simples?", options: ["RR LL", "RLRL", "RRLRLL", "RLLR"], correct: 1 },
-        { q: "Qual o segredo da alternância?", options: ["Velocidade máxima", "Devagar é rápido", "Só mão direita", "Força bruta"], correct: 1 },
-        { q: "Qual BPM começar?", options: ["120", "80", "60", "200"], correct: 2 },
-        { q: "Quanto tempo praticar por dia?", options: ["1 minuto", "5 horas", "10-15 minutos", "Nunca"], correct: 2 }
-      ],
-      4: [
-        { q: "Como é o padrão de pares?", options: ["RLRL", "RRLL", "RLLR", "RRRLLL"], correct: 1 },
-        { q: "Quantas vezes cada mão toca nos pares?", options: ["1 vez", "2 vezes", "3 vezes", "4 vezes"], correct: 1 },
-        { q: "Os pares servem para:", options: ["Só jazz", "Desenvolver controle individual", "Só rock", "Nada"], correct: 1 }
-      ],
-      5: [
-        { q: "Como indicar acento na partitura?", options: ["Negrito", "Maiúscula", "Itálico", "Sublinhado"], correct: 1 },
-        { q: "r (minúsculo) significa:", options: ["Forte", "Suave", "Repetir", "Parar"], correct: 1 },
-        { q: "Acentuar dá à música:", options: ["Monotonia", "Rapidez", "Movimento e energia", "Silêncio"], correct: 2 },
-        { q: "O padrão R l r l tem acento em:", options: ["Todas", "Nenhuma", "Apenas no R", "Apenas no l"], correct: 2 }
-      ],
-      6: [
-        { q: "Grupos de 3 criam efeito:", options: ["Quadrado", "Circular", "Reto", "Angular"], correct: 1 },
-        { q: "Tercinas são comuns em:", options: ["Rock pesado", "Baladas e jazz", "Death metal", "Eletrônica"], correct: 1 },
-        { q: "Como contar tercinas?", options: ["UM-dois, UM-dois", "UM-dois-três, UM-dois-três", "UM, UM, UM", "1, 2, 3, 4, 5"], correct: 1 }
-      ],
-      7: [
-        { q: "Quadrupletas são quantas notas?", options: ["2", "3", "4", "5"], correct: 2 },
-        { q: "Com acento na primeira fica:", options: ["ta-ta-ta-TA", "TA-ta-ta-ta", "ta-TA-ta-ta", "ta-ta-TA-ta"], correct: 1 },
-        { q: "Quadrupletas são usadas em:", options: ["Só baladas", "Fills e transições", "Só jazz", "Nunca"], correct: 1 }
-      ],
-      8: [
-        { q: "Duplos são:", options: ["RLRL", "RR LL", "RRR LLL", "RRLRLL"], correct: 1 },
-        { q: "O desafio dos duplos é:", options: ["Velocidade", "Transição entre mãos", "Volume", "Nada"], correct: 1 }
-      ],
-      9: [
-        { q: "Triplos são quantas batidas cada mão?", options: ["2", "3", "4", "5"], correct: 1 },
-        { q: "Triplos são comuns em:", options: ["Jazz suave", "Rock e metal", "Só baladas", "Nunca"], correct: 1 }
-      ],
-      10: [
-        { q: "Quádruplos são quantas batidas cada mão?", options: ["2", "3", "4", "5"], correct: 2 },
-        { q: "Quádruplos desenvolvem:", options: ["Velocidade mental", "Resistência muscular", "Coordenação dos pés", "Nada"], correct: 1 }
-      ],
-      11: [
-        { q: "Par e ímpar combina grupos de:", options: ["2 e 4", "2 e 3", "3 e 5", "4 e 6"], correct: 1 },
-        { q: "Este exercício é:", options: ["Fácil", "Desafiador para coordenação", "Só para iniciantes", "Irrelevante"], correct: 1 }
-      ],
-      12: [
-        { q: "Sincopa é acentuar:", options: ["Parte forte", "Parte fraca", "Todas as partes", "Nenhuma"], correct: 1 },
-        { q: "Sincopa é essencial em:", options: ["Só rock", "Funk, jazz, bossa", "Só samba", "Nada"], correct: 1 }
-      ],
-      13: [
-        { q: "O paradiddle é:", options: ["RRLRLL", "RLRRLRLL", "RRLLRRLL", "RLRL"], correct: 1 },
-        { q: "O paradiddle combina:", options: ["Só duplos", "Só alternância", "Alternância com duplos", "Triplos"], correct: 2 },
-        { q: "O paradiddle é usado em:", options: ["Só fills", "Tudo: fills, grooves, solos", "Só jazz", "Nunca"], correct: 1 }
-      ],
-      14: [
-        { q: "Paradiddle duplo é:", options: ["RLRRLRLL", "RRLLRRLL", "RRRLLL", "RLRL"], correct: 1 },
-        { q: "Paradiddle duplo é mais fácil de velocizar que:", options: ["Simples", "Triplo", "Quádruplo", "Igual"], correct: 0 }
-      ],
-      15: [
-        { q: "Paradiddle triplo usa:", options: ["2 batidas cada mão", "3 batidas cada mão", "4 batidas cada mão", "5 batidas"], correct: 1 },
-        { q: "Paradiddle triplo é:", options: ["Fácil", "Intermediário", "Muito desafiador", "Impossível"], correct: 2 }
-      ],
-      16: [
-        { q: "Um flam são:", options: ["1 batida", "2 batidas muito próximas", "3 batidas", "4 batidas"], correct: 1 },
-        { q: "No flam, a mão menor:", options: ["Toca depois", "Toca primeiro", "Não toca", "Toca junto"], correct: 1 }
-      ],
-      17: [
-        { q: "Flam com duplos combina:", options: ["Só flams", "Só duplos", "Flams com padrões de duplos", "Nada"], correct: 2 }
-      ],
-      18: [
-        { q: "O drag é:", options: ["Um rulo", "Ornamento com 2 notas rápidas", "Um fill", "Um groove"], correct: 1 },
-        { q: "Drag é usado em:", options: ["Só metal", "Blues e jazz", "Só pop", "Nunca"], correct: 1 }
-      ],
-      19: [
-        { q: "O ruff é:", options: ["Igual ao drag", "Ornamento com 3 notas rápidas", "Um paradiddle", "Um flam"], correct: 1 }
-      ],
-      20: [
-        { q: "Buzz roll cria:", options: ["Batidas separadas", "Som sustentado", "Silêncio", "Explosões"], correct: 1 },
-        { q: "Buzz roll usa:", options: ["1 bounce", "Múltiplos bounces", "Nenhum bounce", "Só a mão direita"], correct: 1 }
-      ],
-      21: [
-        { q: "Open roll é:", options: ["Cada nota audível", "Som abafado", "Só a mão direita", "Impossível"], correct: 0 }
-      ],
-      22: [
-        { q: "Single stroke roll é:", options: ["RRLL", "RLRL rápido", "RRRLLL", "RRLRLL"], correct: 1 },
-        { q: "Meta para single stroke:", options: ["60 BPM", "100 BPM por mão", "200 BPM total", "Não tem meta"], correct: 1 }
-      ],
-      23: [
-        { q: "Double stroke roll é:", options: ["RLRL", "RRLL", "RRRLLL", "RRLRLL"], correct: 1 }
-      ],
-      24: [
-        { q: "Five stroke roll são:", options: ["3 batidas", "5 batidas", "7 batidas", "9 batidas"], correct: 1 },
-        { q: "Padrão do five stroke:", options: ["RRLLR", "RLRLL", "RRRLL", "RLLRR"], correct: 0 }
-      ],
-      25: [
-        { q: "Seven stroke roll são:", options: ["5 batidas", "7 batidas", "9 batidas", "11 batidas"], correct: 1 }
-      ],
-      26: [
-        { q: "Nine stroke roll são:", options: ["7 batidas", "9 batidas", "11 batidas", "13 batidas"], correct: 1 }
-      ],
-      27: [
-        { q: "Ten stroke roll são:", options: ["9 batidas", "10 batidas", "11 batidas", "12 batidas"], correct: 1 }
-      ],
-      28: [
-        { q: "Eleven stroke roll são:", options: ["9 batidas", "11 batidas", "13 batidas", "15 batidas"], correct: 1 }
-      ],
-      29: [
-        { q: "Thirteen stroke roll são:", options: ["11 batidas", "13 batidas", "15 batidas", "17 batidas"], correct: 1 }
-      ],
-      30: [
-        { q: "Fifteen stroke roll são:", options: ["13 batidas", "15 batidas", "17 batidas", "19 batidas"], correct: 1 }
-      ],
-      31: [
-        { q: "Sincopação com pares:", options: ["Só pares", "Duplos com acentos sincopados", "Só alternância", "Nada"], correct: 1 }
-      ],
-      32: [
-        { q: "Acento na segunda batida:", options: ["É fácil", "Cria efeito de empurrão", "Não serve para nada", "É só jazz"], correct: 1 }
-      ],
-      33: [
-        { q: "Acento na terceira batida:", options: ["É comum em ballads", "É só rock", "Não existe", "É impossível"], correct: 0 }
-      ],
-      34: [
-        { q: "Acento na quarta batida:", options: ["Cria antecipação", "Não faz nada", "É só samba", "É fácil demais"], correct: 0 }
-      ],
-      35: [
-        { q: "Acentos duplos:", options: ["Reforçam o ritmo", "Não servem", "Só jazz", "Só rock"], correct: 0 }
-      ],
-      36: [
-        { q: "Acentos em tercinas:", options: ["São difíceis", "Criam fluidez", "Não existem", "Só servem para nada"], correct: 1 }
-      ],
-      37: [
-        { q: "Sincopa de rock:", options: ["É simples", "Cria drive e energia", "Não existe", "É só jazz"], correct: 1 }
-      ],
-      38: [
-        { q: "Funk exige:", options: ["Força bruta", "Feeling e sincopa", "Velocidade máxima", "Nada disso"], correct: 1 }
-      ],
-      39: [
-        { q: "Bossa nova é:", options: ["Agitada", "Suave e sincopada", "Rock", "Samba"], correct: 1 }
-      ],
-      40: [
-        { q: "Samba é:", options: ["Lento", "Rápido e energético", "Triste", "Jazz"], correct: 1 }
-      ],
-      41: [
-        { q: "Grupos de 5:", options: ["São fáceis", "Criam efeito assimétrico", "Não existem", "Só servem para nada"], correct: 1 }
-      ],
-      42: [
-        { q: "Grupos de 7:", options: ["São impossíveis", "São desafiadores", "São fáceis", "Não existem"], correct: 1 }
-      ],
-      43: [
-        { q: "Grupos de 9:", options: ["São básicos", "São usados em fills complexos", "Não existem", "Só servem para nada"], correct: 1 }
-      ],
-      44: [
-        { q: "Polirritmia 3x4 é:", options: ["3 contra 4", "4 contra 3", "3 contra 3", "4 contra 4"], correct: 0 },
-        { q: "Polirritmia é fundamental em:", options: ["Só rock", "Jazz", "Só pop", "Nada"], correct: 1 }
-      ],
-      45: [
-        { q: "Polirritmia 4x3 é:", options: ["3 contra 4", "4 contra 3", "Igual a 3x4", "Não existe"], correct: 1 }
-      ],
-      46: [
-        { q: "Combinação avançada 1:", options: ["Mixa todos os conceitos", "É só paradiddle", "É só flam", "É fácil"], correct: 0 }
-      ],
-      47: [
-        { q: "Combinação avançada 2:", options: ["Flams e paradiddles", "Só rulos", "Só acentos", "Nada"], correct: 0 }
-      ],
-      48: [
-        { q: "Viradas básicas:", options: ["Marcam transições", "Só servem para nada", "São impossíveis", "Só jazz"], correct: 0 }
-      ],
-      49: [
-        { q: "Viradas avançadas:", options: ["Usam ornamentos", "São fáceis", "Só servem para nada", "Não existem"], correct: 0 }
-      ],
-      50: [
-        { q: "Parabéns! Você completou:", options: ["Apenas o início", "O curso inteiro", "Nada", "Só metade"], correct: 1 },
-        { q: "O que fazer agora?", options: ["Parar de praticar", "Continuar praticando diariamente", "Esquecer tudo", "Nada"], correct: 1 }
-      ],
-      51: [
-        { q: "Qual pé controla o bumbo?", options: ["Esquerdo", "Direito", "Ambos igualmente", "Nenhum"], correct: 1 },
-        { q: "O hi-hat é controlado por:", options: ["As mãos", "O pé esquerdo", "O pé direito", "O corpo todo"], correct: 1 },
-        { q: "O que significa equalidade nos pés?", options: ["Tocar alto", "Batidas com a mesma intensidade", "Tocar rápido", "Não importa"], correct: 1 },
-        { q: "Para que servem os exercícios de pés?", options: ["Encher tempo", "Criar a base do groove", "Nada", "Só para jazz"], correct: 1 }
-      ],
-      52: [
-        { q: "Coordenação mãos+pés significa:", options: ["Tocar só com as mãos", "Trabalhar membros independentemente", "Tocar rápido", "Só com os pés"], correct: 1 },
-        { q: "Qual o maior desafio da coordenação?", options: ["Velocidade", "Independência entre membros", "Volume", "Nada"], correct: 1 },
-        { q: "O metrônomo ajuda na coordenação porque:", options: ["Não ajuda", "Mantém tudo sincronizado", "Só serve pra marca tempo", "É opcional"], correct: 1 },
-        { q: "Comece a coordenação com:", options: ["Padrões complexos", "Padrões simples", "Velocidade máxima", "Sem metrônomo"], correct: 1 }
-      ],
-      53: [
-        { q: "Crescendo significa:", options: ["Ficar mais suave", "Ficar mais forte gradualmente", "Parar", "Tocar igual"], correct: 1 },
-        { q: "Diminuendo significa:", options: ["Ficar mais forte", "Ficar mais suave gradualmente", "Acelerar", "Parar"], correct: 1 },
-        { q: "Para controlar o volume, use:", options: ["Só os braços", "A altura da batida", "Só o pé", "O corpo todo"], correct: 1 },
-        { q: "Batida baixa = ", options: ["Forte", "Piano (suave)", "Médio", "Nada"], correct: 1 }
-      ],
-      54: [
-        { q: "Quanto aumentar de BPM por vez?", options: ["20", "10", "5", "50"], correct: 2 },
-        { q: "Se falhar em uma velocidade, deve:", options: ["Desistir", "Voltar 5 BPM e treinar mais", "Aumentar mais", "Parar"], correct: 1 },
-        { q: "A velocidade vem de:", options: ["Força bruta", "Técnica correta", "Só prática", "Sorte"], correct: 1 },
-        { q: "Punhos soltos resultam em:", options: ["Menos velocidade", "Mais velocidade e controle", "Nada", "Dor"], correct: 1 }
-      ],
-      55: [
-        { q: "Um paradiddle pode virar:", options: ["Nada", "Um groove de rock", "Só um rulo", "Uma canção"], correct: 1 },
-        { q: "Duplos são usados em:", options: ["Apenas introduções", "Fills de transição", "Nunca", "Só no final"], correct: 1 },
-        { q: "Acentos em grooves criam:", options: ["Monotonia", "Movimento e energia", "Silêncio", "Confusão"], correct: 1 },
-        { q: "Aplicar rudimentos em grooves é:", options: ["Inútil", "O objetivo final da técnica", "Difícil demais", "Só para profissionais"], correct: 1 }
-      ],
-       56: [
-         { q: "Ler partitura é comparável a:", options: ["Dirigir", "Ler um livro", "Cozinhar", "Nadar"], correct: 1 },
-         { q: "Notas pretas representam:", options: ["Quarter notes", "Eighth notes", "Silêncios", "Apenas visual"], correct: 0 },
-         { q: "Para melhorar na leitura, deve:", options: ["Praticar com frequência", "Só olhar", "Memorizar", "Nada"], correct: 0 },
-         { q: "Na leitura à primeira vista, o importante é:", options: ["Tocar perfeito", "Continuar sem parar mesmo errando", "Parar no erro", "Desistir"], correct: 1 }
-       ],
-       57: [
-         { q: "Clave de samba é um padrão rítmico de origem:", options: ["Africana", "Europeia", "Asiática", "Norte-americana"], correct: 0 },
-         { q: "No samba, o balanço vem:", options: ["Da velocidade", "Da leve antecipação", "Do volume", "Do bumbo"], correct: 1 },
-         { q: "A clave de samba é usada em:", options: ["Só jazz", "Samba, MPB e fusion", "Só rock", "Música clássica"], correct: 1 },
-         { q: "O segredo da clave de samba é:", options: ["Força bruta", "O balanço brasileiro", "Velocidade máxima", "Simetria"], correct: 1 }
-       ],
-       58: [
-         { q: "No swing, as colcheias são:", options: ["Iguais", "Desiguais (primeira mais longa)", "Apenas tercinas", "Silêncios"], correct: 1 },
-         { q: "Cada par de shuffle equivale a:", options: ["Uma semínima", "Uma tercina", "Duas semicolcheias", "Uma pausa"], correct: 1 },
-         { q: "Shuffle é a base do:", options: ["Samba", "Blues elétrico e jazz", "Funk", "Rock pesado"], correct: 1 },
-         { q: "Swing é essencialmente:", options: ["Rápido", "Um balanço rítmico", "Forte", "Lento"], correct: 1 }
-       ],
-       59: [
-         { q: "O compasso 6/8 tem quantas colcheias?", options: ["4", "6", "8", "12"], correct: 1 },
-         { q: "No 6/8, os acentos caem nos tempos:", options: ["1 e 3", "1 e 4", "1, 2 e 3", "Apenas no 1"], correct: 1 },
-         { q: "6/8 é diferente de 3/4 porque:", options: ["É mais rápido", "Tem 2 grupos de 3, não 3 grupos de 2", "É mais lento", "Não é diferente"], correct: 1 },
-         { q: "Para contar 6/8, diga:", options: ["UM-dois-três", "UM-um-um DOIS-um-um", "1-2-3-4-5-6", "UM-um DOIS-dois"], correct: 1 }
-       ],
-       60: [
-         { q: "Cross-rhythm significa:", options: ["Duas métricas diferentes simultâneas", "Um ritmo cruzado", "Alternância rápida", "Parar e começar"], correct: 0 },
-         { q: "O cross-rhythm mais comum é:", options: ["2:3", "3:2", "4:4", "5:5"], correct: 1 },
-         { q: "Cross-rhythm aparece em:", options: ["Só jazz", "Música africana, jazz e rock progressivo", "Só música clássica", "Só pop"], correct: 1 },
-         { q: "Para praticar cross-rhythm, comece:", options: ["Rápido", "Cada mão separada", "Junto desde o início", "Sem metrônomo"], correct: 1 }
-       ],
-       61: [
-         { q: "Ritmos africanos são caracterizados por serem:", options: ["Lineares", "Cíclicos", "Aleatórios", "Parados"], correct: 1 },
-         { q: "O padrão 12/8 africano tem quantos pulsos por ciclo?", options: ["8", "12", "16", "6"], correct: 1 },
-         { q: "Cada grupo no 12/8 africano forma:", options: ["Um pulso", "Duas notas", "Quatro notas", "Uma pausa"], correct: 0 },
-         { q: "A música afro influenciou:", options: ["Só jazz", "Samba, jazz e música cubana", "Só música clássica", "Nada"], correct: 1 }
-       ],
-       62: [
-         { q: "Polirritmia 5:4 significa:", options: ["5 notas contra 4", "4 notas contra 5", "5 compassos", "4 compassos"], correct: 0 },
-         { q: "Para internalizar polirritmias, o segredo é:", options: ["Velocidade", "Sentir o ciclo completo", "Força", "Praticar só uma mão"], correct: 1 },
-         { q: "Polirritmias avançadas são usadas em:", options: ["Só metal", "Fusion, metal técnico e música contemporânea", "Só jazz", "Só música brasileira"], correct: 1 },
-         { q: "O primeiro passo para 5:4 é:", options: ["Acelerar", "Subdividir contando 1-2-3-4-5", "Pular", "Tocar mais forte"], correct: 1 }
-       ],
-       63: [
-         { q: "Fusão de ritmos combina:", options: ["Um único estilo", "Elementos de múltiplos estilos", "Só rock e jazz", "Só samba"], correct: 1 },
-         { q: "O primeiro passo para criar fusão é:", options: ["Tocar rápido", "Dominar cada mão separadamente", "Ignorar os estilos", "Só ouvir"], correct: 1 },
-         { q: "Para criar seu próprio groove, você deve:", options: ["Copiar exatamente", "Recombinar padrões conhecidos", "Só improvisar", "Não praticar"], correct: 1 },
-         { q: "Fusão exige do baterista:", options: ["Velocidade máxima", "Versatilidade rítmica", "Apenas força", "Só técnica"], correct: 1 }
-       ],
-       64: [
-         { q: "O silêncio na música é:", options: ["Um erro", "Um elemento rítmico poderoso", "Desnecessário", "Apenas descanso"], correct: 1 },
-         { q: "Nas pausas, o músico deve:", options: ["Parar de contar", "Continuar sentindo o pulso", "Descansar", "Não fazer nada"], correct: 1 },
-         { q: "O funk usa pausas para:", options: ["Parar a música", "Criar groove", "Encerrar", "Nada"], correct: 1 },
-         { q: "Nas pausas no exercício, a mão deve:", options: ["Parar completamente", "Continuar o movimento sem tocar", "Mudar de posição", "Acelerar"], correct: 1 }
-       ],
-       65: [
-         { q: "O objetivo final da técnica é:", options: ["Ser o mais rápido", "Servir a expressão musical", "Acumular conhecimento", "Só tocar covers"], correct: 1 },
-         { q: "Para criar um groove, comece com:", options: ["Padrões complexos", "Uma base simples e modifique", "Só improvisação", "Cópia exata"], correct: 1 },
-         { q: "Todo groove precisa de:", options: ["Complexidade máxima", "Repetição", "Velocidade", "Muitas notas"], correct: 1 },
-         { q: "O que fazer depois de criar um padrão?", options: ["Esquecer", "Gravar e ouvir", "Apagar", "Não repetir"], correct: 1 }
-       ]
-     };
-
-    function openTest(chapterId) {
-      currentTest = chapterId;
-      userAnswers = {};
-      
-      const questions = testQuestions[chapterId];
-      if (!questions) {
-        alert('Teste não disponível ainda');
-        return;
-      }
-      
-      const title = chapterId >= 100 
-        ? `Teste da Aula ${chapterId - 99} — Módulo Preparatório`
-        : `Teste do Capítulo ${chapterId + 1}`;
-      document.getElementById('modal-title').textContent = title;
-      
-      const container = document.getElementById('modal-questions');
-      container.innerHTML = questions.map((q, i) => `
-        <div class="question-block">
-          <p class="question-text">${i + 1}. ${q.q}</p>
-          <div class="options">
-            ${q.options.map((opt, j) => `
-              <label class="option-label">
-                <input type="radio" name="q${i}" value="${j}" onchange="userAnswers[${i}] = ${j}">
-                <span>${opt}</span>
-              </label>
-            `).join('')}
-          </div>
+            <div class="practice-controls">
+                <div class="metronome-section">
+                    <h3>🎯 Metrônomo</h3>
+                    
+                    <div class="bpm-control">
+                        <label>BPM: <input type="number" id="bpm-input" value="60" min="40" max="300"></label>
+                        <button class="btn-small" onclick="playMetronome()">Tocar</button>
+                        <button class="btn-small" onclick="stopMetronome()">Parar</button>
+                    </div>
+                    
+                    <div class="practice-stats">
+                        <p>⏱️ Tempo: <span id="practice-timer">0:00</span></p>
+                        <p>⚡ Seu Melhor: <span id="personal-best">60 BPM</span></p>
+                    </div>
+                </div>
+                
+                <div class="completion-section">
+                    <button class="btn-primary" onclick="completeChapter()">Marcar como Concluído</button>
+                    <button class="btn-secondary" onclick="testChapter()">Testar Capítulo</button>
+                </div>
+            </div>
         </div>
-      `).join('');
-      
-      document.getElementById('test-result').style.display = 'none';
-      document.getElementById('submit-test').style.display = 'block';
-      document.getElementById('test-modal').style.display = 'flex';
-    }
-
-    document.getElementById('modal-close').addEventListener('click', () => {
-      document.getElementById('test-modal').style.display = 'none';
-    });
-
-    document.getElementById('submit-test').addEventListener('click', async () => {
-      const questions = testQuestions[currentTest];
-      let correct = 0;
-      
-      questions.forEach((q, i) => {
-        if (userAnswers[i] === q.correct) correct++;
-      });
-      
-      const percent = Math.round((correct / questions.length) * 100);
-      const passed = percent >= 70;
-      
-      document.getElementById('test-result').innerHTML = `
-        <div class="result-box ${passed ? 'passed' : 'failed'}">
-          <h4>${passed ? '✓ Aprovado!' : '✗ Reprovado'}</h4>
-          <p>${correct}/${questions.length} corretas (${percent}%)</p>
-          <p>${passed ? 'Parabéns! Continue praticando!' : 'Estude mais e tente novamente.'}</p>
-        </div>
-      `;
-      document.getElementById('test-result').style.display = 'block';
-      document.getElementById('submit-test').style.display = 'none';
-      
-      if (passed) {
-        try {
-          await fetch('/api/progress', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              chapterId: currentTest,
-              testCompleted: true
-            })
-          });
-          } catch (e) {
-            console.error('Error saving test result:', e);
-          }
-          
-          // Check achievements
-          if (typeof checkAchievements === 'function') {
-            checkAchievements();
-          }
+    </div>
+    
+    <script src="/app.js"></script>
+    <script>
+        let currentChapter = null;
+        let metronomeActive = false;
+        let practiceStartTime = null;
+        
+        document.addEventListener('DOMContentLoaded', loadChapter);
+        
+        async function loadChapter() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/';
+                return;
+            }
+            
+            const params = new URLSearchParams(window.location.search);
+            const chapterId = params.get('chapter') || 0;
+            
+            try {
+                const res = await fetch(`/api/chapters/${chapterId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Capítulo não encontrado');
+                
+                currentChapter = await res.json();
+                renderChapter();
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('chapter-content').innerHTML = '<p class="error">Erro ao carregar capítulo</p>';
+            }
         }
         
-        loadTests();
-    });
-
-    loadTests();
-  </script>
-
-  <style>
-    .tests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-    
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      padding: 20px;
-    }
-    
-    .modal-content {
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 600px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 24px;
-      cursor: pointer;
-    }
-    
-    .modal-close:hover {
-      color: var(--accent);
-    }
-    
-    .question-block {
-      margin-bottom: 24px;
-    }
-    
-    .question-text {
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .option-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: var(--bg-tertiary);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .option-label:hover {
-      background: var(--border);
-    }
-    
-    .option-label input[type="radio"] {
-      accent-color: var(--accent);
-    }
-    
-    .result-box {
-      text-align: center;
-      padding: 24px;
-      border-radius: 12px;
-      margin-top: 16px;
-    }
-    
-    .result-box.passed {
-      background: rgba(63, 185, 80, 0.2);
-      border: 1px solid var(--success);
-    }
-    
-    .result-box.failed {
-      background: rgba(233, 69, 96, 0.2);
-      border: 1px solid var(--accent);
-    }
-    
-    .result-box h4 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-    
-    .modal-footer {
-      margin-top: 24px;
-      text-align: center;
-    }
-  </style>
-
-  <script>
-    async function checkAchievements() {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-      try {
-        const res = await fetch('/api/achievements/check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        const data = await res.json();
-        if (data.new && data.new.length > 0) {
-          data.new.forEach((ach, i) => {
-            setTimeout(() => showAchievementPopup(ach), i * 2000);
-          });
+        function renderChapter() {
+            document.getElementById('chapter-title').textContent = `Capítulo ${currentChapter.id}: ${currentChapter.title}`;
+            
+            let html = `
+                <h2>${currentChapter.title}</h2>
+                <p>${currentChapter.description || ''}</p>
+            `;
+            
+            if (currentChapter.exercise && currentChapter.exercise.length > 0) {
+                html += '<h3>Exercícios:</h3><ul>';
+                currentChapter.exercise.forEach(ex => {
+                    html += `<li>${ex}</li>`;
+                });
+                html += '</ul>';
+            }
+            
+            document.getElementById('chapter-content').innerHTML = html;
+            practiceStartTime = Date.now();
         }
-      } catch(e) {}
-    }
-
-    function showAchievementPopup(ach) {
-      const overlay = document.createElement('div');
-      overlay.className = 'ach-popup-overlay show';
-      overlay.innerHTML = `
-        <div class="ach-popup">
-          <div class="ach-popup-icon">${ach.icon}</div>
-          <h2>${ach.name}</h2>
-          <p>${ach.desc}</p>
-          <button onclick="this.closest('.ach-popup-overlay').remove()">Fechar</button>
-        </div>
-      `;
-      document.body.appendChild(overlay);
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) overlay.remove();
-      });
-    }
-  </script>
+        
+        function playMetronome() {
+            if (metronomeActive) return;
+            metronomeActive = true;
+            alert('🎵 Metrônomo iniciado! BPM: ' + document.getElementById('bpm-input').value);
+            updateTimer();
+        }
+        
+        function stopMetronome() {
+            metronomeActive = false;
+        }
+        
+        function updateTimer() {
+            if (!metronomeActive) return;
+            
+            const elapsed = Math.floor((Date.now() - practiceStartTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            
+            document.getElementById('practice-timer').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            setTimeout(updateTimer, 1000);
+        }
+        
+        async function completeChapter() {
+            const token = localStorage.getItem('token');
+            const bpm = parseInt(document.getElementById('bpm-input').value);
+            const elapsed = Math.floor((Date.now() - practiceStartTime) / 60);
+            
+            try {
+                const res = await fetch('/api/user/progress', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chapter_id: currentChapter.id,
+                        completed: true,
+                        max_bpm: bpm,
+                        practice_time: elapsed
+                    })
+                });
+                
+                if (res.ok) {
+                    alert('✅ Capítulo concluído!');
+                    location.href = '/curso';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+        
+        function testChapter() {
+            alert('📋 Teste do capítulo (em desenvolvimento)');
+        }
+    </script>
 </body>
 </html>

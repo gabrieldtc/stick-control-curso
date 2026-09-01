@@ -1,341 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DO TRAVESSEIRO AO GROOVE - Dashboard</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Do Travesseiro ao Groove</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <button class="hamburger" id="hamburger-btn">☰</button>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"></div>
-    <nav class="sidebar-nav">
-      <a href="/intro">📖 Introdução</a>
-      <a href="/dashboard" class="active">🏠 Aulas</a>
-      <a href="/curso">🎓 Curso</a>
-      <a href="/teste">📝 Teste</a>
-      <a href="/conquistas">🏅 Conquistas</a>
-      <a href="/evolucao">📈 Evolução</a>
-      <a href="/criar-exercicio">✏️ Criar Exercício</a>
-      <a href="/faq">❓ FAQ</a>
-      <div class="sidebar-theme-toggle">
-        <span>Tema</span>
-        <div class="theme-toggle-switch"></div>
-      </div>
-      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
-    </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">Progresso</div>
-      <div class="sidebar-progress-bar">
-        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
-      </div>
-    </div>
-  </aside>
-
-  <div class="main-content">
-    <!-- Banner -->
-    <div class="banner">
-      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
-    </div>
-
-    <!-- Hero -->
-    <section class="dashboard-hero scroll-reveal">
-      <h2>Bem-vindo, <span id="user-display-name"></span>!</h2>
-      <p class="lead">Continue de onde parou ou comece do início</p>
-      <a href="/curso?cap=0" class="btn-accent continue-practice-btn" id="continue-btn" style="display:none;">▶ Continuar Prática</a>
-    </section>
-
-    <!-- Stats -->
-    <div class="stats-grid scroll-reveal">
-      <div class="stat-card">
-        <div class="stat-value" id="stat-chapters">0</div>
-        <div class="stat-label">Capítulos Completos</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-bpm">60</div>
-        <div class="stat-label">BPM Máximo</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-time">0h</div>
-        <div class="stat-label">Tempo de Prática</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-streak">0</div>
-        <div class="stat-label">Sequência de Dias</div>
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="progress-section scroll-reveal">
-      <div class="progress-header">
-        <h4>Progresso Geral</h4>
-        <span id="progress-percent">0%</span>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
-      </div>
-    </div>
-
-    <!-- Módulo Preparatório -->
-    <h3 class="module-title scroll-reveal">📘 Módulo Preparatório — Primeiros Passos</h3>
-    <div class="chapter-grid scroll-reveal" id="preparatory-grid">
-      <p style="color: var(--text-secondary);">Carregando...</p>
-    </div>
-
-    <!-- Módulo 1 -->
-    <h3 class="module-title scroll-reveal" id="module1-title" style="opacity: 0.4;">📗 Módulo 1 — Fundamentos</h3>
-    <div class="chapter-grid scroll-reveal" id="main-grid" style="opacity: 0.4;">
-      <p style="color: var(--text-secondary);">Complete o Módulo Preparatório para destravar</p>
-    </div>
-
-    <!-- Módulo Personalizado (exercícios do usuário) -->
-    <div id="custom-module" style="display:none;margin-bottom:24px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="scroll-reveal">
-        <h3 class="module-title" style="margin:0;">🎯 Seus Exercícios Personalizados</h3>
-        <a href="/criar-exercicio" class="btn-accent" style="text-decoration:none;padding:8px 20px;border-radius:8px;font-size:14px;">+ Criar Novo</a>
-      </div>
-      <div class="chapter-grid scroll-reveal" id="custom-exercise-grid">
-        <p style="color: var(--text-secondary);">Carregando...</p>
-      </div>
-    </div>
-    </div>
-
-    <!-- Back to top -->
-  <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
-
-  <script src="js/particles.js"></script>
-  <script src="js/theme.js"></script>
-  <script>
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    
-    if (!token) window.location.href = '/';
-    
-    // Hamburger menu
-    document.getElementById('hamburger-btn').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('sidebar-overlay').classList.toggle('active');
-    });
-    document.getElementById('sidebar-overlay').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('sidebar-overlay').classList.remove('active');
-    });
-    
-    document.getElementById('user-display-name').textContent = user.name || '';
-    
-    // Continue practice button (last accessed chapter)
-    const lastChapter = localStorage.getItem('lastChapter');
-    const continueBtn = document.getElementById('continue-btn');
-    if (continueBtn) {
-      if (lastChapter !== null && lastChapter !== 'null' && lastChapter !== '') {
-        continueBtn.href = '/curso?cap=' + lastChapter;
-        continueBtn.style.display = 'inline-block';
-      } else {
-        continueBtn.style.display = 'none';
-      }
-    }
-    
-    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('introCompleted');
-      localStorage.removeItem('lastChapter');
-      window.location.href = '/';
-    });
-    
-    function formatTime(seconds) {
-      if (seconds < 60) return `${seconds}s`;
-      if (seconds < 3600) return `${Math.round(seconds / 60)}min`;
-      return `${Math.round(seconds / 3600)}h`;
-    }
-    
-    function renderChapterCard(chapter, isLocked, chapterProgress) {
-      const isCompleted = chapterProgress && chapterProgress.completed;
-      const bpm = chapterProgress ? chapterProgress.max_bpm : 0;
-      const practiceTime = chapterProgress ? chapterProgress.practice_time : 0;
-      const lastPracticed = chapterProgress ? chapterProgress.last_practiced : null;
-      
-      let lastPracticedText = '';
-      if (lastPracticed) {
-        const date = new Date(lastPracticed);
-        lastPracticedText = date.toLocaleDateString('pt-BR');
-      }
-      
-      if (isLocked) {
-        return `
-          <div class="chapter-card locked" style="opacity: 0.5; cursor: not-allowed;">
-            <div class="chapter-number">${chapter.module === 'preparatorio' ? 'Aula' : 'Capítulo'} ${chapter.id >= 100 ? chapter.id - 99 : chapter.id + 1}</div>
-            <h4>${chapter.title}</h4>
-            <p class="chapter-desc">${chapter.description || ''}</p>
-            <span class="badge" style="background: var(--bg-tertiary); color: var(--text-secondary);">🔒 Trancado</span>
-          </div>
-        `;
-      }
-      
-      return `
-        <div class="chapter-card ${isCompleted ? 'completed' : ''}" onclick="window.location.href='/curso?cap=${chapter.id}'">
-          <div class="chapter-number">${chapter.module === 'preparatorio' ? 'Aula' : 'Capítulo'} ${chapter.id >= 100 ? chapter.id - 99 : chapter.id + 1}</div>
-          <h4>${chapter.title}</h4>
-          <p class="chapter-desc">${chapter.description || ''}</p>
-          ${bpm > 0 || practiceTime > 0 ? `
-            <div class="chapter-progress-details" style="margin: 12px 0; font-size: 12px;">
-              ${bpm > 0 ? `<div style="color: var(--accent);">🎵 BPM: ${bpm}</div>` : ''}
-              ${practiceTime > 0 ? `<div style="color: var(--info);">⏱ ${formatTime(practiceTime)}</div>` : ''}
-              ${lastPracticedText ? `<div style="color: var(--text-secondary);">📅 ${lastPracticedText}</div>` : ''}
-            </div>
-          ` : ''}
-          <span class="badge">${isCompleted ? '✓ Completo' : 'Iniciar'}</span>
+    <div class="navbar">
+        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
+        <div class="navbar-menu">
+            <a href="/intro" class="nav-link">Início</a>
+            <a href="/dashboard" class="nav-link active">Dashboard</a>
+            <a href="/curso" class="nav-link">Curso</a>
+            <a href="/conquistas" class="nav-link">Conquistas</a>
+            <a href="#" onclick="logout()" class="nav-link">Sair</a>
         </div>
-      `;
-    }
+    </div>
     
-    async function loadDashboard() {
-      try {
-        const chaptersRes = await fetch('/api/chapters', { headers: { 'Authorization': `Bearer ${token}` } });
-        const chapters = await chaptersRes.json();
+    <div class="dashboard-container">
+        <h1>Dashboard</h1>
+        <p>Olá, <strong id="dashboard-name">Usuário</strong>!</p>
         
-        const progressRes = await fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } });
-        const progress = await progressRes.json();
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>📈 Seu Progresso</h3>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <p id="progress-text">0 / 75 capítulos</p>
+            </div>
+            
+            <div class="card">
+                <h3>⚡ Velocidade Máxima</h3>
+                <div class="stat-large" id="max-bpm">60 BPM</div>
+            </div>
+            
+            <div class="card">
+                <h3>⏱️ Tempo de Prática</h3>
+                <div class="stat-large" id="practice-time">0h</div>
+            </div>
+            
+            <div class="card">
+                <h3>🔥 Sequência</h3>
+                <div class="stat-large" id="streak">0 dias</div>
+            </div>
+        </div>
         
-        const completedIds = new Set(progress.filter(p => p.completed).map(p => p.chapter_id));
-        const completedCount = completedIds.size;
-        const maxBpm = progress.length > 0 ? Math.max(...progress.map(p => p.max_bpm)) : 60;
-        const totalTime = progress.reduce((sum, p) => sum + (p.practice_time || 0), 0);
-        
-        document.getElementById('stat-chapters').textContent = completedCount;
-        document.getElementById('stat-bpm').textContent = maxBpm;
-        document.getElementById('stat-time').textContent = formatTime(totalTime);
-
-        // Calculate day streak (UTC to match SQLite)
-        const practiceDates = [...new Set(progress.filter(p => p.last_practiced).map(p => p.last_practiced.split(' ')[0]))];
-        practiceDates.sort().reverse();
-        let streak = 0;
-        const now = new Date();
-        const utcToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-        for (let d = 0; d < practiceDates.length; d++) {
-          const expected = new Date(utcToday.getTime() - d * 86400000);
-          const expectedStr = expected.toISOString().split('T')[0];
-          if (practiceDates[d] === expectedStr) {
-            streak++;
-          } else {
-            break;
-          }
-        }
-        document.getElementById('stat-streak').textContent = streak;
-        
-        const totalChapters = chapters.length;
-        const percent = Math.round((completedCount / totalChapters) * 100);
-        document.getElementById('progress-percent').textContent = `${percent}%`;
-        document.getElementById('progress-bar').style.width = `${percent}%`;
-        document.getElementById('sidebar-progress-fill').style.width = `${percent}%`;
-        
-        const prepChapters = chapters.filter(c => c.id >= 100).sort((a, b) => a.id - b.id);
-        const mainChapters = chapters.filter(c => c.id < 100).sort((a, b) => a.id - b.id);
-        
-        const prepGrid = document.getElementById('preparatory-grid');
-        const mainGrid = document.getElementById('main-grid');
-        const module1Title = document.getElementById('module1-title');
-        
-        prepGrid.innerHTML = prepChapters.map((chapter) => {
-          let isLocked = false;
-          if (chapter.id > 100) {
-            isLocked = !completedIds.has(chapter.id - 1);
-          }
-          const chapterProgress = progress.find(p => p.chapter_id === chapter.id);
-          return renderChapterCard(chapter, isLocked, chapterProgress);
-        }).join('');
-        
-        const prepComplete = completedIds.has(108);
-        
-        if (prepComplete) {
-          mainGrid.style.opacity = '1';
-          module1Title.style.opacity = '1';
-          
-          mainGrid.innerHTML = mainChapters.map((chapter) => {
-            let isLocked = false;
-            if (chapter.id === 0) {
-              isLocked = !completedIds.has(108);
-            } else {
-              isLocked = !completedIds.has(chapter.id - 1);
-            }
-            const chapterProgress = progress.find(p => p.chapter_id === chapter.id);
-            return renderChapterCard(chapter, isLocked, chapterProgress);
-          }).join('');
-        } else {
-          mainGrid.style.opacity = '0.4';
-          module1Title.style.opacity = '0.4';
-          mainGrid.innerHTML = '<p style="color: var(--text-secondary); padding: 16px;">Complete o Módulo Preparatório para destravar</p>';
-        }
-
-        // Módulo Personalizado (sempre visível no final)
-        try {
-          const customRes = await fetch('/api/user/exercises', { headers: { 'Authorization': `Bearer ${token}` } });
-          const customExercises = await customRes.json();
-          const customModule = document.getElementById('custom-module');
-          const customGrid = document.getElementById('custom-exercise-grid');
-          if (customModule && customGrid) {
-            customModule.style.display = 'block';
-            if (customExercises.length === 0) {
-              customGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-secondary);">Nenhum exercício personalizado ainda. <a href="/criar-exercicio" style="color:var(--accent);">Crie o seu primeiro!</a></div>';
-            } else {
-              customGrid.innerHTML = customExercises.map(ex => {
-                const isCompleted = ex.progress?.completed;
-                const bpm = ex.progress?.max_bpm || 0;
-                const practiceTime = ex.progress?.practice_time || 0;
-                return `
-                  <div class="chapter-card ${isCompleted ? 'completed' : ''}" onclick="window.location.href='/criar-exercicio?id=${ex.id}'">
-                    <div class="chapter-number">✏️</div>
-                    <h4>${ex.nome}</h4>
-                    <p class="chapter-desc">${Array.isArray(ex.sequencia) ? ex.sequencia.join(' ') : ''}</p>
-                    ${bpm > 0 || practiceTime > 0 ? `
-                      <div class="chapter-progress-details" style="margin:12px 0;font-size:12px;">
-                        ${bpm > 0 ? `<div style="color:var(--accent);">🎵 BPM: ${bpm}</div>` : ''}
-                        ${practiceTime > 0 ? `<div style="color:var(--info);">⏱ ${formatTime(practiceTime)}</div>` : ''}
-                      </div>
-                    ` : ''}
-                    <span class="badge">${isCompleted ? '✓ Completo' : '⏳ Praticar'}</span>
-                  </div>
-                `;
-              }).join('');
-            }
-          }
-        } catch(e) {}
-        
-      } catch (error) {
-        console.error('Error loading dashboard:', error);
-        document.getElementById('preparatory-grid').innerHTML = '<div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center;"><p style="color: var(--accent); margin-bottom: 12px;">Erro ao carregar o dashboard.</p><button onclick="loadDashboard()" style="background: var(--accent); border: none; color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Tentar novamente</button></div>';
-      }
-    }
-
-    loadDashboard();
-
-    // Scroll reveal
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+        <div class="dashboard-actions">
+            <button class="btn-primary" onclick="location.href='/curso'">Continuar Curso →</button>
+            <button class="btn-secondary" onclick="location.href='/conquistas'">Ver Conquistas</button>
+        </div>
+    </div>
     
-    // Back to top
-    const backBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      backBtn.classList.toggle('visible', window.scrollY > 400);
-    });
-    backBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+        
+        async function loadDashboard() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/user', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Erro ao carregar dados');
+                
+                const user = await res.json();
+                document.getElementById('dashboard-name').textContent = user.name;
+                
+                // Carregar progresso
+                const progressRes = await fetch('/api/user/progress', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (progressRes.ok) {
+                    const progress = await progressRes.json();
+                    updateDashboardStats(progress);
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+        
+        function updateDashboardStats(progress) {
+            const completed = progress.filter(p => p.completed).length;
+            const total = 75;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${completed} / ${total} capítulos`;
+            
+            const maxBpm = Math.max(...progress.map(p => p.max_bpm || 0), 60);
+            document.getElementById('max-bpm').textContent = maxBpm + ' BPM';
+            
+            const totalTime = progress.reduce((sum, p) => sum + (p.practice_time || 0), 0);
+            const hours = Math.round(totalTime / 60);
+            document.getElementById('practice-time').textContent = hours + 'h';
+        }
+    </script>
 </body>
 </html>

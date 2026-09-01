@@ -1,291 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DO TRAVESSEIRO AO GROOVE - Curso</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso - Do Travesseiro ao Groove</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <button class="hamburger" id="hamburger-btn">☰</button>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"></div>
-    <nav class="sidebar-nav">
-      <a href="/intro">📖 Introdução</a>
-      <a href="/dashboard">🏠 Aulas</a>
-      <a href="/curso" class="active">🎓 Curso</a>
-      <a href="/teste">📝 Teste</a>
-      <a href="/conquistas">🏅 Conquistas</a>
-      <a href="/evolucao">📈 Evolução</a>
-      <a href="/criar-exercicio">✏️ Criar Exercício</a>
-      <a href="/faq">❓ FAQ</a>
-      <div class="sidebar-theme-toggle">
-        <span>Tema</span>
-        <div class="theme-toggle-switch"></div>
-      </div>
-      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
-    </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">Progresso</div>
-      <div class="sidebar-progress-bar">
-        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
-      </div>
+    <div class="navbar">
+        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
+        <div class="navbar-menu">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/curso" class="nav-link active">Curso</a>
+            <a href="/conquistas" class="nav-link">Conquistas</a>
+            <a href="#" onclick="logout()" class="nav-link">Sair</a>
+        </div>
     </div>
-  </aside>
-
-  <div class="main-content">
-    <!-- Banner -->
-    <div class="banner">
-      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
+    
+    <div class="curso-container">
+        <h1>📚 Capítulos do Curso</h1>
+        
+        <div class="filter-controls">
+            <input type="text" id="search-chapters" placeholder="Procurar capítulo..." class="search-input">
+        </div>
+        
+        <div class="chapters-grid" id="chapters-list">
+            <p class="loading">Carregando capítulos...</p>
+        </div>
     </div>
-
-  <div class="curso-container">
-    <!-- Chapter Header -->
-    <div class="chapter-header" id="chapter-header">
-      <h1 id="chapter-title">Carregando...</h1>
-      <p class="subtitle" id="chapter-subtitle"></p>
-    </div>
-
-    <!-- Two Column Layout -->
-    <div class="two-columns">
-      <!-- Left Column: Theory -->
-      <div class="theory-column" id="theory-column">
-        <div class="animate-in">
-          <h2>O que você vai aprender</h2>
-          <div id="objectives"></div>
-          
-          <h3>Conceito</h3>
-          <div id="concept"></div>
-          
-          <div class="diagram-box">
-            <h4>Diagrama Visual</h4>
-            <div class="diagram-ascii" id="diagram"></div>
-          </div>
-          
-          <div id="tips"></div>
-          
-          <div class="extra-exercise" id="extra-exercise" style="display: none;">
-            <h4>🎯 Exercício Extra</h4>
-            <div id="extra-content"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Practice -->
-      <div class="practice-column">
-        <h2>Prática</h2>
+    
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadChapters);
+        document.getElementById('search-chapters').addEventListener('input', filterChapters);
         
-        <!-- Partitura Display -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <button class="btn-control focus-btn" onclick="togglePracticeFocus()" title="Modo sem distração (Esc para sair)">⛶ Focar</button>
-          <button class="btn-control" onclick="printPartitura()" title="Imprimir partitura">🖨️ Imprimir</button>
-        </div>
-        <div class="partitura-display" id="partitura">
-          <p style="color: var(--text-secondary);">Carregando exercício...</p>
-        </div>
+        let allChapters = [];
         
-        <!-- Audio Controls -->
-        <div class="audio-controls">
-          <button class="btn-control play-btn" id="play-btn" onclick="togglePlay()">
-            <span id="play-icon">▶</span> Tocar
-          </button>
-          <button class="btn-control stop-btn" onclick="stopAudio()">⏹ Parar</button>
-          <button class="btn-control" id="slow-btn" onclick="toggleSlow()">🐢 50%</button>
-          <button class="btn-control" id="loop-btn" onclick="toggleLoop()">🔁 Loop</button>
-        </div>
-
-        <!-- Count-in -->
-        <div class="control-row">
-          <label class="countin-label" style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;cursor:pointer;">
-            <input type="checkbox" id="countin-toggle" value="4" checked>
-            Count-in (4 tempos)
-          </label>
-        </div>
-
-        <!-- Kit Selector -->
-        <div class="control-row" style="align-items:center;">
-          <label style="font-size:13px;color:var(--text-secondary);">🥁 Kit:</label>
-          <select id="kit-select" onchange="setKit(this.value)" style="background:var(--bg-tertiary);color:var(--text-primary);border:1px solid var(--gold-dim);border-radius:8px;padding:6px 10px;font-family:'Cinzel',serif;">
-            <option value="classic">Pad Clássico</option>
-            <option value="rock">Rock</option>
-            <option value="jazz">Jazz</option>
-            <option value="funk">Funk</option>
-          </select>
-        </div>
-
-        <!-- Controls Row: BPM + Volume side by side -->
-        <div class="controls-row">
-          <!-- BPM Control -->
-          <div class="bpm-control">
-            <label>Tempo (BPM)</label>
-            <div class="bpm-buttons">
-              <button class="bpm-btn" onclick="changeBPM(-10)" title="-10 BPM">−−</button>
-              <button class="bpm-btn" onclick="changeBPM(-5)">−</button>
-              <div class="bpm-value" id="bpm-value">80</div>
-              <button class="bpm-btn" onclick="changeBPM(5)">+</button>
-              <button class="bpm-btn" onclick="changeBPM(10)" title="+10 BPM">++</button>
-              <button class="bpm-btn tap-btn" id="tap-btn" onclick="tapTempo()" title="Tap para definir BPM">👆 Tap</button>
-            </div>
-          </div>
-
-          <!-- Volume Controls -->
-          <div class="volume-controls">
-            <div class="volume-row">
-              <label>🔊 Mestre</label>
-              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.8" oninput="setVolume('master', this.value)">
-            </div>
-            <div class="volume-row">
-              <label>🎵 Exercício</label>
-              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.7" oninput="setVolume('exercise', this.value)">
-            </div>
-            <div class="volume-row">
-              <label>🎯 Metrônomo</label>
-              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" oninput="setVolume('metronome', this.value)">
-            </div>
-          </div>
-        </div>
+        async function loadChapters() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/chapters', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Erro ao carregar capítulos');
+                
+                allChapters = await res.json();
+                renderChapters(allChapters);
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('chapters-list').innerHTML = '<p class="error">Erro ao carregar capítulos</p>';
+            }
+        }
         
-        <!-- Time Signature -->
-        <div class="time-signature">
-          <button class="time-btn" onclick="setTimeSig(2, this)">2/4</button>
-          <button class="time-btn" onclick="setTimeSig(3, this)">3/4</button>
-          <button class="time-btn active" onclick="setTimeSig(4, this)">4/4</button>
-        </div>
+        function renderChapters(chapters) {
+            const list = document.getElementById('chapters-list');
+            
+            if (chapters.length === 0) {
+                list.innerHTML = '<p class="empty">Nenhum capítulo encontrado</p>';
+                return;
+            }
+            
+            list.innerHTML = chapters.map(ch => `
+                <div class="chapter-card">
+                    <div class="chapter-number">${ch.id}</div>
+                    <h3>${ch.title || 'Capítulo ' + ch.id}</h3>
+                    <p>${ch.description || 'Aprenda técnicas essenciais'}</p>
+                    <button class="btn-small" onclick="viewChapter(${ch.id})">Acessar →</button>
+                </div>
+            `).join('');
+        }
         
-        <!-- Metronome Visual -->
-        <div class="metronome-visual" id="metronome-visual">
-          <div class="beat-dot accent-beat" data-beat="1"></div>
-          <div class="beat-dot" data-beat="2"></div>
-          <div class="beat-dot" data-beat="3"></div>
-          <div class="beat-dot" data-beat="4"></div>
-        </div>
+        function filterChapters() {
+            const search = document.getElementById('search-chapters').value.toLowerCase();
+            const filtered = allChapters.filter(ch => 
+                (ch.title || '').toLowerCase().includes(search) ||
+                (ch.description || '').toLowerCase().includes(search)
+            );
+            renderChapters(filtered);
+        }
         
-        <!-- Timer -->
-        <div class="timer-control">
-          <label style="color: var(--text-secondary);">Timer</label>
-          <input type="number" class="timer-input" id="timer-minutes" value="5" min="1" max="60">
-          <span style="color: var(--text-secondary);">min</span>
-          <div class="timer-display" id="timer-display">05:00</div>
-          <button class="btn-control" id="timer-btn" onclick="toggleTimer()">⏱ Iniciar</button>
-        </div>
-        
-        <!-- Weekly Goal -->
-        <div class="weekly-goal" id="weekly-goal">
-          <h4>📅 Meta Semanal</h4>
-          <div id="goal-items"></div>
-        </div>
-        
-        <!-- Keyboard shortcuts hint -->
-        <div style="margin-top:16px;padding:10px 14px;border:1px dashed var(--gold-dim);border-radius:10px;font-size:12px;color:var(--text-muted);line-height:1.8;">
-          ⌨️ <strong style="color:var(--text-secondary);">Atalhos:</strong>
-          <span><kbd>Espaço</kbd> tocar/parar</span> ·
-          <span><kbd>↑</kbd><kbd>↓</kbd> BPM</span> ·
-          <span><kbd>T</kbd> tap</span> ·
-          <span><kbd>L</kbd> loop</span> ·
-          <span><kbd>Esc</kbd> parar / sair do foco</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="progress-section">
-      <div class="progress-header">
-        <h4>Progresso deste capítulo</h4>
-        <span id="chapter-progress">0%</span>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="chapter-progress-bar" style="width: 0%"></div>
-      </div>
-      
-      <!-- Progress Details -->
-      <div class="progress-details" id="progress-details" style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
-        <div class="progress-detail-item" style="background: var(--bg-tertiary); padding: 12px; border-radius: 8px; text-align: center;">
-          <div style="font-size: 24px; color: var(--accent);" id="detail-bpm">-</div>
-          <div style="font-size: 12px; color: var(--text-secondary);">BPM Máximo</div>
-        </div>
-        <div class="progress-detail-item" style="background: var(--bg-tertiary); padding: 12px; border-radius: 8px; text-align: center;">
-          <div style="font-size: 24px; color: var(--info);" id="detail-time">-</div>
-          <div style="font-size: 12px; color: var(--text-secondary);">Tempo Praticado</div>
-        </div>
-        <div class="progress-detail-item" style="background: var(--bg-tertiary); padding: 12px; border-radius: 8px; text-align: center;">
-          <div style="font-size: 24px; color: var(--success);" id="detail-status">-</div>
-          <div style="font-size: 12px; color: var(--text-secondary);">Status</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="chapter-nav">
-      <button class="btn-nav" id="prev-btn" onclick="prevChapter()">← Anterior</button>
-      <button class="btn-mark-complete" id="complete-btn" onclick="markComplete()">✓ Marcar como Completo</button>
-      <button class="btn-nav" id="next-btn" onclick="nextChapter()">Próximo →</button>
-    </div>
-  </div>
-
-  <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
-
-  <!-- Scripts -->
-  <script src="js/particles.js"></script>
-  <script src="js/theme.js"></script>
-  <script>
-    if (!localStorage.getItem('token')) window.location.href = '/';
-
-    // Hamburger menu
-    document.getElementById('hamburger-btn').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('sidebar-overlay').classList.toggle('active');
-    });
-    document.getElementById('sidebar-overlay').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('sidebar-overlay').classList.remove('active');
-    });
-
-    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('introCompleted');
-      localStorage.removeItem('lastChapter');
-      window.location.href = '/';
-    });
-
-    // Sidebar progress
-    async function loadSidebarProgress() {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-      try {
-        const [progressRes, statsRes] = await Promise.all([
-          fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } }),
-          fetch('/api/stats')
-        ]);
-        const progress = await progressRes.json();
-        const stats = await statsRes.json();
-        const completed = progress.filter(p => p.completed).length;
-        const total = stats.totalAulas || 1;
-        const pct = Math.round((completed / total) * 100);
-        const fill = document.getElementById('sidebar-progress-fill');
-        if (fill) fill.style.width = pct + '%';
-      } catch(e) {}
-    }
-    loadSidebarProgress();
-
-    // Back to top
-    const backBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      backBtn.classList.toggle('visible', window.scrollY > 400);
-    });
-    backBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
-  <script src="js/audio-engine.js"></script>
-  <script src="js/metronome.js"></script>
-  <script src="js/chapters.js"></script>
+        function viewChapter(id) {
+            location.href = '/teste?chapter=' + id;
+        }
+    </script>
 </body>
 </html>

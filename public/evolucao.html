@@ -1,758 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DO TRAVESSEIRO AO GROOVE - Evolução</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
-  <style>
-    .evo-header { text-align: center; margin-bottom: 32px; grid-column: 1 / -1; }
-    .evo-header h1 { font-family: 'Cinzel Decorative', serif; color: var(--gold); font-size: 28px; text-shadow: 0 0 24px var(--gold-glow); }
-    .evo-header p { color: var(--text-muted); margin-top: 8px; }
-
-    .evo-grid {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 24px;
-      align-items: start;
-    }
-
-    /* Stats */
-    .evo-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 10px; margin-bottom: 20px;
-    }
-    .evo-stat {
-      background: linear-gradient(145deg, #16130e, #100e0a);
-      background-image: var(--parchment), linear-gradient(145deg, #16130e, #100e0a);
-      background-size: 200px 200px, 100% 100%;
-      border-radius: var(--radius-md); padding: 12px 10px; text-align: center;
-      box-shadow: var(--shadow-sm), 0 0 15px rgba(201, 168, 76, 0.05);
-    }
-    .evo-stat-value { font-family: 'MedievalSharp', cursive; font-size: 22px; color: var(--gold); text-shadow: 0 0 12px var(--gold-glow); }
-    .evo-stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
-
-    /* Heatmap */
-    .heatmap-wrapper {
-      background: linear-gradient(145deg, #16130e, #100e0a);
-      background-image: var(--parchment), linear-gradient(145deg, #16130e, #100e0a);
-      background-size: 200px 200px, 100% 100%;
-      border-radius: var(--radius-md); padding: 20px;
-      box-shadow: var(--shadow-sm), 0 0 15px rgba(201, 168, 76, 0.05);
-      overflow-x: auto;
-    }
-    .heatmap-month-title { font-size: 13px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-    .heatmap-grid { display: flex; gap: 3px; }
-    .heatmap-col { display: flex; flex-direction: column; gap: 3px; }
-    .heatmap-day-label { font-size: 9px; color: var(--text-muted); width: 26px; height: 14px; display: flex; align-items: center; justify-content: center; }
-    .heatmap-cell {
-      width: 14px; height: 14px; border-radius: 3px;
-      background: var(--bg-tertiary);
-      transition: all var(--transition-fast);
-      cursor: pointer;
-      position: relative;
-    }
-    .heatmap-cell:hover {
-      transform: scale(1.4);
-      z-index: 2;
-      box-shadow: 0 0 8px var(--gold-glow);
-    }
-    .heatmap-cell[data-level="0"] { background: var(--bg-tertiary); }
-    .heatmap-cell[data-level="1"] { background: #1a3520; }
-    .heatmap-cell[data-level="2"] { background: #2d5a27; }
-    .heatmap-cell[data-level="3"] { background: #4a8a3f; }
-    .heatmap-cell[data-level="4"] { background: #6abf5e; }
-    .heatmap-cell.today { outline: 2px solid var(--gold); outline-offset: -1px; }
-
-    .heatmap-legend {
-      display: flex; align-items: center; justify-content: flex-end; gap: 6px;
-      margin-top: 10px; font-size: 11px; color: var(--text-muted);
-    }
-    .heatmap-legend .legend-cell { width: 12px; height: 12px; border-radius: 2px; background: var(--bg-tertiary); }
-
-    /* Tooltip */
-    .heatmap-tooltip {
-      position: fixed; pointer-events: none;
-      background: #1a1612; border: 1px solid var(--gold-dim);
-      border-radius: 6px; padding: 6px 10px;
-      font-size: 12px; color: var(--text-primary);
-      z-index: 9999; white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-      opacity: 0; transition: opacity 0.15s;
-    }
-    .heatmap-tooltip.show { opacity: 1; }
-
-    /* Right column — Weekly Goal */
-    .weekly-goal-card {
-      background: linear-gradient(145deg, #16130e, #100e0a);
-      background-image: var(--parchment), linear-gradient(145deg, #16130e, #100e0a);
-      background-size: 200px 200px, 100% 100%;
-      border-radius: var(--radius-md); padding: 24px;
-      box-shadow: var(--shadow-sm), 0 0 15px rgba(201, 168, 76, 0.05);
-      text-align: center;
-    }
-    .weekly-goal-card h2 {
-      font-family: 'Cinzel Decorative', serif; font-size: 16px;
-      color: var(--gold); margin-bottom: 16px;
-      text-shadow: 0 0 16px var(--gold-glow);
-    }
-    .goals-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    .goal-block h3 {
-      font-family: 'Cinzel', serif; font-size: 13px;
-      color: var(--gold); margin-bottom: 14px;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .goal-block + .goal-block {
-      border-left: 1px solid var(--border); padding-left: 20px;
-    }
-    .weekly-progress-ring .fg-circle.daily-fg {
-      stroke: #e08a4e;
-    }
-    .weekly-progress-ring {
-      position: relative; width: 160px; height: 160px;
-      margin: 0 auto 16px;
-    }
-    .weekly-progress-ring svg {
-      transform: rotate(-90deg);
-    }
-    .weekly-progress-ring .bg-circle {
-      fill: none; stroke: var(--bg-tertiary); stroke-width: 8;
-    }
-    .weekly-progress-ring .fg-circle {
-      fill: none; stroke: var(--gold); stroke-width: 8;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.8s ease;
-    }
-    .weekly-progress-ring .center-text {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-    }
-    .weekly-progress-ring .center-text .minutes {
-      font-family: 'MedievalSharp', cursive; font-size: 32px;
-      color: var(--gold); text-shadow: 0 0 12px var(--gold-glow);
-      line-height: 1;
-    }
-    .weekly-progress-ring .center-text .label {
-      font-size: 11px; color: var(--text-muted); margin-top: 4px;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .weekly-goal-input-area {
-      margin-top: 8px;
-    }
-    .weekly-goal-input-area label {
-      display: block; font-size: 11px; color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
-    }
-    .weekly-goal-input-row {
-      display: flex; gap: 8px; align-items: center;
-      justify-content: center;
-    }
-    .weekly-goal-input-row input {
-      width: 70px; padding: 6px 8px;
-      background: var(--bg-tertiary); border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      color: var(--text-primary); font-size: 14px; text-align: center;
-      font-family: 'MedievalSharp', cursive;
-    }
-    .weekly-goal-input-row input:focus {
-      outline: none; border-color: var(--gold);
-      box-shadow: 0 0 10px var(--gold-glow);
-    }
-    .weekly-goal-input-row button {
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      border: none; color: var(--bg-deep); font-weight: 700;
-      padding: 6px 14px; border-radius: var(--radius-sm);
-      cursor: pointer; font-family: 'Cinzel', serif;
-      font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
-      transition: all 0.3s ease;
-    }
-    .weekly-goal-input-row button:hover {
-      box-shadow: 0 0 20px var(--gold-glow);
-    }
-    .weekly-info {
-      margin-top: 16px; padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-    .weekly-info-item {
-      display: flex; justify-content: space-between;
-      font-size: 13px; padding: 6px 0;
-    }
-    .weekly-info-item .label { color: var(--text-muted); }
-    .weekly-info-item .value { color: var(--text-primary); font-family: 'MedievalSharp', cursive; }
-
-    /* Responsive */
-    @media (max-width: 1000px) {
-      .evo-grid { grid-template-columns: 1fr; }
-      .weekly-goal-card { max-width: 400px; margin: 0 auto; }
-      .goals-row { grid-template-columns: 1fr; }
-      .goal-block + .goal-block {
-        border-left: none; padding-left: 0;
-        border-top: 1px solid var(--border); padding-top: 20px;
-      }
-    }
-    @media (max-width: 768px) {
-      .evo-header h1 { font-size: 22px; }
-      .evo-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .evo-stat-value { font-size: 18px; }
-      .heatmap-wrapper { padding: 14px; }
-      .heatmap-cell { width: 12px; height: 12px; }
-    }
-    @media (max-width: 480px) {
-      .evo-stats { grid-template-columns: repeat(2, 1fr); }
-      .heatmap-cell { width: 10px; height: 10px; }
-      .heatmap-grid { gap: 2px; }
-      .heatmap-col { gap: 2px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução - Do Travesseiro ao Groove</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <button class="hamburger" id="hamburger-btn">☰</button>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"></div>
-    <nav class="sidebar-nav">
-      <a href="/intro">📖 Introdução</a>
-      <a href="/dashboard">🏠 Aulas</a>
-      <a href="/curso">🎓 Curso</a>
-      <a href="/teste">📝 Teste</a>
-      <a href="/conquistas">🏅 Conquistas</a>
-      <a href="/evolucao" class="active">📈 Evolução</a>
-      <a href="/criar-exercicio">✏️ Criar Exercício</a>
-      <a href="/faq">❓ FAQ</a>
-      <div class="sidebar-theme-toggle">
-        <span>Tema</span>
-        <div class="theme-toggle-switch"></div>
-      </div>
-      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
-    </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">Progresso</div>
-      <div class="sidebar-progress-bar">
-        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
-      </div>
-    </div>
-  </aside>
-
-  <div class="main-content">
-    <div class="banner">
-      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
-    </div>
-
-    <div class="evo-header scroll-reveal">
-      <h1>📈 Evolução</h1>
-      <p>Seu histórico de prática diária</p>
-    </div>
-
-    <div class="evo-grid">
-      <!-- LEFT COLUMN -->
-      <div>
-        <div class="evo-stats scroll-reveal" id="evo-stats">
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-total-days">-</div>
-            <div class="evo-stat-label">Dias</div>
-          </div>
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-total-hours">-</div>
-            <div class="evo-stat-label">Horas</div>
-          </div>
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-best-day">-</div>
-            <div class="evo-stat-label">Melhor Dia</div>
-          </div>
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-current-streak">-</div>
-            <div class="evo-stat-label">Sequência</div>
-          </div>
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-best-streak">-</div>
-            <div class="evo-stat-label">Melhor Seq.</div>
-          </div>
-          <div class="evo-stat">
-            <div class="evo-stat-value" id="stat-week-minutes">-</div>
-            <div class="evo-stat-label">Essa Semana</div>
-          </div>
+    <div class="navbar">
+        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
+        <div class="navbar-menu">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+            <a href="/curso" class="nav-link">Curso</a>
+            <a href="#" onclick="logout()" class="nav-link">Sair</a>
         </div>
-
-        <div class="heatmap-wrapper scroll-reveal" id="heatmap-container">
-          <p style="color: var(--text-secondary);">Carregando heatmap...</p>
-        </div>
-
-        <div class="heatmap-legend">
-          <span>Menos</span>
-          <span class="legend-cell" style="background: var(--bg-tertiary);"></span>
-          <span class="legend-cell" style="background: #1a3520;"></span>
-          <span class="legend-cell" style="background: #2d5a27;"></span>
-          <span class="legend-cell" style="background: #4a8a3f;"></span>
-          <span class="legend-cell" style="background: #6abf5e;"></span>
-          <span>Mais</span>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div class="scroll-reveal">
-        <div class="weekly-goal-card" id="weekly-goal-card">
-          <h2>⚔ Metas de Prática</h2>
-
-          <div class="goals-row">
-            <div class="goal-block">
-              <h3>🎯 Meta Diária</h3>
-
-              <div class="weekly-progress-ring" id="daily-progress-ring">
-                <svg width="160" height="160" viewBox="0 0 160 160">
-                  <circle class="bg-circle" cx="80" cy="80" r="68"/>
-                  <circle class="fg-circle daily-fg" id="daily-progress-fg" cx="80" cy="80" r="68"
-                    stroke-dasharray="427.26" stroke-dashoffset="427.26"/>
-                </svg>
-                <div class="center-text">
-                  <div class="minutes" id="daily-current-minutes">0</div>
-                  <div class="label">hoje</div>
+    </div>
+    
+    <div class="evolucao-container">
+        <h1>📊 Sua Evolução</h1>
+        
+        <div class="evolution-metrics">
+            <div class="metric-card">
+                <h3>📈 Progresso Geral</h3>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
                 </div>
-              </div>
-
-              <div class="weekly-info">
-                <div class="weekly-info-item">
-                  <span class="label">Praticado hoje</span>
-                  <span class="value" id="daily-info-current">0 / 0 min</span>
-                </div>
-                <div class="weekly-info-item">
-                  <span class="label">Faltam hoje</span>
-                  <span class="value" id="daily-info-remaining">0 min</span>
-                </div>
-              </div>
-
-              <div class="weekly-goal-input-area">
-                <label>Meta diária (minutos)</label>
-                <div class="weekly-goal-input-row">
-                  <input type="number" id="daily-goal-input" min="5" max="240" value="10">
-                  <button id="daily-goal-save">Salvar</button>
-                </div>
-              </div>
+                <p id="progress-text">0 / 75 capítulos completados</p>
             </div>
-
-            <div class="goal-block">
-              <h3>⚔ Meta Semanal</h3>
-
-              <div class="weekly-progress-ring" id="weekly-progress-ring">
-                <svg width="160" height="160" viewBox="0 0 160 160">
-                  <circle class="bg-circle" cx="80" cy="80" r="68"/>
-                  <circle class="fg-circle" id="progress-fg" cx="80" cy="80" r="68"
-                    stroke-dasharray="427.26" stroke-dashoffset="427.26"/>
-                </svg>
-                <div class="center-text">
-                  <div class="minutes" id="weekly-current-minutes">0</div>
-                  <div class="label">min</div>
-                </div>
-              </div>
-
-              <div class="weekly-goal-input-area">
-                <label>Meta semanal (minutos)</label>
-                <div class="weekly-goal-input-row">
-                  <input type="number" id="weekly-goal-input" min="15" max="600" value="60">
-                  <button id="weekly-goal-save">Salvar</button>
-                </div>
-              </div>
-
-              <div class="weekly-info">
-                <div class="weekly-info-item">
-                  <span class="label">Prática essa semana</span>
-                  <span class="value" id="weekly-info-current">0 min</span>
-                </div>
-                <div class="weekly-info-item">
-                  <span class="label">Restante</span>
-                  <span class="value" id="weekly-info-remaining">0 min</span>
-                </div>
-                <div class="weekly-info-item">
-                  <span class="label">Média semanal</span>
-                  <span class="value" id="weekly-info-daily-avg">0 min</span>
-                </div>
-              </div>
+            
+            <div class="metric-card">
+                <h3>⚡ Velocidade Máxima Atingida</h3>
+                <div class="metric-value" id="max-speed">60 BPM</div>
+                <p>Aumento: <span id="speed-increase">+0 BPM</span></p>
             </div>
-          </div>
+            
+            <div class="metric-card">
+                <h3>⏱️ Tempo Total de Prática</h3>
+                <div class="metric-value" id="total-time">0h</div>
+                <p>Esta semana: <span id="week-time">0h</span></p>
+            </div>
+            
+            <div class="metric-card">
+                <h3>🔥 Recorde de Sequência</h3>
+                <div class="metric-value" id="best-streak">0 dias</div>
+                <p>Sequência atual: <span id="current-streak">0 dias</span></p>
+            </div>
+            
+            <div class="metric-card">
+                <h3>🧪 Testes Concluídos</h3>
+                <div class="metric-value" id="tests-completed">0</div>
+                <p>Taxa de sucesso: <span id="success-rate">0%</span></p>
+            </div>
+            
+            <div class="metric-card">
+                <h3>🏆 Conquistas</h3>
+                <div class="metric-value" id="achievements-count">0</div>
+                <p>Nível: <span id="user-level">Iniciante</span></p>
+            </div>
         </div>
-      </div>
+        
+        <div class="chart-container">
+            <h2>Evolução Mensal</h2>
+            <canvas id="progress-chart"></canvas>
+        </div>
     </div>
-  </div>
-
-  <div class="heatmap-tooltip" id="heatmap-tooltip"></div>
-  <button class="back-to-top" id="back-to-top">⬆</button>
-
-  <script src="js/particles.js"></script>
-  <script src="js/theme.js"></script>
-  <script>
-    var WEEKLY_GOAL = 60;
-    var DAILY_GOAL = 10;
-    var todayPracticeMins = 0;
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var token = localStorage.getItem('token');
-      if (!token) { window.location.href = '/'; return; }
-
-      loadEvolution();
-
-      // Sidebar
-      var h = document.getElementById('hamburger-btn');
-      var s = document.getElementById('sidebar');
-      var o = document.getElementById('sidebar-overlay');
-      if (h && s && o) {
-        h.addEventListener('click', function() { s.classList.toggle('open'); o.classList.toggle('active'); });
-        o.addEventListener('click', function() { s.classList.remove('open'); o.classList.remove('active'); });
-      }
-
-      document.querySelectorAll('.logout').forEach(function(el) {
-        el.addEventListener('click', function(e) { e.preventDefault(); localStorage.clear(); window.location.href = '/'; });
-      });
-
-      loadSidebarProgress();
-
-      var backBtn = document.getElementById('back-to-top');
-      if (backBtn) {
-        window.addEventListener('scroll', function() { backBtn.classList.toggle('visible', window.scrollY > 400); });
-        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-      }
-
-      if ('IntersectionObserver' in window) {
-        var ro = new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); ro.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach(function(el) { ro.observe(el); });
-      }
-
-      // Weekly goal save
-      document.getElementById('weekly-goal-save').addEventListener('click', saveWeeklyGoal);
-      document.getElementById('weekly-goal-input').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') saveWeeklyGoal();
-      });
-      // Daily goal save
-      document.getElementById('daily-goal-save').addEventListener('click', saveDailyGoal);
-      document.getElementById('daily-goal-input').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') saveDailyGoal();
-      });
-    });
-
-    async function loadSidebarProgress() {
-      try {
-        var token = localStorage.getItem('token');
-        var [pRes, sRes] = await Promise.all([
-          fetch('/api/progress', { headers: { 'Authorization': 'Bearer ' + token } }),
-          fetch('/api/stats')
-        ]);
-        var progress = await pRes.json();
-        var stats = await sRes.json();
-        var completed = progress.filter(function(p) { return p.completed; }).length;
-        var total = stats.totalAulas || 1;
-        var pct = Math.round((completed / total) * 100);
-        var fill = document.getElementById('sidebar-progress-fill');
-        if (fill) fill.style.width = pct + '%';
-      } catch(e) {}
-    }
-
-    function parseLocalDate(str) {
-      var p = str.split('-');
-      return new Date(parseInt(p[0]), parseInt(p[1]) - 1, parseInt(p[2]));
-    }
-    function localDateStr(d) {
-      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-    }
-
-    function getWeekId(date) {
-      var d = typeof date === 'string' ? parseLocalDate(date) : new Date(date);
-      // Week starts on Sunday
-      d.setDate(d.getDate() - d.getDay());
-      return localDateStr(d);
-    }
-
-    async function loadEvolution() {
-      var token = localStorage.getItem('token');
-      try {
-        var [histRes, goalRes] = await Promise.all([
-          fetch('/api/progress/history', { headers: { 'Authorization': 'Bearer ' + token } }),
-          fetch('/api/user/weekly-goal', { headers: { 'Authorization': 'Bearer ' + token } })
-        ]);
-        var data = await histRes.json();
-        var goalData = await goalRes.json();
-        WEEKLY_GOAL = goalData.weeklyGoal || 60;
-        document.getElementById('weekly-goal-input').value = WEEKLY_GOAL;
-        DAILY_GOAL = goalData.dailyGoal || 10;
-        document.getElementById('daily-goal-input').value = DAILY_GOAL;
-
-        // Build date map
-        var dateMap = {};
-        var bestDay = 0;
-        data.forEach(function(d) {
-          var mins = Math.round(d.total_seconds / 60);
-          dateMap[d.practice_date] = mins;
-          if (mins > bestDay) bestDay = mins;
-        });
-
-        // Stats
-        var totalDays = data.length;
-        var totalHours = 0;
-        data.forEach(function(d) { totalHours += d.total_seconds / 3600; });
-
-        // Streak calc
-        var today = new Date();
-        var todayStr = localDateStr(today);
-        todayPracticeMins = dateMap[todayStr] || 0;
-        var sortedDates = Object.keys(dateMap).sort().reverse();
-
-        var currentStreak = 0;
-        var bestStreak = 0;
-        var tempStreak = 0;
-        for (var i = 0; i < sortedDates.length; i++) {
-          var expected = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentStreak);
-          var expectedStr = localDateStr(expected);
-          if (sortedDates[i] === expectedStr) {
-            currentStreak++;
-          } else {
-            break;
-          }
-        }
-        tempStreak = 1;
-        for (var i = 1; i < sortedDates.length; i++) {
-          var prev = parseLocalDate(sortedDates[i - 1]);
-          var curr = parseLocalDate(sortedDates[i]);
-          var diff = (prev.getTime() - curr.getTime()) / 86400000;
-          if (diff === 1) {
-            tempStreak++;
-          } else {
-            if (tempStreak > bestStreak) bestStreak = tempStreak;
-            tempStreak = 1;
-          }
-        }
-        if (tempStreak > bestStreak) bestStreak = tempStreak;
-
-        document.getElementById('stat-total-days').textContent = totalDays;
-        document.getElementById('stat-total-hours').textContent = totalHours.toFixed(1);
-        document.getElementById('stat-current-streak').textContent = currentStreak;
-        document.getElementById('stat-best-streak').textContent = bestStreak;
-        document.getElementById('stat-best-day').textContent = bestDay;
-
-        // Weekly calc
-        var thisWeekId = getWeekId(today);
-        var weekMins = 0;
-        data.forEach(function(d) {
-          if (getWeekId(d.practice_date) === thisWeekId) {
-            weekMins += Math.round(d.total_seconds / 60);
-          }
-        });
-        document.getElementById('stat-week-minutes').textContent = weekMins;
-        updateWeeklyGoalDisplay(weekMins);
-        updateDailyGoalDisplay();
-
-        // Render heatmap
-        renderHeatmap(dateMap);
-      } catch(e) {
-        document.getElementById('heatmap-container').innerHTML = '<p style="color: var(--text-secondary);">Erro ao carregar dados.</p>';
-      }
-    }
-
-    function updateWeeklyGoalDisplay(weekMins) {
-      var goal = WEEKLY_GOAL;
-      document.getElementById('weekly-current-minutes').textContent = weekMins;
-
-      var circumference = 2 * Math.PI * 68;
-      var pct = Math.min(weekMins / goal, 1);
-      var offset = circumference * (1 - pct);
-      document.getElementById('progress-fg').style.strokeDashoffset = offset;
-
-      var remaining = Math.max(0, goal - weekMins);
-      document.getElementById('weekly-info-current').textContent = weekMins + ' min';
-      document.getElementById('weekly-info-remaining').textContent = remaining + ' min';
-
-      // Average minutes per day across the full 7-day week
-      var weeklyAvg = Math.round(weekMins / 7);
-      document.getElementById('weekly-info-daily-avg').textContent = weeklyAvg + ' min';
-    }
-
-    function updateDailyGoalDisplay() {
-      var mins = todayPracticeMins;
-      document.getElementById('daily-current-minutes').textContent = mins;
-
-      var circumference = 2 * Math.PI * 68;
-      var pct = Math.min(mins / DAILY_GOAL, 1);
-      var offset = circumference * (1 - pct);
-      document.getElementById('daily-progress-fg').style.strokeDashoffset = offset;
-
-      var remaining = Math.max(0, DAILY_GOAL - mins);
-      document.getElementById('daily-info-current').textContent = mins + ' / ' + DAILY_GOAL + ' min';
-      document.getElementById('daily-info-remaining').textContent = remaining + ' min';
-    }
-
-    async function saveDailyGoal() {
-      var input = document.getElementById('daily-goal-input');
-      var goal = parseInt(input.value);
-      if (isNaN(goal) || goal < 5) goal = 5;
-      if (goal > 240) goal = 240;
-      input.value = goal;
-
-      var token = localStorage.getItem('token');
-      try {
-        var res = await fetch('/api/user/weekly-goal', {
-          method: 'PUT',
-          headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ dailyGoal: goal })
-        });
-        var data = await res.json();
-        if (data.success) {
-          DAILY_GOAL = data.dailyGoal;
-          updateDailyGoalDisplay();
-        }
-      } catch(e) {}
-    }
-
-    async function saveWeeklyGoal() {
-      var input = document.getElementById('weekly-goal-input');
-      var goal = parseInt(input.value);
-      if (isNaN(goal) || goal < 15) goal = 15;
-      if (goal > 600) goal = 600;
-      input.value = goal;
-
-      var token = localStorage.getItem('token');
-      try {
-        var res = await fetch('/api/user/weekly-goal', {
-          method: 'PUT',
-          headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ weeklyGoal: goal })
-        });
-        var data = await res.json();
-        if (data.success) {
-          WEEKLY_GOAL = data.weeklyGoal;
-          // Recalculate weekly minutes
-          var today = new Date();
-          var thisWeekId = getWeekId(today);
-          var histRes = await fetch('/api/progress/history', { headers: { 'Authorization': 'Bearer ' + token } });
-          var histData = await histRes.json();
-          var weekMins = 0;
-          histData.forEach(function(d) {
-            if (getWeekId(d.practice_date) === thisWeekId) {
-              weekMins += Math.round(d.total_seconds / 60);
+    
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadEvolution);
+        
+        async function loadEvolution() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                location.href = '/';
+                return;
             }
-          });
-          updateWeeklyGoalDisplay(weekMins);
-        }
-      } catch(e) {}
-    }
-
-    function getLevel(mins) {
-      if (!mins || mins <= 0) return 0;
-      if (mins < 15) return 1;
-      if (mins < 30) return 2;
-      if (mins < 60) return 3;
-      return 4;
-    }
-
-    function renderHeatmap(dateMap) {
-      var DAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
-      var MONTHS = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-      var today = new Date();
-      var container = document.getElementById('heatmap-container');
-      container.innerHTML = '';
-
-      var tooltip = document.getElementById('heatmap-tooltip');
-
-      var weeks = [];
-      var startOfYear = new Date(today.getFullYear(), 0, 1);
-      var endOfYear = new Date(today.getFullYear(), 11, 31);
-
-      for (var d = new Date(startOfYear); d <= endOfYear; d.setDate(d.getDate() + 1)) {
-        var dateStr = localDateStr(d);
-        var dayOfWeek = d.getDay();
-        while (weeks.length <= dayOfWeek) weeks.push([]);
-        var firstJan = new Date(d.getFullYear(), 0, 1);
-        var daysOffset = Math.floor((d.getTime() - firstJan.getTime()) / 86400000);
-        var weekCol = Math.floor((daysOffset + firstJan.getDay() + 6) / 7);
-
-        while (weeks[dayOfWeek].length <= weekCol) {
-          weeks[dayOfWeek].push(null);
-        }
-        weeks[dayOfWeek][weekCol] = {
-          date: dateStr,
-          mins: dateMap[dateStr] || 0,
-          level: getLevel(dateMap[dateStr]),
-          isToday: dateStr === localDateStr(today)
-        };
-      }
-
-      var maxCols = 0;
-      for (var r = 0; r < weeks.length; r++) {
-        if (weeks[r].length > maxCols) maxCols = weeks[r].length;
-      }
-      for (var r = 0; r < weeks.length; r++) {
-        while (weeks[r].length < maxCols) weeks[r].push(null);
-      }
-
-      // Month headers
-      var monthHeader = '<div class="heatmap-grid" style="margin-bottom:4px;padding-left:30px;">';
-      var prevMonth = -1;
-      for (var c = 0; c < maxCols; c++) {
-        var monthLabel = '';
-        for (var r = 0; r < weeks.length; r++) {
-          if (weeks[r][c]) {
-            var m = parseLocalDate(weeks[r][c].date).getMonth();
-            if (m !== prevMonth) {
-              monthLabel = MONTHS[m];
-              prevMonth = m;
+            
+            try {
+                // Carregar progresso
+                const progressRes = await fetch('/api/user/progress', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (progressRes.ok) {
+                    const progress = await progressRes.json();
+                    updateEvolutionMetrics(progress);
+                }
+                
+                // Carregar conquistas
+                const achievementsRes = await fetch('/api/achievements', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (achievementsRes.ok) {
+                    const data = await achievementsRes.json();
+                    document.getElementById('achievements-count').textContent = data.achievements.length;
+                }
+            } catch (error) {
+                console.error('Erro:', error);
             }
-            break;
-          }
         }
-        monthHeader += '<div style="font-size:9px;color:var(--text-muted);width:14px;text-align:center;">' + monthLabel + '</div>';
-      }
-      monthHeader += '</div>';
-
-      var gridHtml = '<div class="heatmap-grid">';
-      gridHtml += '<div class="heatmap-col" style="gap:3px;">';
-      for (var r = 0; r < weeks.length; r++) {
-        gridHtml += '<div class="heatmap-day-label">' + (r % 2 === 0 ? DAYS[r] : '') + '</div>';
-      }
-      gridHtml += '</div>';
-
-      for (var c = 0; c < maxCols; c++) {
-        gridHtml += '<div class="heatmap-col">';
-        for (var r = 0; r < weeks.length; r++) {
-          var cell = weeks[r][c];
-          if (cell) {
-            var classes = 'heatmap-cell' + (cell.isToday ? ' today' : '');
-            gridHtml += '<div class="' + classes + '" data-level="' + cell.level + '" data-date="' + cell.date + '" data-mins="' + cell.mins + '"></div>';
-          } else {
-            gridHtml += '<div class="heatmap-cell" style="visibility:hidden;"></div>';
-          }
+        
+        function updateEvolutionMetrics(progress) {
+            const completed = progress.filter(p => p.completed).length;
+            const total = 75;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${completed} / ${total} capítulos completados`;
+            
+            const maxBpm = Math.max(...progress.map(p => p.max_bpm || 0), 60);
+            document.getElementById('max-speed').textContent = maxBpm + ' BPM';
+            document.getElementById('speed-increase').textContent = '+' + (maxBpm - 60) + ' BPM';
+            
+            const totalTime = progress.reduce((sum, p) => sum + (p.practice_time || 0), 0);
+            const hours = Math.round(totalTime / 60);
+            document.getElementById('total-time').textContent = hours + 'h';
+            
+            const weekTime = progress
+                .filter(p => {
+                    if (!p.last_practiced) return false;
+                    const date = new Date(p.last_practiced);
+                    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+                    return date > weekAgo;
+                })
+                .reduce((sum, p) => sum + (p.practice_time || 0), 0);
+            document.getElementById('week-time').textContent = Math.round(weekTime / 60) + 'h';
+            
+            const userLevel = completed < 10 ? 'Iniciante' : completed < 30 ? 'Intermediário' : completed < 50 ? 'Avançado' : 'Mestre';
+            document.getElementById('user-level').textContent = userLevel;
         }
-        gridHtml += '</div>';
-      }
-      gridHtml += '</div>';
-
-      container.innerHTML = '<div class="heatmap-month-title">' + today.getFullYear() + '</div>' + monthHeader + gridHtml;
-
-      container.querySelectorAll('.heatmap-cell:not([style*="visibility"])').forEach(function(cell) {
-        cell.addEventListener('mouseenter', function(e) {
-          var date = cell.getAttribute('data-date');
-          var parts = date.split('-');
-          var dateBr = parts[2] + '/' + parts[1] + '/' + parts[0];
-          var mins = parseInt(cell.getAttribute('data-mins')) || 0;
-          if (mins > 0) {
-            tooltip.textContent = dateBr + ' — ' + mins + ' min';
-          } else {
-            tooltip.textContent = dateBr + ' — sem prática';
-          }
-          tooltip.classList.add('show');
-        });
-        cell.addEventListener('mousemove', function(e) {
-          tooltip.style.left = (e.clientX + 12) + 'px';
-          tooltip.style.top = (e.clientY - 8) + 'px';
-        });
-        cell.addEventListener('mouseleave', function() {
-          tooltip.classList.remove('show');
-        });
-      });
-    }
-  </script>
+    </script>
 </body>
 </html>
