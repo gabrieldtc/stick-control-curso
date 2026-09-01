@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Database (SQLite local - o Railway usa PostgreSQL)
+database/
+*.db
+*.db-shm
+*.db-wal
+
+# Deploy scripts (nginx/systemd são só para VPS local)
+deploy/
+
+# Zip / artefatos
+*.zip
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

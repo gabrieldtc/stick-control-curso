@@ -34,29 +34,22 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-pool.on('error', (err) => {
-  console.error('❌ Erro na conexão com PostgreSQL:', err.message);
-});
-
-// ============ DATABASE INITIALIZATION ============
 async function initDatabase() {
   try {
-    // Tabela users
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         secret_question VARCHAR(255),
         secret_answer VARCHAR(255),
         weekly_goal INTEGER DEFAULT 60,
-        daily_goal INTEGER DEFAULT 10,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        daily_goal INTEGER DEFAULT 10
       )
     `);
 
-    // Tabela progress
     await pool.query(`
       CREATE TABLE IF NOT EXISTS progress (
         id SERIAL PRIMARY KEY,
@@ -71,7 +64,6 @@ async function initDatabase() {
       )
     `);
 
-    // Tabela achievements
     await pool.query(`
       CREATE TABLE IF NOT EXISTS achievements (
         id SERIAL PRIMARY KEY,
@@ -81,7 +73,6 @@ async function initDatabase() {
       )
     `);
 
-    // Tabela user_exercises
     await pool.query(`
       CREATE TABLE IF NOT EXISTS user_exercises (
         id SERIAL PRIMARY KEY,
@@ -98,7 +89,6 @@ async function initDatabase() {
       )
     `);
 
-    // Tabela user_exercise_progress
     await pool.query(`
       CREATE TABLE IF NOT EXISTS user_exercise_progress (
         id SERIAL PRIMARY KEY,
@@ -111,11 +101,95 @@ async function initDatabase() {
       )
     `);
 
-    console.log('✅ Banco de dados PostgreSQL inicializado');
+    console.log('✅ Banco PostgreSQL inicializado');
   } catch (err) {
     console.error('❌ Erro ao inicializar banco:', err.message);
   }
 }
+
+
+//pool.on('error', (err) => {
+//  console.error('❌ Erro na conexão com PostgreSQL:', err.message);
+//});
+
+// ============ DATABASE INITIALIZATION ============
+//async function initDatabase() {
+//  try {
+    // Tabela users
+//    await pool.query(`
+//      CREATE TABLE IF NOT EXISTS users (
+//        id SERIAL PRIMARY KEY,
+//        name VARCHAR(255) NOT NULL,
+ //       email VARCHAR(255) UNIQUE NOT NULL,
+//        password VARCHAR(255) NOT NULL,
+//        secret_question VARCHAR(255),
+//        secret_answer VARCHAR(255),
+ //       weekly_goal INTEGER DEFAULT 60,
+//        daily_goal INTEGER DEFAULT 10,
+//        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//      )
+//    `);
+
+    // Tabela progress
+//    await pool.query(`
+//      CREATE TABLE IF NOT EXISTS progress (
+ //       id SERIAL PRIMARY KEY,
+ //       user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ //       chapter_id INTEGER NOT NULL,
+ //       completed BOOLEAN DEFAULT FALSE,
+ //       max_bpm INTEGER DEFAULT 60,
+ //       practice_time INTEGER DEFAULT 0,
+ //       test_completed BOOLEAN DEFAULT FALSE,
+ //       last_practiced TIMESTAMP,
+ //       UNIQUE(user_id, chapter_id)
+ //     )
+ //   `);
+
+    // Tabela achievements
+///    await pool.query(`
+ //     CREATE TABLE IF NOT EXISTS achievements (
+ //       id SERIAL PRIMARY KEY,
+  //      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ //       badge_name VARCHAR(255) NOT NULL,
+ //       unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ //     )
+ //   `);
+
+    // Tabela user_exercises
+//    await pool.query(`
+//      CREATE TABLE IF NOT EXISTS user_exercises (
+//        id SERIAL PRIMARY KEY,
+//        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ //       nome VARCHAR(255) NOT NULL,
+ //       sequencia TEXT NOT NULL,
+ //       bpm_alvo INTEGER DEFAULT 60,
+ //       bpm_range_min INTEGER DEFAULT 40,
+ //       bpm_range_max INTEGER DEFAULT 200,
+  //      notes_per_beat INTEGER DEFAULT 2,
+ //       time_signature INTEGER DEFAULT 4,
+ //       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ //       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ //     )
+ //   `);
+
+    // Tabela user_exercise_progress
+//    await pool.query(`
+//      CREATE TABLE IF NOT EXISTS user_exercise_progress (
+//        id SERIAL PRIMARY KEY,
+ //       user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+//        exercise_id INTEGER NOT NULL,
+//        max_bpm INTEGER DEFAULT 0,
+//        practice_time INTEGER DEFAULT 0,
+//        completed BOOLEAN DEFAULT FALSE,
+//        last_practiced TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//      )
+//    `);
+
+//    console.log('✅ Banco de dados PostgreSQL inicializado');
+//  } catch (err) {
+//    console.error('❌ Erro ao inicializar banco:', err.message);
+//  }
+//}
 
 // ============ CHAPTERS CACHE ============
 let chaptersCache = null;
@@ -340,10 +414,42 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
-// ============ ROOT ROUTE ============
+// ============ PAGE ROUTES ============
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
+app.get('/intro', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'intro.html'));
+});
+
+app.get('/curso', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'curso.html'));
+});
+
+app.get('/teste', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'teste.html'));
+});
+
+app.get('/faq', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'faq.html'));
+});
+
+app.get('/conquistas', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'achievements.html'));
+});
+
+app.get('/evolucao', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'evolucao.html'));
+});
+
+app.get('/criar-exercicio', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'criar-exercicio.html'));
 });
 
 // ============ START SERVER ============
