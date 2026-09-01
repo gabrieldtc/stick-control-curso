@@ -1,170 +1,321 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Exercício - Do Travesseiro ao Groove</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO TRAVESSEIRO AO GROOVE - Criar Exercício</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    .editor-section { background: var(--bg-secondary); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .editor-section h2 { margin-top: 0; }
+    .editor-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .editor-controls input[type="text"] { flex: 1; min-width: 200px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-primary); color: var(--text); font-size: 16px; }
+    .editor-controls input[type="number"] { width: 80px; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-primary); color: var(--text); text-align: center; }
+    .editor-controls select { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-primary); color: var(--text); }
+    .note-palette { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .palette-btn { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 14px; border-radius: 8px; border: 2px solid var(--border); background: var(--bg-primary); color: var(--text); cursor: pointer; transition: all .15s; font-size: 13px; min-width: 70px; }
+    .palette-btn:hover { border-color: var(--accent); background: var(--bg-tertiary); }
+    .palette-btn.active { border-color: var(--accent); background: var(--bg-tertiary); box-shadow: 0 0 12px var(--accent-glow, rgba(201,168,76,.3)); }
+    .palette-btn small { font-size: 10px; color: var(--text-muted); }
+    .palette-btn .right-hand { color: var(--accent); font-weight: 700; font-size: 18px; }
+    .palette-btn .left-hand { color: var(--info); font-weight: 700; font-size: 18px; }
+    .palette-btn .accented { text-shadow: 0 0 6px currentColor; }
+    .palette-btn .soft { opacity: .5; }
+    .palette-btn .rest { color: var(--text-muted); font-size: 18px; }
+    .editor-grid { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; min-height: 48px; align-items: center; }
+    .editor-cell { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 700; transition: all .15s; border: 2px solid var(--border); background: var(--bg-primary); color: var(--text); user-select: none; }
+    .editor-cell:hover { border-color: var(--accent); transform: scale(1.08); }
+    .editor-cell.right-hand { color: var(--accent); }
+    .editor-cell.left-hand { color: var(--info); }
+    .editor-cell.accented { text-shadow: 0 0 6px currentColor; }
+    .editor-cell.rest { color: var(--text-muted); opacity: .5; }
+    .editor-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .picker-opt { width: 38px; height: 38px; border-radius: 6px; border: 2px solid var(--border); background: var(--bg-primary); cursor: pointer; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: all .12s; }
+    .picker-opt:hover { border-color: var(--accent); transform: scale(1.12); }
+    .picker-opt.current { border-color: var(--accent); background: var(--bg-tertiary); }
+    .picker-opt.right-hand { color: var(--accent); }
+    .picker-opt.left-hand { color: var(--info); }
+    .picker-opt.soft { opacity: .5; }
+    .picker-opt.rest { color: var(--text-muted); }
+    .picker-opt.accented { text-shadow: 0 0 6px currentColor; }
+    .partitura-preview { background: var(--bg-primary); border-radius: 8px; padding: 16px; margin: 16px 0; overflow-x: auto; min-height: 60px; border: 1px solid var(--border); }
+    .partitura-mini { display: flex; align-items: center; gap: 0; white-space: nowrap; }
+    .partitura-mini .measure { display: inline-flex; flex-direction: column; align-items: center; padding: 0 4px; }
+    .partitura-mini .notes-row { display: flex; gap: 2px; }
+    .partitura-mini .beats-row { display: flex; gap: 2px; margin-top: 4px; }
+    .partitura-mini .beat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); }
+    .partitura-mini .barline { display: inline-block; width: 2px; height: 32px; background: var(--border); margin: 0 4px; }
+    .partitura-mini .nota { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; font-size: 14px; font-weight: 700; border-radius: 4px; }
+    .partitura-mini .nota.right { color: var(--accent); }
+    .partitura-mini .nota.left { color: var(--info); }
+    .partitura-mini .nota.soft { opacity: .55; }
+    .partitura-mini .nota.rest { opacity: .3; }
+    .exercise-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-tertiary); padding: 12px 16px; border-radius: 8px; margin-bottom: 8px; gap: 12px; }
+    .exercise-item-info { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+    .exercise-item-seq { font-family: monospace; font-size: 13px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .exercise-item-stats { font-size: 12px; color: var(--text-muted); }
+    .exercise-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .exercise-item-actions .btn-control { padding: 6px 10px; font-size: 14px; }
+    .btn-accent { background: var(--accent); color: var(--bg-primary); border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 15px; transition: opacity .2s; }
+    .btn-accent:hover { opacity: .85; }
+    .btn-accent:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-secondary { background: var(--bg-tertiary); color: var(--text); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: background .2s; }
+    .btn-secondary:hover { background: var(--border); }
+    @media (max-width: 600px) {
+      .editor-grid { gap: 4px; }
+      .editor-cell { width: 36px; height: 36px; font-size: 15px; }
+      .palette-btn { min-width: 56px; padding: 6px 10px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
-        <div class="navbar-menu">
-            <a href="/dashboard" class="nav-link">Dashboard</a>
-            <a href="/curso" class="nav-link">Curso</a>
-            <a href="#" onclick="logout()" class="nav-link">Sair</a>
-        </div>
+  <button class="hamburger" id="hamburger-btn">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"></div>
+    <nav class="sidebar-nav">
+      <a href="/intro">📖 Introdução</a>
+      <a href="/dashboard">🏠 Aulas</a>
+      <a href="/curso">🎓 Curso</a>
+      <a href="/teste">📝 Teste</a>
+      <a href="/conquistas">🏅 Conquistas</a>
+      <a href="/evolucao">📈 Evolução</a>
+      <a href="/criar-exercicio" class="active">✏️ Criar Exercício</a>
+      <a href="/faq">❓ FAQ</a>
+      <div class="sidebar-theme-toggle">
+        <span>Tema</span>
+        <div class="theme-toggle-switch"></div>
+      </div>
+      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
+    </nav>
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">Progresso</div>
+      <div class="sidebar-progress-bar">
+        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
+      </div>
     </div>
-    
-    <div class="criar-exercicio-container">
-        <h1>✨ Criar Exercício Personalizado</h1>
-        
-        <div class="form-container">
-            <form id="exercise-form">
-                <div class="form-group">
-                    <label>Nome do Exercício</label>
-                    <input type="text" id="exercise-name" placeholder="Ex: Meu exercício de velocidade" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Sequência</label>
-                    <textarea id="exercise-sequence" placeholder="Ex: RLRL LRLR RRLL LLRR" required></textarea>
-                    <small>R = Direita, L = Esquerda</small>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>BPM Alvo</label>
-                        <input type="number" id="bpm-target" value="120" min="40" max="300">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Range Mínimo de BPM</label>
-                        <input type="number" id="bpm-min" value="40" min="40" max="300">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Range Máximo de BPM</label>
-                        <input type="number" id="bpm-max" value="200" min="40" max="300">
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Notas por Beat</label>
-                        <input type="number" id="notes-per-beat" value="2" min="1" max="8">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Compasso</label>
-                        <select id="time-signature">
-                            <option value="4">4/4</option>
-                            <option value="3">3/4</option>
-                            <option value="2">2/4</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button type="submit" class="btn-primary">Criar Exercício</button>
-            </form>
-        </div>
-        
-        <h2>Seus Exercícios</h2>
-        <div class="exercises-list" id="exercises-list">
-            <p class="loading">Carregando exercícios...</p>
-        </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="banner">
+      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
     </div>
-    
-    <script src="/js/app.js"></script>
-    <script>
-        document.getElementById('exercise-form').addEventListener('submit', createExercise);
-        document.addEventListener('DOMContentLoaded', loadExercises);
-        
-        async function createExercise(e) {
-            e.preventDefault();
-            
-            const token = localStorage.getItem('token');
-            if (!token) {
-                location.href = '/';
-                return;
-            }
-            
-            const exercise = {
-                nome: document.getElementById('exercise-name').value,
-                sequencia: document.getElementById('exercise-sequence').value,
-                bpm_alvo: parseInt(document.getElementById('bpm-target').value),
-                bpm_range_min: parseInt(document.getElementById('bpm-min').value),
-                bpm_range_max: parseInt(document.getElementById('bpm-max').value),
-                notes_per_beat: parseInt(document.getElementById('notes-per-beat').value),
-                time_signature: parseInt(document.getElementById('time-signature').value)
-            };
-            
-            try {
-                const res = await fetch('/api/user-exercises', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(exercise)
-                });
-                
-                if (res.ok) {
-                    alert('✅ Exercício criado com sucesso!');
-                    document.getElementById('exercise-form').reset();
-                    loadExercises();
-                } else {
-                    alert('❌ Erro ao criar exercício');
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                alert('❌ Erro ao criar exercício');
-            }
-        }
-        
-        async function loadExercises() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                location.href = '/';
-                return;
-            }
-            
-            try {
-                const res = await fetch('/api/user-exercises', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                
-                if (res.ok) {
-                    const exercises = await res.json();
-                    renderExercises(exercises);
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-            }
-        }
-        
-        function renderExercises(exercises) {
-            const list = document.getElementById('exercises-list');
-            
-            if (exercises.length === 0) {
-                list.innerHTML = '<p class="empty">Nenhum exercício criado ainda</p>';
-                return;
-            }
-            
-            list.innerHTML = exercises.map(ex => `
-                <div class="exercise-card">
-                    <h3>${ex.nome}</h3>
-                    <p><strong>Sequência:</strong> ${ex.sequencia}</p>
-                    <p><strong>BPM Alvo:</strong> ${ex.bpm_alvo} (${ex.bpm_range_min}-${ex.bpm_range_max})</p>
-                    <p><strong>Criado em:</strong> ${new Date(ex.created_at).toLocaleDateString('pt-BR')}</p>
-                    <button class="btn-small" onclick="practiceExercise(${ex.id})">Praticar</button>
-                </div>
-            `).join('');
-        }
-        
-        function practiceExercise(id) {
-            alert('🎵 Iniciar prática do exercício #' + id);
-        }
-    </script>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 16px;">
+
+      <!-- EDITOR SECTION -->
+      <div class="editor-section">
+        <h2>✏️ Criar Exercício Personalizado</h2>
+        <p style="color:var(--text-secondary);margin-bottom:16px;">Escolha um tipo de nota na paleta abaixo, depois clique em "Adicionar" para acrescentar ao exercício. Clique em qualquer nota existente para trocar seu tipo.</p>
+
+        <div class="editor-controls">
+          <input type="text" id="exercicio-nome" placeholder="Nome do exercício..." maxlength="100">
+          <button class="btn-accent" id="save-btn" onclick="saveExercise()" disabled>💾 Salvar</button>
+          <button class="btn-secondary" onclick="newExercise()">🆕 Novo</button>
+        </div>
+
+        <div class="editor-controls">
+          <label style="color:var(--text-secondary);font-size:13px;">BPM alvo:</label>
+          <input type="number" id="bpm-alvo" value="60" min="20" max="300">
+          <label style="color:var(--text-secondary);font-size:13px;margin-left:12px;">Compasso:</label>
+          <select id="time-sig-select">
+            <option value="2">2/4</option>
+            <option value="3">3/4</option>
+            <option value="4" selected>4/4</option>
+            <option value="6">6/8</option>
+          </select>
+          <label style="color:var(--text-secondary);font-size:13px;margin-left:12px;">Notas por tempo:</label>
+          <select id="npb-select">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <label style="color:var(--text-secondary);font-size:13px;display:block;margin-bottom:6px;">Escolha a nota e clique em "Adicionar":</label>
+        <div class="note-palette" id="note-palette"></div>
+
+        <div class="editor-actions">
+          <button class="btn-secondary" onclick="addNote()">➕ Adicionar no fim</button>
+          <button class="btn-secondary" onclick="addNoteAtStart()">➕ Adicionar no início</button>
+          <button class="btn-secondary" onclick="removeNote()">➖ Remover última</button>
+          <button class="btn-secondary" onclick="clearAllNotes()">🗑️ Limpar tudo</button>
+          <span style="color:var(--text-muted);font-size:13px;align-self:center;" id="note-count">0 notas</span>
+        </div>
+
+        <p style="color:var(--text-muted);font-size:12px;margin-top:8px;">💡 Clique em qualquer nota acima para trocar seu tipo.</p>
+
+        <div class="editor-grid" id="editor-grid"></div>
+
+        <h4 style="margin:16px 0 8px;display:flex;justify-content:space-between;align-items:center;">Prévia da Partitura <button class="btn-control" onclick="printPartitura()" title="Imprimir partitura" style="font-size:13px;padding:6px 12px;">🖨️ Imprimir</button></h4>
+        <div class="partitura-preview" id="partitura-preview">
+          <p style="color:var(--text-secondary);">Adicione notas para ver a prévia</p>
+        </div>
+      </div>
+
+      <!-- PLAYER SECTION -->
+      <div class="editor-section practice-column">
+        <h2>🎵 Player</h2>
+        <div class="audio-controls">
+          <button class="btn-control play-btn" id="play-btn" onclick="togglePlay()">
+            <span id="play-icon">▶</span> Tocar
+          </button>
+          <button class="btn-control stop-btn" onclick="stopAudio()">⏹ Parar</button>
+          <button class="btn-control" id="slow-btn" onclick="toggleSlow()">🐢 50%</button>
+          <button class="btn-control" id="loop-btn" onclick="toggleLoop()">🔁 Loop</button>
+          <button class="btn-control focus-btn" onclick="togglePracticeFocus()" title="Modo sem distração (Esc para sair)">⛶ Focar</button>
+        </div>
+
+        <div class="control-row" style="margin:8px 0;flex-wrap:wrap;gap:10px;">
+          <label style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="checkbox" id="countin-toggle" value="4" checked>
+            Count-in (4 tempos)
+          </label>
+          <label style="font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:6px;">
+            🥁 Kit:
+            <select id="kit-select" onchange="setKit(this.value)" style="background:var(--bg-tertiary);color:var(--text-primary);border:1px solid var(--gold-dim);border-radius:8px;padding:4px 8px;font-family:'Cinzel',serif;font-size:12px;">
+              <option value="classic">Pad Clássico</option>
+              <option value="rock">Rock</option>
+              <option value="jazz">Jazz</option>
+              <option value="funk">Funk</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="controls-row">
+          <div class="bpm-control">
+            <label>Tempo (BPM)</label>
+            <div class="bpm-buttons">
+              <button class="bpm-btn" onclick="changeBPM(-10)" title="-10 BPM">−−</button>
+              <button class="bpm-btn" onclick="changeBPM(-5)">−</button>
+              <div class="bpm-value" id="bpm-value">80</div>
+              <button class="bpm-btn" onclick="changeBPM(5)">+</button>
+              <button class="bpm-btn" onclick="changeBPM(10)" title="+10 BPM">++</button>
+              <button class="bpm-btn tap-btn" id="tap-btn" onclick="tapTempo()" title="Tap para definir BPM">👆 Tap</button>
+            </div>
+          </div>
+
+          <div class="volume-controls">
+            <div class="volume-row">
+              <label>🔊 Mestre</label>
+              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.8" oninput="setVolume('master', this.value)">
+            </div>
+            <div class="volume-row">
+              <label>🎵 Exercício</label>
+              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.7" oninput="setVolume('exercise', this.value)">
+            </div>
+            <div class="volume-row">
+              <label>🎯 Metrônomo</label>
+              <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" oninput="setVolume('metronome', this.value)">
+            </div>
+          </div>
+        </div>
+
+        <div class="time-signature">
+          <button class="time-btn" onclick="setTimeSig(2, this)">2/4</button>
+          <button class="time-btn" onclick="setTimeSig(3, this)">3/4</button>
+          <button class="time-btn active" onclick="setTimeSig(4, this)">4/4</button>
+        </div>
+
+        <div class="metronome-visual" id="metronome-visual">
+          <div class="beat-dot accent-beat" data-beat="1"></div>
+          <div class="beat-dot" data-beat="2"></div>
+          <div class="beat-dot" data-beat="3"></div>
+          <div class="beat-dot" data-beat="4"></div>
+        </div>
+
+        <div class="timer-control" style="margin-top:20px;">
+          <label style="color:var(--text-secondary);">Timer</label>
+          <input type="number" class="timer-input" id="timer-minutes" value="5" min="1" max="60">
+          <span style="color:var(--text-secondary);">min</span>
+          <div class="timer-display" id="timer-display">05:00</div>
+          <button class="btn-control" id="timer-btn" onclick="toggleTimer()">⏱ Iniciar</button>
+        </div>
+      </div>
+
+      <!-- MY EXERCISES SECTION -->
+      <div class="editor-section">
+        <h2>📋 Meus Exercícios</h2>
+        <div id="my-exercises-list">
+          <p style="color:var(--text-secondary);padding:16px;">Carregando...</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
+  </div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    if (!localStorage.getItem('token')) window.location.href = '/';
+
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('active');
+    });
+    document.getElementById('sidebar-overlay').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('active');
+    });
+
+    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('introCompleted');
+      localStorage.removeItem('lastChapter');
+      window.location.href = '/';
+    });
+
+    async function loadSidebarProgress() {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      try {
+        const [progressRes, statsRes] = await Promise.all([
+          fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } }),
+          fetch('/api/stats')
+        ]);
+        const progress = await progressRes.json();
+        const stats = await statsRes.json();
+        const completed = progress.filter(p => p.completed).length;
+        const total = stats.totalAulas || 1;
+        const pct = Math.round((completed / total) * 100);
+        const fill = document.getElementById('sidebar-progress-fill');
+        if (fill) fill.style.width = pct + '%';
+      } catch(e) {}
+    }
+    loadSidebarProgress();
+
+    const backBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+  <script src="js/audio-engine.js"></script>
+  <script src="js/metronome.js"></script>
+  <script>
+    // Override getCurrentExercise to use the editor's sequence
+    window.getCurrentExercise = function() { return exerciseSequence; };
+  </script>
+  <script src="js/exercicio-personalizado.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initEditor();
+      const params = new URLSearchParams(window.location.search);
+      const editId = params.get('id');
+      if (editId) {
+        setTimeout(() => editExercise(parseInt(editId)), 300);
+      }
+    });
+  </script>
 </body>
 </html>

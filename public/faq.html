@@ -1,67 +1,413 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Do Travesseiro ao Groove</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO TRAVESSEIRO AO GROOVE - FAQ</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    .faq-list {
+      max-width: 800px;
+    }
+
+    .faq-item {
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all var(--transition-normal);
+      background: linear-gradient(145deg, #16130e, #100e0a);
+      background-image: var(--parchment), linear-gradient(145deg, #16130e, #100e0a);
+      background-size: 200px 200px, 100% 100%;
+      box-shadow: var(--shadow-sm), 0 0 15px rgba(201, 168, 76, 0.05);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-md), 0 0 30px rgba(201, 168, 76, 0.1);
+    }
+
+    .faq-item.open {
+      border-color: rgba(201, 168, 76, 0.25);
+      box-shadow: var(--shadow-md), 0 0 40px rgba(201, 168, 76, 0.12);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      background: rgba(201, 168, 76, 0.04);
+    }
+
+    .faq-question h3 {
+      font-size: 15px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--text-primary);
+      flex: 1;
+      margin-right: 16px;
+    }
+
+    .faq-item.open .faq-question h3 {
+      color: var(--gold);
+    }
+
+    .faq-arrow {
+      font-size: 18px;
+      color: var(--gold-dim);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      color: var(--gold);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-family: 'Cinzel', serif;
+    }
+
+    .faq-answer-inner strong {
+      color: var(--gold);
+    }
+
+    .faq-answer-inner ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .faq-answer-inner li {
+      margin-bottom: 6px;
+    }
+
+    .faq-category {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-dim);
+      font-weight: 700;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .faq-category:first-child {
+      margin-top: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-brand">🥁 Do Travesseiro ao Groove</div>
-        <div class="navbar-menu">
-            <a href="/dashboard" class="nav-link">Dashboard</a>
-            <a href="/curso" class="nav-link">Curso</a>
-            <a href="#" onclick="logout()" class="nav-link">Sair</a>
-        </div>
+  <button class="hamburger" id="hamburger-btn">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"></div>
+    <nav class="sidebar-nav">
+      <a href="/intro">📖 Introdução</a>
+      <a href="/dashboard">🏠 Aulas</a>
+      <a href="/curso">🎓 Curso</a>
+      <a href="/teste">📝 Teste</a>
+      <a href="/conquistas">🏅 Conquistas</a>
+      <a href="/evolucao">📈 Evolução</a>
+      <a href="/criar-exercicio">✏️ Criar Exercício</a>
+      <a href="/faq" class="active">❓ FAQ</a>
+      <div class="sidebar-theme-toggle">
+        <span>Tema</span>
+        <div class="theme-toggle-switch"></div>
+      </div>
+      <a href="#" class="logout" id="logout-btn-nav">🚪 Sair</a>
+    </nav>
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">Progresso</div>
+      <div class="sidebar-progress-bar">
+        <div class="sidebar-progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
+      </div>
     </div>
-    
-    <div class="faq-container">
-        <h1>❓ Perguntas Frequentes</h1>
-        
-        <div class="faq-list">
-            <div class="faq-item">
-                <h3>O que é Stick Control?</h3>
-                <p>Stick Control é um método sistemático para desenvolver controle, velocidade e precisão na bateria, usando técnicas fundamentais que são a base de todo baterista profissional.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Como devo usar este curso?</h3>
-                <p>Comece pelo Capítulo 1 e siga sequencialmente. Pratique cada exercício com o metrônomo, aumentando gradualmente o BPM conforme desenvolve consistência. Reserve 20-30 minutos por dia.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Qual velocidade devo atingir?</h3>
-                <p>O objetivo é progredir gradualmente. Comece com 60 BPM e aumente em 5-10 BPM a cada semana. A consistência é mais importante que a velocidade.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Preciso de um kit de bateria completo?</h3>
-                <p>Não! Você pode começar praticando as técnicas em qualquer superfície: mesa, pad de treino, ou até suas pernas. O importante é dominar a técnica.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Como as conquistas funcionam?</h3>
-                <p>Ganhe badges ao completar capítulos, atingir velocidades específicas, manter sequências e dedicar tempo de prática. Veja todas na aba Conquistas.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Posso criar meus próprios exercícios?</h3>
-                <p>Sim! Na seção "Criar Exercício" você pode montar sequências personalizadas e acompanhar seu progresso nelas.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Quanto tempo leva para completar o curso?</h3>
-                <p>Depende da sua dedicação. Praticando 30 minutos por dia, você pode completar em 3-6 meses. Mas o importante é o progresso, não a velocidade.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Meus dados são salvos?</h3>
-                <p>Sim! Seu progresso é salvo automaticamente no banco de dados. Você pode acessar de qualquer dispositivo com sua conta.</p>
-            </div>
-        </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="banner">
+      <img src="images/banner_6.png" alt="DO TRAVESSEIRO AO GROOVE" />
     </div>
-    
-    <script src="/js/app.js"></script>
+
+    <section class="dashboard-hero scroll-reveal">
+      <h2>❓ Perguntas Frequentes</h2>
+      <p class="lead">Tire suas dúvidas sobre o curso e a prática</p>
+    </section>
+
+    <div class="faq-list">
+
+      <div class="faq-category">🥁 Começando</div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Preciso de uma bateria para praticar?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <strong>Não!</strong> O curso foi criado justamente para isso. Você pode praticar com as mãos sobre uma mesa, almofada ou coxa. O áudio sintetizado do curso simula os sons reais, então você treina o ouvido enquanto desenvolve a técnica.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Qual a melhor hora para praticar?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            O importante é a <strong>consistência</strong>, não a hora. Mas muitos alunos preferem praticar pela manhã ou à noite. O ideal são <strong>15 a 30 minutos por dia</strong> do que 2 horas uma vez por semana.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Em que ordem devo fazer as aulas?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <strong>Sempre na ordem.</strong> Cada aula depende da anterior. O Módulo Preparatório ensina os fundamentos (pulso, rebote, fulcro). Só avance quando se sentir confortável com o capítulo atual.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">⏱ Prática e Progresso</div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Com qual BPM devo começar?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Comece sempre em <strong>60 BPM</strong>. Parece lento, mas é onde a técnica se forma. Só aumente quando conseguir tocar o exercício inteiro sem erros e com as mãos relaxadas. Aumente <strong>5 BPM por vez</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Quanto tempo leva para completar o curso?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Depende da sua dedicação. Com prática diária de 20 minutos:
+            <ul>
+              <li><strong>Módulo Preparatório:</strong> 2 a 3 semanas</li>
+              <li><strong>Módulo 1 (capítulos 0-50):</strong> 3 a 6 meses</li>
+            </ul>
+            Não tenha pressa — o objetivo é <strong>internalizar</strong> cada exercício.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>O que significa "completar" um capítulo?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Um capítulo é marcado como completo quando você clica no botão <strong>"Marcar como Completo"</strong> após praticar. Não há prova obrigatória — mas recomendamos fazer o teste de cada capítulo para verificar o aprendizado.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Meu progresso é salvo automaticamente?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <strong>Sim.</strong> O curso salva automaticamente:
+            <ul>
+              <li>Tempo de prática (a cada pausa no timer)</li>
+              <li>BPM máximo atingido</li>
+              <li>Progresso ao sair da página</li>
+            </ul>
+            Mas sempre clique em "Marcar como Completo" para registrar oficialmente.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">🎵 Técnica</div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>O que é paradiddle e por que é importante?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            O paradiddle é o padrão <strong>R L R R L R L L</strong>. Ele combina alternância com duplos e é a base de centenas de padrões na bateria. Domine-o e você terá ferramenta para tocar em qualquer estilo.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Por que devo praticar devagar?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Devagar é rápido. Quando você pratica devagar, o <strong>cérebro memoriza o movimento</strong> corretamente. Se apressar, cria vícios de postura e timing que são difíceis de corrigir. A velocidade vem como consequência natural.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Como saber se estou com a postura correta?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sinais de postura correta:
+            <ul>
+              <li>Punhos <strong>soltos</strong> (não travados)</li>
+              <li>Ombros <strong>relaxados</strong> (não subidos)</li>
+              <li>As baquetas <strong>não saem da mão</strong></li>
+              <li>Você sente o <strong>rebote</strong> natural da superfície</li>
+            </ul>
+            Se sentir dor, pare e ajuste. Dor nunca é sinal de progresso.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">⚙️ Conta e Sistema</div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Esqueci minha senha. O que faço?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Na tela de login, clique em <strong>"Esqueci minha senha"</strong>. Você responderá a pergunta secreta que cadastrou e poderá definir uma nova senha.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Posso usar em vários dispositivos?</h3>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <strong>Sim!</strong> Basta fazer login com seu email e senha em qualquer dispositivo com navegador. Seu progresso está salvo na nuvem.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" title="Voltar ao topo">⬆</button>
+
+  <script src="js/particles.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = '/';
+
+    // Hamburger
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('active');
+    });
+    document.getElementById('sidebar-overlay').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('active');
+    });
+
+    document.getElementById('logout-btn-nav').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('introCompleted');
+      localStorage.removeItem('lastChapter');
+      window.location.href = '/';
+    });
+
+    // FAQ accordion
+    function toggleFaq(questionEl) {
+      const item = questionEl.parentElement;
+      const wasOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      // Toggle clicked
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // Sidebar progress
+    async function loadSidebarProgress() {
+      try {
+        const [progressRes, statsRes] = await Promise.all([
+          fetch('/api/progress', { headers: { 'Authorization': `Bearer ${token}` } }),
+          fetch('/api/stats')
+        ]);
+        const progress = await progressRes.json();
+        const stats = await statsRes.json();
+        const completed = progress.filter(p => p.completed).length;
+        const total = stats.totalAulas || 1;
+        const pct = Math.round((completed / total) * 100);
+        const fill = document.getElementById('sidebar-progress-fill');
+        if (fill) fill.style.width = pct + '%';
+      } catch(e) {}
+    }
+    loadSidebarProgress();
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+
+    // Back to top
+    const backBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
