@@ -101,6 +101,39 @@ async function initDatabase() {
       )
     `);
 
+    // ============ MIGRAÇÕES (garante colunas em bancos criados por versões antigas) ============
+    const migrations = [
+      "ALTER TABLE users ADD COLUMN IF NOT EXISTS secret_question VARCHAR(255)",
+      "ALTER TABLE users ADD COLUMN IF NOT EXISTS secret_answer VARCHAR(255)",
+      "ALTER TABLE users ADD COLUMN IF NOT EXISTS weekly_goal INTEGER DEFAULT 60",
+      "ALTER TABLE users ADD COLUMN IF NOT EXISTS daily_goal INTEGER DEFAULT 10",
+      "ALTER TABLE progress ADD COLUMN IF NOT EXISTS completed BOOLEAN DEFAULT FALSE",
+      "ALTER TABLE progress ADD COLUMN IF NOT EXISTS max_bpm INTEGER DEFAULT 60",
+      "ALTER TABLE progress ADD COLUMN IF NOT EXISTS practice_time INTEGER DEFAULT 0",
+      "ALTER TABLE progress ADD COLUMN IF NOT EXISTS test_completed BOOLEAN DEFAULT FALSE",
+      "ALTER TABLE progress ADD COLUMN IF NOT EXISTS last_practiced TIMESTAMP",
+      "CREATE UNIQUE INDEX IF NOT EXISTS idx_progress_user_chapter ON progress(user_id, chapter_id)",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS bpm_range_min INTEGER DEFAULT 40",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS bpm_range_max INTEGER DEFAULT 200",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS notes_per_beat INTEGER DEFAULT 2",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS time_signature INTEGER DEFAULT 4",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+      "ALTER TABLE user_exercises ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+      "ALTER TABLE user_exercise_progress ADD COLUMN IF NOT EXISTS max_bpm INTEGER DEFAULT 0",
+      "ALTER TABLE user_exercise_progress ADD COLUMN IF NOT EXISTS practice_time INTEGER DEFAULT 0",
+      "ALTER TABLE user_exercise_progress ADD COLUMN IF NOT EXISTS completed BOOLEAN DEFAULT FALSE",
+      "ALTER TABLE user_exercise_progress ADD COLUMN IF NOT EXISTS last_practiced TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+      "ALTER TABLE achievements ADD COLUMN IF NOT EXISTS badge_name VARCHAR(255)",
+      "ALTER TABLE achievements ADD COLUMN IF NOT EXISTS unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+    ];
+    for (const sql of migrations) {
+      try {
+        await pool.query(sql);
+      } catch (e) {
+        // ignora erros (ex: duplicado / coluna já existe)
+      }
+    }
+
     console.log('✅ Banco PostgreSQL inicializado');
   } catch (err) {
     console.error('❌ Erro ao inicializar banco:', err.message);
@@ -218,7 +251,11 @@ function authenticateToken(req, res, next) {
   
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(401).json({ error: 'Token inválido ou expirado' });
+    // Normaliza o ID do usuário: aceita tokens antigos (userId) e novos (id)
     req.user = user;
+    if (req.user.id === undefined && req.user.userId !== undefined) {
+      req.user.id = req.user.userId;
+    }
     next();
   });
 }
