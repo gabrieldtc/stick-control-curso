@@ -51,6 +51,25 @@ function resetPracticeTracking() {
   maxBpmAchieved = bpm;
 }
 
+// Conta o tempo de toque real do metrônomo mesmo sem usar o timer.
+// Só incrementa quando o timer NÃO está rodando (o intervalo do timer já acumula sozinho),
+// evitando contagem dupla quando o usuário toca com o timer ativo.
+setInterval(function() {
+  if (isPlaying && !timerRunning) {
+    practiceTimeAccumulated++;
+  }
+}, 1000);
+
+// Auto-save periódico do tempo de prática enquanto toca.
+// Garante que os minutos sejam persistidos mesmo se o usuário não clicar em "marcar como completo".
+if (typeof savePracticeProgress === 'function') {
+  setInterval(function() {
+    if (isPlaying && !timerRunning && practiceTimeAccumulated - lastSavedPracticeTime >= 30) {
+      savePracticeProgress();
+    }
+  }, 15000);
+}
+
 // Time Signature
 function setTimeSig(sig, el) {
   timeSignature = sig;
@@ -508,13 +527,21 @@ async function savePracticeProgress() {
   if (practiceTime === 0 && maxBpm <= 80) return;
 
   try {
-    await fetch('/api/progress', {
+    var r = await fetch('/api/progress', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ chapterId: currentChapterId, completed: false, maxBpm: maxBpm, practiceTime: practiceTime })
     });
-    lastSavedPracticeTime = practiceTimeAccumulated;
-  } catch(e) {}
+    if (!r.ok) {
+      console.error('POST /api/progress falhou com status', r.status);
+      alert('Erro ao salvar prática (status ' + r.status + '). Veja o console da página para mais detalhes.');
+    } else {
+      lastSavedPracticeTime = practiceTimeAccumulated;
+    }
+  } catch(e) {
+    console.error('Erro de rede ao salvar prática:', e);
+    alert('Falha de rede ao salvar prática. Verifique sua conexão e tente novamente.');
+  }
 
   if (typeof checkAchievements === 'function') checkAchievements();
 }

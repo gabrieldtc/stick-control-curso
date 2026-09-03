@@ -832,7 +832,7 @@ async function markComplete() {
   const maxBpm = typeof getMaxBpm === 'function' ? getMaxBpm() : bpm;
   
   try {
-    await fetch('/api/progress', {
+    const r = await fetch('/api/progress', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -845,6 +845,12 @@ async function markComplete() {
         practiceTime: practiceTime
       })
     });
+    if (!r.ok) {
+      const errText = await r.text().catch(() => '');
+      console.error('POST /api/progress falhou com status', r.status, errText);
+      alert('Erro ao salvar progresso (status ' + r.status + '). Veja o console da página para mais detalhes.');
+      return;
+    }
     
     document.getElementById('complete-btn').textContent = '✓ Completo!';
     document.getElementById('complete-btn').style.background = 'var(--success)';
@@ -867,6 +873,7 @@ async function markComplete() {
     
   } catch (error) {
     console.error('Error saving progress:', error);
+    alert('Falha de rede ao salvar progresso. Verifique sua conexão e tente novamente.');
   }
 }
 
