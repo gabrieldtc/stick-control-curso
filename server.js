@@ -435,6 +435,11 @@ app.get('/api/progress', authenticateToken, (req, res) => {
 // Update progress
 app.post('/api/progress', authenticateToken, (req, res) => {
   const { chapterId, completed, maxBpm, practiceTime, testCompleted } = req.body;
+
+  // Ajusta a hora da prática para o fuso local do usuário (evita que a meta diária fique zerada por diferença UTC/local).
+  const tzMin = parseInt(req.body.timezoneOffsetMin) || 0;
+  const tzLiteral = (-tzMin >= 0 ? '+' : '') + (-tzMin) + ' minutes';
+  const lastPracticedExpr = tzMin === 0 ? 'CURRENT_TIMESTAMP' : `datetime('now', '${tzLiteral}')`;
   
   const existing = dbGet(
     'SELECT id FROM progress WHERE user_id = ? AND chapter_id = ?',
@@ -442,7 +447,7 @@ app.post('/api/progress', authenticateToken, (req, res) => {
   );
   
   if (existing) {
-    const updates = ['max_bpm = MAX(max_bpm, ?)', 'practice_time = practice_time + ?', 'last_practiced = CURRENT_TIMESTAMP'];
+    const updates = ['max_bpm = MAX(max_bpm, ?)', 'practice_time = practice_time + ?', `last_practiced = ${lastPracticedExpr}`];
     const params = [maxBpm || 0, practiceTime || 0];
     
     if (typeof completed !== 'undefined' && completed !== null) {
@@ -459,7 +464,7 @@ app.post('/api/progress', authenticateToken, (req, res) => {
   } else {
     dbRun(`
       INSERT INTO progress (user_id, chapter_id, completed, max_bpm, practice_time, test_completed, last_practiced)
-      VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      VALUES (?, ?, ?, ?, ?, ?, ${lastPracticedExpr})
     `, [req.user.id, chapterId, completed ? 1 : 0, maxBpm || 60, practiceTime || 0, testCompleted ? 1 : 0]);
   }
   
@@ -574,12 +579,15 @@ app.delete('/api/user/exercises/:id', authenticateToken, (req, res) => {
 // POST salvar progresso do exercício personalizado
 app.post('/api/user/exercises/:id/progress', authenticateToken, (req, res) => {
   const { maxBpm, practiceTime, completed } = req.body;
+  const tzMin = parseInt(req.body.timezoneOffsetMin) || 0;
+  const tzLiteral = (-tzMin >= 0 ? '+' : '') + (-tzMin) + ' minutes';
+  const lastPracticedExpr = tzMin === 0 ? 'CURRENT_TIMESTAMP' : `datetime('now', '${tzLiteral}')`;
   const prog = dbGet(
     'SELECT id FROM user_exercise_progress WHERE exercise_id = ? AND user_id = ?',
     [req.params.id, req.user.id]
   );
   if (prog) {
-    const updates = ['max_bpm = MAX(max_bpm, ?)', 'practice_time = practice_time + ?', 'last_practiced = CURRENT_TIMESTAMP'];
+    const updates = ['max_bpm = MAX(max_bpm, ?)', 'practice_time = practice_time + ?', `last_practiced = ${lastPracticedExpr}`];
     const params = [maxBpm || 0, practiceTime || 0];
     if (typeof completed !== 'undefined') {
       updates.push('completed = ?');

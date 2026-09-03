@@ -515,7 +515,7 @@ async function savePracticeProgress() {
       await fetch('/api/user/exercises/' + customExerciseContext.exerciseId + '/progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-        body: JSON.stringify({ maxBpm: maxBpm, practiceTime: practiceTime })
+        body: JSON.stringify({ maxBpm: maxBpm, practiceTime: practiceTime, timezoneOffsetMin: new Date().getTimezoneOffset() })
       });
       lastSavedPracticeTime = practiceTimeAccumulated;
     } catch(e) {}
@@ -530,7 +530,7 @@ async function savePracticeProgress() {
     var r = await fetch('/api/progress', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({ chapterId: currentChapterId, completed: false, maxBpm: maxBpm, practiceTime: practiceTime })
+      body: JSON.stringify({ chapterId: currentChapterId, completed: false, maxBpm: maxBpm, practiceTime: practiceTime, timezoneOffsetMin: new Date().getTimezoneOffset() })
     });
     if (!r.ok) {
       console.error('POST /api/progress falhou com status', r.status);

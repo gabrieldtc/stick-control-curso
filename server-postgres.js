@@ -446,6 +446,12 @@ app.get('/api/progress', authenticateToken, async (req, res) => {
 app.post('/api/progress', authenticateToken, async (req, res) => {
   try {
     const { chapterId, completed, maxBpm, practiceTime, testCompleted } = req.body;
+
+    // Offset de fuso do navegador (minutos a somar ao UTC p/ chegar na hora local).
+    // Usado para gravar last_practiced na data local do usuário, evitando que a
+    // meta diária (que compara com o dia local) fique zerada por diferença de fuso.
+    const tzMin = parseInt(req.body.timezoneOffsetMin) || 0;
+    const tzExpr = tzMin === 0 ? 'NOW()' : `NOW() - (${tzMin} * interval '1 minute')`;
     
     const existing = await pool.query(
       'SELECT id FROM progress WHERE user_id = $1 AND chapter_id = $2',
@@ -453,7 +459,7 @@ app.post('/api/progress', authenticateToken, async (req, res) => {
     );
     
     if (existing.rows.length > 0) {
-      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', 'last_practiced = NOW()'];
+      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', `last_practiced = ${tzExpr}`];
       let params = [maxBpm || 0, practiceTime || 0];
       
       if (typeof completed !== 'undefined' && completed !== null) {
@@ -470,7 +476,7 @@ app.post('/api/progress', authenticateToken, async (req, res) => {
     } else {
       await pool.query(
         `INSERT INTO progress (user_id, chapter_id, completed, max_bpm, practice_time, test_completed, last_practiced)
-         VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
+         VALUES ($1, $2, $3, $4, $5, $6, ${tzExpr})`,
         [req.user.id, chapterId, completed ? true : false, maxBpm || 60, practiceTime || 0, testCompleted ? true : false]
       );
     }
@@ -638,13 +644,15 @@ app.delete('/api/user/exercises/:id', authenticateToken, async (req, res) => {
 app.post('/api/user/exercises/:id/progress', authenticateToken, async (req, res) => {
   try {
     const { maxBpm, practiceTime, completed } = req.body;
+    const tzMin = parseInt(req.body.timezoneOffsetMin) || 0;
+    const tzExpr = tzMin === 0 ? 'NOW()' : `NOW() - (${tzMin} * interval '1 minute')`;
     const progResult = await pool.query(
       'SELECT id FROM user_exercise_progress WHERE exercise_id = $1 AND user_id = $2',
       [req.params.id, req.user.id]
     );
     
     if (progResult.rows.length > 0) {
-      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', 'last_practiced = NOW()'];
+      let updates = ['max_bpm = GREATEST(max_bpm, $1)', 'practice_time = practice_time + $2', `last_practiced = ${tzExpr}`];
       let params = [maxBpm || 0, practiceTime || 0];
       if (typeof completed !== 'undefined') {
         updates.push('completed = $' + (params.length + 1));

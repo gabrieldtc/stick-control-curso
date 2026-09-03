@@ -842,7 +842,8 @@ async function markComplete() {
         chapterId: currentChapterId,
         completed: true,
         maxBpm: maxBpm,
-        practiceTime: practiceTime
+        practiceTime: practiceTime,
+        timezoneOffsetMin: new Date().getTimezoneOffset()
       })
     });
     if (!r.ok) {
