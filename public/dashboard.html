@@ -214,14 +214,15 @@
         document.getElementById('stat-bpm').textContent = maxBpm;
         document.getElementById('stat-time').textContent = formatTime(totalTime);
 
-        // Calculate day streak (UTC to match SQLite)
+        // Calculate day streak (local date to match the way last_practiced is now saved)
         const practiceDates = [...new Set(progress.filter(p => p.last_practiced).map(p => p.last_practiced.split(' ')[0]))];
         practiceDates.sort().reverse();
         let streak = 0;
         const now = new Date();
-        const utcToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+        const localTodayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+        const todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
         for (let d = 0; d < practiceDates.length; d++) {
-          const expected = new Date(utcToday.getTime() - d * 86400000);
+          const expected = new Date(todayUTC.getTime() - d * 86400000);
           const expectedStr = expected.toISOString().split('T')[0];
           if (practiceDates[d] === expectedStr) {
             streak++;
@@ -316,6 +317,12 @@
     }
 
     loadDashboard();
+
+    // Recarrega os dados sempre que a página volta ao foco (inclusive pelo botão voltar do navegador).
+    // Evita que o dashboard mostre estado desatualizado (ex: aula ainda "trancada" após concluir o anterior).
+    window.addEventListener('pageshow', function(e) {
+      loadDashboard();
+    });
 
     // Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
