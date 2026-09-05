@@ -1,41 +1,41 @@
 const KITS = {
   classic: {
     label: 'Pad Clássico',
-    stickWave: 'triangle',
-    stickFreq: [900, 750],
-    stickEnd: [450, 380],
-    stickDur: 0.05,
-    stickGain: 0.45,
+    stickWave: 'sine',
+    stickFreq: [320, 275],
+    stickEnd: [160, 140],
+    stickDur: 0.12,
+    stickGain: 0.55,
     bassFreq: [180, 40],
     bassDur: 0.25
   },
   rock: {
     label: 'Rock',
-    stickWave: 'square',
-    stickFreq: [950, 780],
-    stickEnd: [500, 420],
-    stickDur: 0.06,
-    stickGain: 0.5,
+    stickWave: 'sine',
+    stickFreq: [280, 240],
+    stickEnd: [140, 120],
+    stickDur: 0.14,
+    stickGain: 0.6,
     bassFreq: [110, 32],
     bassDur: 0.32
   },
   jazz: {
     label: 'Jazz',
     stickWave: 'sine',
-    stickFreq: [820, 680],
-    stickEnd: [400, 330],
-    stickDur: 0.04,
-    stickGain: 0.36,
+    stickFreq: [350, 300],
+    stickEnd: [180, 150],
+    stickDur: 0.1,
+    stickGain: 0.42,
     bassFreq: [240, 60],
     bassDur: 0.2
   },
   funk: {
     label: 'Funk',
-    stickWave: 'square',
-    stickFreq: [1000, 820],
-    stickEnd: [540, 450],
-    stickDur: 0.045,
-    stickGain: 0.48,
+    stickWave: 'sine',
+    stickFreq: [300, 260],
+    stickEnd: [150, 130],
+    stickDur: 0.12,
+    stickGain: 0.52,
     bassFreq: [200, 42],
     bassDur: 0.24
   }
@@ -280,7 +280,7 @@ class AudioEngine {
     const osc = this.audioContext.createOscillator();
     const g = this.audioContext.createGain();
 
-    osc.type = k.stickWave || 'triangle';
+    osc.type = k.stickWave || 'sine';
     osc.frequency.setValueAtTime(isRight ? k.stickFreq[0] : k.stickFreq[1], time);
     osc.frequency.exponentialRampToValueAtTime(isRight ? k.stickEnd[0] : k.stickEnd[1], time + k.stickDur);
 
@@ -290,6 +290,18 @@ class AudioEngine {
     osc.connect(g);
     g.connect(master);
     osc.start(time); osc.stop(time + k.stickDur + 0.02);
+
+    // Corpo do pad: harmônico grave curto logo após o ataque para reforçar o "toc"
+    const bodyOsc = this.audioContext.createOscillator();
+    const bodyG = this.audioContext.createGain();
+    bodyOsc.type = 'sine';
+    bodyOsc.frequency.setValueAtTime(88, time + 0.004);
+    bodyOsc.frequency.exponentialRampToValueAtTime(45, time + k.stickDur);
+    bodyG.gain.setValueAtTime(0.35 * k.stickGain * gain, time + 0.004);
+    bodyG.gain.exponentialRampToValueAtTime(0.005, time + k.stickDur);
+    bodyOsc.connect(bodyG);
+    bodyG.connect(master);
+    bodyOsc.start(time + 0.004); bodyOsc.stop(time + k.stickDur + 0.02);
   }
 
   /* ── Metronome click ── */
@@ -300,14 +312,14 @@ class AudioEngine {
     const g = this.audioContext.createGain();
 
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(isAccent ? 1200 : 900, time);
+    osc.frequency.setValueAtTime(isAccent ? 900 : 700, time);
 
-    g.gain.setValueAtTime((isAccent ? 0.5 : 0.3) * vol, time);
-    g.gain.exponentialRampToValueAtTime(0.01, time + 0.04);
+    g.gain.setValueAtTime((isAccent ? 0.35 : 0.2) * vol, time);
+    g.gain.exponentialRampToValueAtTime(0.01, time + 0.03);
 
     osc.connect(g);
     g.connect(master);
-    osc.start(time); osc.stop(time + 0.05);
+    osc.start(time); osc.stop(time + 0.04);
   }
 
   /* ── Count-in ── */
