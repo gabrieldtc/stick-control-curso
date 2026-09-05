@@ -492,7 +492,7 @@ app.post('/api/progress', authenticateToken, async (req, res) => {
 app.get('/api/progress/history', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT practice_date, SUM(total_seconds) as total_seconds FROM (
+      `SELECT to_char(practice_date, 'YYYY-MM-DD') as practice_date, SUM(total_seconds) as total_seconds FROM (
         SELECT date(last_practiced) as practice_date, SUM(practice_time) as total_seconds
         FROM progress
         WHERE user_id = $1 AND last_practiced IS NOT NULL AND practice_time > 0

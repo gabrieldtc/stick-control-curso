@@ -487,7 +487,9 @@
         var bestDay = 0;
         data.forEach(function(d) {
           var mins = Math.round(d.total_seconds / 60);
-          dateMap[d.practice_date] = mins;
+          // Normaliza a data para "YYYY-MM-DD" independente do formato (SQLite "2026-09-04" ou PostgreSQL "2026-09-04T00:00:00.000Z")
+          var dayKey = String(d.practice_date).slice(0, 10);
+          dateMap[dayKey] = mins;
           if (mins > bestDay) bestDay = mins;
         });
 

@@ -215,15 +215,14 @@
         document.getElementById('stat-time').textContent = formatTime(totalTime);
 
         // Calculate day streak (local date to match the way last_practiced is now saved)
-        const practiceDates = [...new Set(progress.filter(p => p.last_practiced).map(p => p.last_practiced.split(' ')[0]))];
+        const practiceDates = [...new Set(progress.filter(p => p.last_practiced).map(p => String(p.last_practiced).slice(0, 10)))];
         practiceDates.sort().reverse();
         let streak = 0;
-        const now = new Date();
-        const localTodayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
-        const todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+        const today = new Date();
+        const todayMs = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
         for (let d = 0; d < practiceDates.length; d++) {
-          const expected = new Date(todayUTC.getTime() - d * 86400000);
-          const expectedStr = expected.toISOString().split('T')[0];
+          const expected = new Date(todayMs - d * 86400000);
+          const expectedStr = expected.getFullYear() + '-' + String(expected.getMonth() + 1).padStart(2, '0') + '-' + String(expected.getDate()).padStart(2, '0');
           if (practiceDates[d] === expectedStr) {
             streak++;
           } else {
