@@ -2,40 +2,48 @@ const KITS = {
   classic: {
     label: 'Pad Clássico',
     stickWave: 'sine',
-    stickFreq: [320, 275],
-    stickEnd: [160, 140],
-    stickDur: 0.12,
-    stickGain: 0.55,
+    stickFreq: [420, 340],
+    stickEnd: [210, 170],
+    stickDur: 0.09,
+    stickGain: 0.5,
+    bodyFreq: [100, 52],
+    bodyGain: 0.32,
     bassFreq: [180, 40],
     bassDur: 0.25
   },
   rock: {
     label: 'Rock',
-    stickWave: 'sine',
-    stickFreq: [280, 240],
-    stickEnd: [140, 120],
+    stickWave: 'square',
+    stickFreq: [250, 205],
+    stickEnd: [100, 82],
     stickDur: 0.14,
-    stickGain: 0.6,
+    stickGain: 0.62,
+    bodyFreq: [82, 38],
+    bodyGain: 0.4,
     bassFreq: [110, 32],
     bassDur: 0.32
   },
   jazz: {
     label: 'Jazz',
     stickWave: 'sine',
-    stickFreq: [350, 300],
-    stickEnd: [180, 150],
-    stickDur: 0.1,
-    stickGain: 0.42,
+    stickFreq: [520, 430],
+    stickEnd: [270, 220],
+    stickDur: 0.06,
+    stickGain: 0.34,
+    bodyFreq: [95, 58],
+    bodyGain: 0.24,
     bassFreq: [240, 60],
     bassDur: 0.2
   },
   funk: {
     label: 'Funk',
-    stickWave: 'sine',
-    stickFreq: [300, 260],
-    stickEnd: [150, 130],
-    stickDur: 0.12,
-    stickGain: 0.52,
+    stickWave: 'triangle',
+    stickFreq: [390, 320],
+    stickEnd: [160, 130],
+    stickDur: 0.1,
+    stickGain: 0.55,
+    bodyFreq: [88, 42],
+    bodyGain: 0.35,
     bassFreq: [200, 42],
     bassDur: 0.24
   }
@@ -295,9 +303,9 @@ class AudioEngine {
     const bodyOsc = this.audioContext.createOscillator();
     const bodyG = this.audioContext.createGain();
     bodyOsc.type = 'sine';
-    bodyOsc.frequency.setValueAtTime(88, time + 0.004);
-    bodyOsc.frequency.exponentialRampToValueAtTime(45, time + k.stickDur);
-    bodyG.gain.setValueAtTime(0.35 * k.stickGain * gain, time + 0.004);
+    bodyOsc.frequency.setValueAtTime((k.bodyFreq ? k.bodyFreq[0] : 88), time + 0.004);
+    bodyOsc.frequency.exponentialRampToValueAtTime((k.bodyFreq ? k.bodyFreq[1] : 45), time + k.stickDur);
+    bodyG.gain.setValueAtTime((k.bodyGain || 0.35) * k.stickGain * gain, time + 0.004);
     bodyG.gain.exponentialRampToValueAtTime(0.005, time + k.stickDur);
     bodyOsc.connect(bodyG);
     bodyG.connect(master);
