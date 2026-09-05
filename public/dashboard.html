@@ -219,9 +219,8 @@
         practiceDates.sort().reverse();
         let streak = 0;
         const today = new Date();
-        const todayMs = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
         for (let d = 0; d < practiceDates.length; d++) {
-          const expected = new Date(todayMs - d * 86400000);
+          const expected = new Date(today.getFullYear(), today.getMonth(), today.getDate() - d);
           const expectedStr = expected.getFullYear() + '-' + String(expected.getMonth() + 1).padStart(2, '0') + '-' + String(expected.getDate()).padStart(2, '0');
           if (practiceDates[d] === expectedStr) {
             streak++;

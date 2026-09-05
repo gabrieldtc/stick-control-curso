@@ -400,7 +400,7 @@ function saveCustomProgressBeforeUnload() {
       fetch('/api/user/exercises/' + currentExerciseId + '/progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-        body: JSON.stringify({ maxBpm: maxBpm, practiceTime: delta }),
+        body: JSON.stringify({ maxBpm: maxBpm, practiceTime: delta, timezoneOffsetMin: new Date().getTimezoneOffset() }),
         keepalive: true
       }).catch(function(){});
     }

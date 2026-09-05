@@ -824,9 +824,14 @@ app.get('/api/stats', async (req, res) => {
   try {
     const userCount = await pool.query('SELECT COUNT(*) as count FROM users');
     const completions = await pool.query('SELECT COUNT(*) as count FROM progress WHERE completed = true');
+    let totalExercicios = 0;
+    (chaptersCache || []).forEach(ch => {
+      if (ch.exercise) totalExercicios += ch.exercise.length;
+    });
     
     res.json({
       totalAulas: chaptersCache?.length || 0,
+      totalExercicios: totalExercicios,
       totalUsuarios: userCount.rows[0].count,
       capitulosCompletados: completions.rows[0].count
     });

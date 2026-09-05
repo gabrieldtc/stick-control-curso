@@ -506,29 +506,30 @@
 
         var currentStreak = 0;
         var bestStreak = 0;
-        var tempStreak = 0;
-        for (var i = 0; i < sortedDates.length; i++) {
-          var expected = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentStreak);
-          var expectedStr = localDateStr(expected);
-          if (sortedDates[i] === expectedStr) {
-            currentStreak++;
-          } else {
-            break;
+        if (sortedDates.length > 0) {
+          for (var i = 0; i < sortedDates.length; i++) {
+            var expected = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentStreak);
+            var expectedStr = localDateStr(expected);
+            if (sortedDates[i] === expectedStr) {
+              currentStreak++;
+            } else {
+              break;
+            }
           }
-        }
-        tempStreak = 1;
-        for (var i = 1; i < sortedDates.length; i++) {
-          var prev = parseLocalDate(sortedDates[i - 1]);
-          var curr = parseLocalDate(sortedDates[i]);
-          var diff = (prev.getTime() - curr.getTime()) / 86400000;
-          if (diff === 1) {
-            tempStreak++;
-          } else {
-            if (tempStreak > bestStreak) bestStreak = tempStreak;
-            tempStreak = 1;
+          var tempStreak = 1;
+          for (var i = 1; i < sortedDates.length; i++) {
+            var prev = parseLocalDate(sortedDates[i - 1]);
+            var curr = parseLocalDate(sortedDates[i]);
+            var diff = Math.round((Date.UTC(prev.getFullYear(), prev.getMonth(), prev.getDate()) - Date.UTC(curr.getFullYear(), curr.getMonth(), curr.getDate())) / 86400000);
+            if (diff === 1) {
+              tempStreak++;
+            } else {
+              if (tempStreak > bestStreak) bestStreak = tempStreak;
+              tempStreak = 1;
+            }
           }
+          if (tempStreak > bestStreak) bestStreak = tempStreak;
         }
-        if (tempStreak > bestStreak) bestStreak = tempStreak;
 
         document.getElementById('stat-total-days').textContent = totalDays;
         document.getElementById('stat-total-hours').textContent = totalHours.toFixed(1);

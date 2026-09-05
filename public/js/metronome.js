@@ -457,7 +457,7 @@ function calcTodayMinutes(hist) {
     var parts = String(row.practice_date).split('-');
     if (parts.length !== 3) return;
     var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
-    if (d.getTime() === today.getTime()) total += row.total_seconds || 0;
+    if (d.getTime() === today.getTime()) total += Number(row.total_seconds) || 0;
   });
   return Math.round(total / 60);
 }
@@ -473,7 +473,7 @@ function calcWeekMinutes(hist) {
     var parts = String(row.practice_date).split('-');
     if (parts.length !== 3) return;
     var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
-    if (d >= sunday && d <= saturday) total += row.total_seconds || 0;
+    if (d >= sunday && d <= saturday) total += Number(row.total_seconds) || 0;
   });
   return Math.round(total / 60);
 }

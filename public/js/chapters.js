@@ -11,87 +11,84 @@ if (chapterParam) {
   currentChapterId = parseInt(chapterParam);
 }
 
-// Chapter titles for navigation (all 51 chapters)
-const chapterTitles = [
-  "Introdução ao Curso",
-  "Anatomia da Bateria",
-  "Notação Básica",
-  "Alternância Simples",
-  "Pares (RR LL)",
-  "Alternância com Acento",
-  "Grupos de 3",
-  "Quadrupletas",
-  "Duplos",
-  "Triplos",
-  "Quádruplos",
-  "Par e Ímpar",
-  "Sincopa Básica",
-  "Paradiddle Básico",
-  "Paradiddle Duplo",
-  "Paradiddle Triplo",
-  "Flam Básico",
-  "Flam com Duplos",
-  "Drag Básico",
-  "Ruff",
-  "Buzz Rulo",
-  "Open Rulo",
-  "Single Stroke Rulo",
-  "Double Stroke Rulo",
-  "Five Stroke Rulo",
-  "Seven Stroke Rulo",
-  "Nine Stroke Rulo",
-  "Ten Stroke Rulo",
-  "Eleven Stroke Rulo",
-  "Thirteen Stroke Rulo",
-  "Fifteen Stroke Rulo",
-  "Sincopação com Pares",
-  "Acento na Segunda Batida",
-  "Acento na Terceira Batida",
-  "Acento na Quarta Batida",
-  "Acento Duplo",
-  "Acentos em Tercinas",
-  "Sincopa de Rock",
-  "Sincopa de Funk",
-  "Sincopa de Bossa Nova",
-  "Sincopa de Samba",
-  "Grupos de 5",
-  "Grupos de 7",
-  "Grupos de 9",
-  "Polirritmia 3x4",
-  "Polirritmia 4x3",
-  "Combinação Avançada 1",
-  "Combinação Avançada 2",
-  "Viradas Básicas",
-  "Viradas Avançadas",
-  "Exercício Final",
-  "Exercícios de Pés",
-  "Coordenação Mãos + Pés",
-  "Dinâmica — Crescendo e Diminuendo",
-  "Velocidade Gradual",
-  "Grooves Aplicados",
-  "Leitura de Partitura",
-  "Clave de Samba",
-  "Swing e Shuffle",
-  "Ritmo Composto (6/8)",
-  "Cross-Rhythm",
-  "Ritmo Afro",
-  "Polirritmia Avançada",
-  "Fusão de Ritmos",
-  "Ritmo e Silêncio",
-  "Ritmo Livre e Criação",
-  "", "", "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "", "", "", "",
-  "O Ritmo Já Mora Dentro de Você",
-  "A Baqueta: Sua Primeira Companheira",
-  "O Rebote e a Gravidade",
-  "O Fulcro: O Ponto Onde Tudo Acontece",
-  "Deixe a Baqueta Trabalhar por Você",
-  "O Pulso e o Metrônomo",
-  "Pulso no Tempo 2",
-  "Pulso no Tempo 3",
-  "Pulso no Tempo 4"
-];
+// Chapter titles by chapter id (used as fallback when the API is unavailable)
+const chapterTitles = {
+  0: "Introdução ao Curso",
+  1: "Anatomia da Bateria",
+  2: "Notação Básica",
+  3: "Alternância Simples",
+  4: "Pares (RR LL)",
+  5: "Alternância com Acento",
+  6: "Grupos de 3",
+  7: "Quadrupletas",
+  8: "Duplos",
+  9: "Triplos",
+  10: "Quádruplos",
+  11: "Par e Ímpar",
+  12: "Sincopa Básica",
+  13: "Paradiddle Básico",
+  14: "Paradiddle Duplo",
+  15: "Paradiddle Triplo",
+  16: "Flam Básico",
+  17: "Flam com Duplos",
+  18: "Drag Básico",
+  19: "Ruff",
+  20: "Buzz Rulo",
+  21: "Open Rulo",
+  22: "Single Stroke Rulo",
+  23: "Double Stroke Rulo",
+  24: "Five Stroke Rulo",
+  25: "Seven Stroke Rulo",
+  26: "Nine Stroke Rulo",
+  27: "Ten Stroke Rulo",
+  28: "Eleven Stroke Rulo",
+  29: "Thirteen Stroke Rulo",
+  30: "Fifteen Stroke Rulo",
+  31: "Sincopação com Pares",
+  32: "Acento na Segunda Batida",
+  33: "Acento na Terceira Batida",
+  34: "Acento na Quarta Batida",
+  35: "Acento Duplo",
+  36: "Acentos em Tercinas",
+  37: "Sincopa de Rock",
+  38: "Sincopa de Funk",
+  39: "Sincopa de Bossa Nova",
+  40: "Sincopa de Samba",
+  41: "Grupos de 5",
+  42: "Grupos de 7",
+  43: "Grupos de 9",
+  44: "Polirritmia 3x4",
+  45: "Polirritmia 4x3",
+  46: "Combinação Avançada 1",
+  47: "Combinação Avançada 2",
+  48: "Viradas Básicas",
+  49: "Viradas Avançadas",
+  50: "Exercício Final",
+  51: "Exercícios de Pés",
+  52: "Coordenação Mãos + Pés",
+  53: "Dinâmica — Crescendo e Diminuendo",
+  54: "Velocidade Gradual",
+  55: "Grooves Aplicados",
+  56: "Leitura de Partitura",
+  57: "Clave de Samba",
+  58: "Swing e Shuffle",
+  59: "Ritmo Composto (6/8)",
+  60: "Cross-Rhythm",
+  61: "Ritmo Afro",
+  62: "Polirritmia Avançada",
+  63: "Fusão de Ritmos",
+  64: "Ritmo e Silêncio",
+  65: "Ritmo Livre e Criação",
+  100: "O Ritmo Já Mora Dentro de Você",
+  101: "A Baqueta: Sua Primeira Companheira",
+  102: "O Rebote e a Gravidade",
+  103: "O Fulcro: O Ponto Onde Tudo Acontece",
+  104: "Deixe a Baqueta Trabalhar por Você",
+  105: "O Pulso e o Metrônomo",
+  106: "Pulso no Tempo 2",
+  107: "Pulso no Tempo 3",
+  108: "Pulso no Tempo 4"
+};
 
 // Concept texts for each chapter
 const chapterConcepts = {
@@ -374,7 +371,7 @@ async function getCurrentExerciseData() {
     title: title,
     subtitle: currentChapterId >= 100
       ? `Módulo Preparatório — Aula ${currentChapterId - 99} de 9`
-      : `Módulo 1 — Capítulo ${currentChapterId + 1} de 57`,
+      : `Módulo 1 — Capítulo ${currentChapterId + 1} de 66`,
     objectives: objectives,
     concept: concept,
     diagram: diagram,
@@ -730,9 +727,9 @@ async function loadChapter() {
   } else {
     prevBtn.style.visibility = 'visible';
   }
-  if ((currentChapterId >= 100 && currentChapterId < 108) || (currentChapterId < 56 && currentChapterId >= 0)) {
+  if ((currentChapterId >= 100 && currentChapterId <= 108) || (currentChapterId >= 0 && currentChapterId < 65)) {
     nextBtn.style.visibility = 'visible';
-  } else if (currentChapterId === 56 || currentChapterId === 108) {
+  } else {
     nextBtn.style.visibility = 'hidden';
   }
 }
@@ -816,7 +813,7 @@ function nextChapter() {
     window.location.href = `/curso?cap=${currentChapterId}`;
   } else if (currentChapterId === 108) {
     window.location.href = `/curso?cap=0`;
-  } else if (currentChapterId < 56) {
+  } else if (currentChapterId >= 0 && currentChapterId < 65) {
     currentChapterId++;
     window.location.href = `/curso?cap=${currentChapterId}`;
   }
@@ -886,6 +883,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   loadChapter();
+  
+  // Reload chapter when returning to the page from bfcache (refreshes lock/complete state)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      loadChapter();
+    }
+  });
   
   // Save progress when leaving page using keepalive fetch (reliable even during unload)
   window.addEventListener('beforeunload', () => {
